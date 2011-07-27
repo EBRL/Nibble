@@ -1,0 +1,14 @@
+SPM:
+    st:
+        batch_n:    batch number
+        images:
+                    {'run1.nii,1'
+                     'run1.nii,2'}
+                    {'run2.nii,1'
+                     'run2.nii,2'}
+        nslices:    number of slices
+        tr:         volume repetition time
+        ta:         acquisition time
+        so:         slice order
+        ref:        reference slice
+        pre:        prefix
