@@ -1,17 +1,17 @@
 SPM:
     spm_install:    '/Applications/spm8'
-    types:          
+    types:
         pre:
             stages:         ['slicetime', 'realign-est', 'normalize-est-write', 'smooth']
         post:
-            stages:         ['model', 'estimate', 'contrasts']
+            stages:         ['model', 'estimate', 'contrast_manager']
     slicetime:
         batch_n:    1
         images:     'gen'
         nslices:    40
         tr:         2.2
         ta:         2.145
-        so:         1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+        so:         "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40"
         ref:        20
         pre:        a
     realign-est:
@@ -28,7 +28,7 @@ SPM:
         batch_n:    3
         source:     'gen'
         weight_src: ''
-        images:
+        images:     'gen'
         template:   ${spm_install}/templates/EPI.nii,1
         template_weight:    ''
         source_smooth:  6
@@ -70,5 +70,12 @@ SPM:
         multiple_condition_mat: 'gen'
         multiple_regression_file:   'gen'
         hpf:        128
-
+    estimation:
+        batch_n:    2
+        spm_mat_file:   'gen'
+    contrast_manager:
+        batch_n:    3
+        spm_mat_file:   'gen'
+        contrast:   'gen'
+        delete:     1
         

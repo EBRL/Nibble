@@ -79,3 +79,20 @@ SPM:
         multiple_condition_mat: (str) path to multiple condition file
         multiple_regression_file:   (str) path to multiple condition file
         hpf:    (int) high pass filter cutoff in seconds
+    estimation:
+        # Classical Model estimation is hard-coded
+        batch_n:    (int) batch number
+        spm_mat_file:   (str) path to SPM mat created by 'model'
+    contrast_manager:
+        batch_n:    (int) batch number
+        spm_mat_file:   (str) path to SPM mat created by 'estimation'
+        contrast:   generated, see below
+        delete:     (1 | 0) 1 to delete existing contrasts, 0 to keep
+    contrast: # Most likely specified in a project config
+        batch_n:    (int) batch number, must be same as 'contrast_manager'
+        number: (int) contrast number, must be unique
+        name:   (str) contrast name
+        #only implemented T contrasts
+        vector: (1xN 0|1 str) T contrast vector; e.g. '1 0 0'
+        replication:    (none | repl | replsc | sess | both | bothsc) nothing, replicate, replicate and scale, create per session, do both, do both and scale
+

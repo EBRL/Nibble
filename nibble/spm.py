@@ -71,7 +71,16 @@ matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).regress = struct(
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).multi_reg = {'${multiple_regression_file}'};
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).hpf = ${hpf};
 """, 'estimation':"""
-""", 'contrasts':"""
+matlabbatch{${batch_n}}.spm.stats.fmri_est.spmmat = {'${spm_mat_file}'};
+matlabbatch{${batch_n}}.spm.stats.fmri_est.method.Classical = 1;
+""", 'contrast_manager':"""
+matlabbatch{${batch_n}}.spm.stats.con.spmmat = {'${spm_mat_file}'};
+${contrast}
+matlabbatch{${batch_n}}.spm.stats.con.delete = ${delete};
+""", 'contrast':"""
+matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.name = '${name}';
+matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.convec = [${vector}];
+matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${replication}';
 """ }
 
 
