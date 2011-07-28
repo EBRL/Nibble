@@ -1,14 +1,28 @@
 SPM:
-    st:
-        batch_n:    batch number
+    slicetime:
+        batch_n:    (int) batch number
         images:
                     {'run1.nii,1'
                      'run1.nii,2'}
                     {'run2.nii,1'
                      'run2.nii,2'}
-        nslices:    number of slices
-        tr:         volume repetition time
-        ta:         acquisition time
-        so:         slice order
-        ref:        reference slice
-        pre:        prefix
+        nslices:    (int) number of slices
+        tr:         (float) volume repetition time
+        ta:         (float) acquisition time
+        so:         (string) slice order
+        ref:        (int) reference slice
+        pre:        (str) prefix
+    realign-est:
+        batch_n:    (int) batch number
+        images:                    
+                    {'run1.nii,1'
+                     'run1.nii,2'}
+                    {'run2.nii,1'
+                     'run2.nii,2'}
+        quality:    (float) estimation quality
+        separation: (float) estimation separation
+        smoothing:  (float) smoothing FWHM
+        num_passes: (0 | 1) 0 - register to first, 1 - register to mean
+        interpolation:  (1 - 7) degree of b-spline interpolation
+        wrap:       (three digit string) 'X Y Z'
+        weight:     (str) path to weighting image          
