@@ -1,2 +1,4 @@
 study_name: LDRC_KKI
-
+paradigms:  ['Nback', 'Sent']
+subjects:
+    
