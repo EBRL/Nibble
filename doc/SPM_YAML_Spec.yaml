@@ -58,3 +58,24 @@ SPM:
         datatype:   (0 | 2 | 4 | 8 | 16 | 64) 0 - same, 2 - unsigned char, 4 - int16, 8 - int32, 16 - float32, 64 - float64
         implicit:   (0 | 1) 0 for NOT implicit masking, 1 to turn it on
         prefix:     (str) prefix to append to smoothed images
+    model:
+        batch_n:    (int) batch number
+        directory:  (str) path to statistics output
+        timing_units:   ('scans' | 'secs') timing unit for model
+        TR:         (float) time per volume
+        microtime_resolution:   (int) micro time resolution
+        microtime_onset:    (int) micro time onset
+        session:    generated, see below
+        hrf_derivatives:    (1x2 0/1) HRF derivatives (time space); e.g. '0 0' or '1 0'
+        volterra_interactions:  (1 | 2) 1 to NOT model volterra interactions, 2 to do so
+        global_normalization:   (Scaling | None) Apply global normalization
+        explicit_mask:  (str) path to image used for explicit masking
+        serial_correlations:    (AR(1) | none) Method to apply serial correlations
+    session:
+        batch_n:    (int) batch number, MUST BE SAME AS MODEL
+        session_n:  (int) session/run number
+        images:     {'run1.nii,1'
+                     'run1.nii,2'}
+        multiple_condition_mat: (str) path to multiple condition file
+        multiple_regression_file:   (str) path to multiple condition file
+        hpf:    (int) high pass filter cutoff in seconds

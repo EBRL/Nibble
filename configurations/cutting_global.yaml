@@ -50,5 +50,25 @@ SPM:
         datatype:   0
         implicit:   0
         prefix:     's'
+    model:
+        batch_n:    1
+        directory:  'gen'
+        timing_units:   'scans'
+        TR: 2.2
+        microtime_resolution:   16
+        microtime_onset:    1
+        session:    'gen'
+        hrf_derivatives:    '0 0'
+        volterra_interactions:  1
+        global_normalization:   'None'
+        explicit_mask:  ''
+        serial_correlations:    'AR(1)'
+    session:
+        batch_n:    1
+        session_n:  'gen'
+        images:     'gen'
+        multiple_condition_mat: 'gen'
+        multiple_regression_file:   'gen'
+        hpf:        128
 
         
