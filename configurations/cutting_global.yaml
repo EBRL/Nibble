@@ -1,6 +1,10 @@
 SPM:
     spm_install:    '/Applications/spm8'
-    stages:         ['slicetime', 'realign-est', 'normalize-est-write', 'smooth']
+    types:          
+        pre:
+            stages:         ['slicetime', 'realign-est', 'normalize-est-write', 'smooth']
+        post:
+            stages:         ['model', 'estimate', 'contrasts']
     slicetime:
         batch_n:    1
         images:     'gen'
@@ -39,5 +43,12 @@ SPM:
         interpolation:  2
         wrap:       '0 0 0'
         prefix:     'w'
+    smooth:
+        batch_n:    4
+        images:     'gen'
+        fwhm:       '8 8 8'
+        datatype:   0
+        implicit:   0
+        prefix:     's'
 
         

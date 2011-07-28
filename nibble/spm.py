@@ -5,6 +5,9 @@ Copyright (c) 2011, Scott Burns
 All rights reserved.
 """
 
+__version__ = "0.0"
+
+
 SPM_text = {
             'slicetime':"""
 matlabbatch{${batch_n}}.spm.temporal.st.scans = {${images}}';
@@ -44,10 +47,28 @@ matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.interp = ${inter
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.wrap = [${wrap}];
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.prefix = ${prefix};
 """
+            'smooth':"""
+matlabbatch{${batch_n}}.spm.spatial.smooth.data = {${images}};
+matlabbatch{${batch_n}}.spm.spatial.smooth.fwhm = [${fwhm}];
+matlabbatch{${batch_n}}.spm.spatial.smooth.dtype = ${datatype};
+matlabbatch{${batch_n}}.spm.spatial.smooth.im = ${implicit};
+matlabbatch{${batch_n}}.spm.spatial.smooth.prefix = ${prefix};            
+"""
 }
 
 
-
+class SPM(object):
+    """Main class for generating SPM batches
+    
+    Parameters
+    ----------
+    config: dict
+        global configuration dictionary
+        must contain a 'SPM' key
+    """
+    def __init__(self, config):
+        if not 'SPM' in config:
+            raise KeyError('config dictionary has no SPM key')
 
 
 

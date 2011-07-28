@@ -48,3 +48,13 @@ SPM:
         interpolation:  (1-7) b-spline degree for interpolation
         wrap:       (1x3 digit string) 'X Y Z' wrapping factor
         prefix:     (str) prefix to append to normalized images
+    smooth:
+        batch_n:    (int) batch number
+        images:     {'run1.nii,1'
+                     'run1.nii,2'
+                     'run2.nii,1'
+                     'run2.nii,2'}
+        fwhm:       (1x3 int as str) FWHM by dim; e.g. '8 8 8'
+        datatype:   (0 | 2 | 4 | 8 | 16 | 64) 0 - same, 2 - unsigned char, 4 - int16, 8 - int32, 16 - float32, 64 - float64
+        implicit:   (0 | 1) 0 for NOT implicit masking, 1 to turn it on
+        prefix:     (str) prefix to append to smoothed images
