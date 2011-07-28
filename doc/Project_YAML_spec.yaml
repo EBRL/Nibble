@@ -1,0 +1,14 @@
+study_name: (str) Study name
+SPM:
+    slicetime:
+    realign-est:
+    normalize-est-write:
+    smooth:
+    model:
+    estimation:
+    contrast_manager:
+paradigms:
+    paradigm1:
+        run_n:  (int) number of runs
+        
+
