@@ -1,4 +1,6 @@
 SPM:
+    spm_install:    '/Applications/spm8'
+    stages:         ['slicetime', 'realign-est', 'normalize-est-write', 'smooth']
     slicetime:
         batch_n:    1
         images:     'gen'
