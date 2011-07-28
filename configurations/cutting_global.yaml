@@ -18,4 +18,24 @@ SPM:
         interpolation:  2
         wrap:       '0 0 0'
         weight:     ''
+    normalize-est-write:
+        batch_n:    3
+        source:     'gen'
+        weight_src: ''
+        images:
+        template:   ${spm_install}/templates/EPI.nii,1
+        template_weight:    ''
+        source_smooth:  6
+        template_smooth:    0
+        reg_type:   mni
+        freq_cutoff:    25
+        iterations:     16
+        regularization: 1
+        preserve:       0
+        bounding_box:   "-78 -112 -50; 78 76 85"
+        voxel_size:     "2 2 2"
+        interpolation:  2
+        wrap:       '0 0 0'
+        prefix:     'w'
+
         

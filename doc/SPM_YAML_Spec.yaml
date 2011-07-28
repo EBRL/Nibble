@@ -11,7 +11,7 @@ SPM:
         ta:         (float) acquisition time
         so:         (string) slice order
         ref:        (int) reference slice
-        pre:        (str) prefix
+        pre:        (str) prefix to apply to slicetimed images
     realign-est:
         batch_n:    (int) batch number
         images:                    
@@ -26,3 +26,25 @@ SPM:
         interpolation:  (1 - 7) degree of b-spline interpolation
         wrap:       (three digit string) 'X Y Z'
         weight:     (str) path to weighting image          
+    normalize-est-write:
+        batch_n:    (int) batch number
+        source:     (str) mean image
+        weight_src: (str) image to weight source
+        images:     {'run1.nii,1'
+                     'run1.nii,2'
+                     'run2.nii,1'
+                     'run2.nii,2'}
+        template:   (str) path to spm_install/templates/EPI.nii
+        template_weight:    (str) path to image to weight template
+        source_smooth:  (int) smoothing to apply to source
+        template_smooth:    (int) smoothing to apply to template
+        reg_type:   ('mni' | 'subj' | 'none') regularization type
+        freq_cutoff:    (int) nonlinear frequency cutoff
+        iterations:     (int) nonlinear iterations
+        regularization: (float) nonlinear regularization
+        preserve:       (0 | 1) 0 to preserve concentrations, 1 to preserve amount
+        bounding_box:   (2x3 int as str) bounding box; e.g. "78 78 78; 78 78 78"
+        voxel_size:     (1x3 int as str) voxel size per dim; e.g. "2 2 2"
+        interpolation:  (1-7) b-spline degree for interpolation
+        wrap:       (1x3 digit string) 'X Y Z' wrapping factor
+        prefix:     (str) prefix to append to normalized images
