@@ -1,4 +1,5 @@
 SPM:
+    spec:   1
     spm_install:    '/Applications/spm8'
     types:
         pre:

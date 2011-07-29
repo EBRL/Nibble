@@ -1,4 +1,5 @@
 SPM:
+    spec:   (int) specification version
     slicetime:
         batch_n:    (int) batch number
         images:

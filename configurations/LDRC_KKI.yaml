@@ -1,4 +1,6 @@
-study_name: LDRC_KKI
-paradigms:  ['Nback', 'Sent']
-subjects:
+project:
+    spec: 1
+    study_name: LDRC_KKI
+    paradigms:  ['Nback', 'Sent']
+    subjects:
     

@@ -1,69 +1,72 @@
-study_name: (str) Study name
-SPM: # global (to the study) changes here
-    slicetime:
-    realign-est:
-    normalize-est-write:
-    smooth:
-    model:
-    estimation:
-    contrast_manager:
-paradigms:
-    Paradigm1:
-        run_n:  (int) number of runs
-        volumes_n:  (int) number of volumes per run
-        output_directory: (str) directory under which subjects results are placed
-        SPM:
-            model:
-                multiple_condition_mat: #apply these to all subjects
-                    -   /path/to/first/run/multcond.mat
-                    -   /path/to/second/run/multcond.mat
-                    -   /path/to/third/run/multcond.mat
-        data_toplevel: (str) if data is organized, can specify a top level under which subject id directories exist
-        run_directory:
-            -   first run directory (under $data_toplevel/subj_id/)
-            -   second run directory (under $data_toplevel/subj_id/)
-            -   third run directory (under $data_toplevel/subj_id/)
-        raw_filename:
-            -   (str) first run raw data filename
-            -   (str) second run raw data filename
-            -   (str) third run raw data filename
-        #images are generated from $data_toplevel/subj_idid/$run_directories[0]/$raw_filename[0]
-    Paradigm2:
-        run_n:  (int) number of runs
-        volumes_n:  (int) number of volumes per run
-        output_directory: (str) directory under which subjects results are placed
-subjects:
-    -
-        id: (str) unique subject id
+#VERSION 1
+project:
+    spec: 1
+    study_name: (str) Study name
+    SPM: # global (to the study) changes here
+        slicetime:
+        realign-est:
+        normalize-est-write:
+        smooth:
+        model:
+        estimation:
+        contrast_manager:
+    paradigms:
         Paradigm1:
-            # Paradigm1 is well specific above, no subject-specific stuff here
-        Paradigm2:
-            #if there's less organization to the study, specify full path
-            raw_filename:
-                - /path/to/first/run
-                - /path/to/second/run
-                - /path/to/third/run
+            run_n:  (int) number of runs
+            volumes_n:  (int) number of volumes per run
+            output_directory: (str) directory under which subjects results are placed
             SPM:
                 model:
-                    multiple_condition_mat:
-                        - /path/to/first/run/subject_specific/multcond.mat
-                        - /path/to/second/run/subject_specific/multcond.mat
-                        - /path/to/third/run/subject_specific/multcond.mat
-    -
-        id: (str) unique subject id
-        Paradigm1:
-            # Paradigm1 is well specific above, no subject-specific stuff here
-        Paradigm2:
-            #if there's less organization to the study, specify full path
+                    multiple_condition_mat: #apply these to all subjects
+                        -   /path/to/first/run/multcond.mat
+                        -   /path/to/second/run/multcond.mat
+                        -   /path/to/third/run/multcond.mat
+            data_toplevel: (str) if data is organized, can specify a top level under which subject id directories exist
+            run_directory:
+                -   first run directory (under $data_toplevel/subj_id/)
+                -   second run directory (under $data_toplevel/subj_id/)
+                -   third run directory (under $data_toplevel/subj_id/)
             raw_filename:
-                - /path/to/first/run
-                - /path/to/second/run
-                - /path/to/third/run
-            SPM:
-                model:
-                    multiple_condition_mat:
-                        - /path/to/first/run/subject_specific/multcond.mat
-                        - /path/to/second/run/subject_specific/multcond.mat
-                        - /path/to/third/run/subject_specific/multcond.mat
-                    
-
+                -   (str) first run raw data filename
+                -   (str) second run raw data filename
+                -   (str) third run raw data filename
+            #images are generated from $data_toplevel/subj_idid/$run_directories[0]/$raw_filename[0]
+        Paradigm2:
+            run_n:  (int) number of runs
+            volumes_n:  (int) number of volumes per run
+            output_directory: (str) directory under which subjects results are placed
+    subjects:
+        -
+            id: (str) unique subject id
+            Paradigm1:
+                # Paradigm1 is well specific above, no subject-specific stuff here
+            Paradigm2:
+                #if there's less organization to the study, specify full path
+                raw_filename:
+                    - /path/to/first/run
+                    - /path/to/second/run
+                    - /path/to/third/run
+                SPM:
+                    model:
+                        multiple_condition_mat:
+                            - /path/to/first/run/subject_specific/multcond.mat
+                            - /path/to/second/run/subject_specific/multcond.mat
+                            - /path/to/third/run/subject_specific/multcond.mat
+        -
+            id: (str) unique subject id
+            Paradigm1:
+                # Paradigm1 is well specific above, no subject-specific stuff here
+            Paradigm2:
+                #if there's less organization to the study, specify full path
+                raw_filename:
+                    - /path/to/first/run
+                    - /path/to/second/run
+                    - /path/to/third/run
+                SPM:
+                    model:
+                        multiple_condition_mat:
+                            - /path/to/first/run/subject_specific/multcond.mat
+                            - /path/to/second/run/subject_specific/multcond.mat
+                            - /path/to/third/run/subject_specific/multcond.mat
+                        
+    
