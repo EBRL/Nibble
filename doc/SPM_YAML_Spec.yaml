@@ -1,3 +1,4 @@
+version:   (int) version number of specification
 SPM:
     spec:   (int) specification version
     slicetime:

@@ -1,4 +1,4 @@
-#VERSION 1
+version:  (int) version number of specification
 project:
     spec: 1
     study_name: (str) Study name
