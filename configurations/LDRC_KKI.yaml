@@ -1,6 +1,29 @@
 project:
     spec: 1
     study_name: LDRC_KKI
-    paradigms:  ['Nback', 'Sent']
+    paradigms:
+        Sent:
+            run_n: 6
+            volumes_n: 165
+            output_directory: /Users/scottburns/Documents/Analysis/LDRC_KKI/Sent
+            SPM:
+                model:
+                    multiple_condition_mat:
+                        - blah
+                        - bleh
+                        - blue
+                        - blee
+                        - blad
+                        - blag
     subjects:
+        -
+            id: LDRC_71009
+            Sent:
+                raw_filename:
+                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_3_1/P1_71002_3_1.nii
+                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_4_1/P1_71002_4_1.nii
+                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_5_1/P1_71002_5_1.nii
+                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_6_1/P1_71002_6_1.nii
+                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_7_1/P1_71002_7_1.nii
+                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_8_1/P1_71002_8_1.nii
     
