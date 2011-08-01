@@ -38,4 +38,6 @@ if __name__ == '__main__':
                 for paradigm in paradigms:
                     for subj in subjects:
                         if stream == 'SPM':
-                           spm_obj = spm.SPM(subj, paradigm, piece, total)
+                            spm_obj = spm.SPM(subj, paradigm, piece, total)
+                            spm_obj.resolve()
+                            spm_obj.dump()
