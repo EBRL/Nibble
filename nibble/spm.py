@@ -5,10 +5,14 @@ Copyright (c) 2011, Scott Burns
 All rights reserved.
 """
 
+from pdb import set_trace
+
 __version__ = "0.0"
 
 
-SPM_text = {
+class SPM(object):
+    """Main class for generating SPM batches"""
+    text = {
      'slicetime':"""
 matlabbatch{${batch_n}}.spm.temporal.st.scans = {${images}}';
 matlabbatch{${batch_n}}.spm.temporal.st.nslices = '${nslices}';
@@ -88,17 +92,39 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.convec = [${vector
 matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${replication}';
 """ }
 
-
-class SPM(object):
-    """Main class for generating SPM batches
-    
-    Parameters
-    ----------
-    config: dict
-        global configuration dictionary
-        must contain a 'SPM' key
-    """
-    def __init__(self, spec, type):
-        if not 'SPM' in spec:
-            raise KeyError('config dictionary has no SPM key')
+    def __init__(self, subj, paradigm, piece, total):
+        """
+        Parameters
+        ----------
+        subj: map
+            at least contains 'id'
+        paradigm: 
+        """            
+        # unpack spm settings
+        find_dict = lambda d,k: d[k] if k in d else {}
+        self.spm = {}
+        self.spm['g'] = find_dict(total, 'SPM')
+        self.spm['pr'] = find_dict(total['project'], 'SPM')
+        self.spm['pa'] = find_dict(paradigm, 'SPM')
+        self.spm['s'] = find_dict(subj, 'SPM')
         
+        self.subj = subj
+        self.id = subj['id']
+        
+        #unpack the required information
+        self.paradigm = paradigm
+        self.par_name = paradigm['name']
+        self.n_runs = paradigm['n_runs']
+        self.n_volumes = paradigm['n_volumes']
+        self.out_dir = paradigm['output_directory']
+        
+        self.piece = piece
+        self.stages = total['project']['todo']['SPM'][piece]
+        
+        
+    def resolve(self):
+        """The guts of the SPM class
+        
+        This method resolves all of the stages
+        """
+
