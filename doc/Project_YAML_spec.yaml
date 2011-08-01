@@ -2,6 +2,11 @@ version:  (int) version number of specification
 project:
     spec: 1
     study_name: (str) Study name
+    todo:
+        SPM:
+            pre:    list of batches
+            post:   list of batches
+        #other processing streams go here
     SPM: # global (to the study) changes here
         slicetime:
         realign-est:
