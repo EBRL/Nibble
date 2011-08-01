@@ -12,8 +12,8 @@ project:
         contrast_manager:
     paradigms:
         Paradigm1:
-            run_n:  (int) number of runs
-            volumes_n:  (int) number of volumes per run
+            n_run:  (int) number of runs
+            n_volumes:  (int) number of volumes per run
             output_directory: (str) directory under which subjects results are placed
             SPM:
                 model:
@@ -26,14 +26,14 @@ project:
                 -   first run directory (under $data_toplevel/subj_id/)
                 -   second run directory (under $data_toplevel/subj_id/)
                 -   third run directory (under $data_toplevel/subj_id/)
-            raw_filename:
+            images:
                 -   (str) first run raw data filename
                 -   (str) second run raw data filename
                 -   (str) third run raw data filename
-            #images are generated from $data_toplevel/subj_idid/$run_directories[0]/$raw_filename[0]
+            #images are generated from $data_toplevel/subj_id/$run_directories[0]/$image[0]
         Paradigm2:
-            run_n:  (int) number of runs
-            volumes_n:  (int) number of volumes per run
+            n_run:  (int) number of runs
+            n_volumes:  (int) number of volumes per run
             output_directory: (str) directory under which subjects results are placed
     subjects:
         -
@@ -42,8 +42,8 @@ project:
                 # Paradigm1 is well specific above, no subject-specific stuff here
             Paradigm2:
                 #if there's less organization to the study, specify full path
-                run_n: (int) if the subject had less than all runs
-                raw_filename:
+                n_run: (int) if the subject had less than all runs
+                images:
                     - /path/to/first/run
                     - /path/to/second/run
                     - /path/to/third/run
@@ -59,7 +59,7 @@ project:
                 # Paradigm1 is well specific above, no subject-specific stuff here
             Paradigm2:
                 #if there's less organization to the study, specify full path
-                raw_filename:
+                images:
                     - /path/to/first/run
                     - /path/to/second/run
                     - /path/to/third/run

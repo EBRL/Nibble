@@ -4,8 +4,8 @@ project:
     study_name: LDRC_KKI
     paradigms:
         Sent:
-            run_n: 6
-            volumes_n: 165
+            n_run: 6
+            n_volumes: 165
             output_directory: /Users/scottburns/Documents/Analysis/LDRC_KKI/Sent
             SPM:
                 model:
