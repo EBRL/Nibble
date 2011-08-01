@@ -14,7 +14,7 @@ SPM:
         so:         (string) slice order
         ref:        (int) reference slice
         pre:        (str) prefix to apply to slicetimed images
-    realign-est:
+    realign-er:
         batch_n:    (int) batch number
         images:                    
                     {'run1.nii,1'
@@ -25,10 +25,15 @@ SPM:
         separation: (float) estimation separation
         smoothing:  (float) smoothing FWHM
         num_passes: (0 | 1) 0 - register to first, 1 - register to mean
-        interpolation:  (1 - 7) degree of b-spline interpolation
+        e_interpolation:  (1 - 7) degree of b-spline for estimation interpolation
         wrap:       (three digit string) 'X Y Z'
-        weight:     (str) path to weighting image          
-    normalize-est-write:
+        weight:     (str) path to weighting image
+        which:      (1x2 as str) what to output; e.g. '2 1' writes out all images + mean image
+        r_interpolation:    (int) b-spline degree for writing interplation
+        r_wrap:     (1x3 digit string) 'X Y Z' wrapping factor
+        mask:       (0 | 1) 1 to mask images, 0 to not
+        prefix:     (str) prefix character to append to realigned images
+    normalize-er:
         batch_n:    (int) batch number
         source:     (str) mean image
         weight_src: (str) image to weight source

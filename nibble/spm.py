@@ -17,16 +17,21 @@ matlabbatch{${batch_n}}.spm.temporal.st.ta = '${ta}';
 matlabbatch{${batch_n}}.spm.temporal.st.so = '${so}';
 matlabbatch{${batch_n}}.spm.temporal.st.refslice = '${ref}';
 matlabbatch{${batch_n}}.spm.temporal.st.prefix = '${pre}';
-""", 'realign-est':"""
-matlabbatch{${batch_n}}.spm.spatial.realign.estimate.data ={${images}}';
-matlabbatch{${batch_n}}.spm.spatial.realign.estimate.eoptions.quality = ${quality};
-matlabbatch{${batch_n}}.spm.spatial.realign.estimate.eoptions.sep = ${separation};
-matlabbatch{${batch_n}}.spm.spatial.realign.estimate.eoptions.fwhm = ${fwhm};
-matlabbatch{${batch_n}}.spm.spatial.realign.estimate.eoptions.rtm = ${num_passes};
-matlabbatch{${batch_n}}.spm.spatial.realign.estimate.eoptions.interp = ${interpolation};
-matlabbatch{${batch_n}}.spm.spatial.realign.estimate.eoptions.wrap = [${wrap}];
-matlabbatch{${batch_n}}.spm.spatial.realign.estimate.eoptions.weight = {'${weight}'};
-""", 'normalize-est-write':"""
+""", 'realign-er':"""
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.data ={${images}}';
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.quality = ${quality};
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.sep = ${separation};
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.fwhm = ${fwhm};
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.rtm = ${num_passes};
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.interp = ${e_interpolation};
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.wrap = [${e_wrap}];
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.weight = {'${weight}'};
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.which = [${which}];
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.interp = ${r_interpolation};
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.wrap = [${r_wrap}];
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.mask = ${mask};
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.prefix = ${prefix};
+""", 'normalize-er':"""
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.subj.source = {'${source}'};
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.subj.wtsrc = '${weight_src}';
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.subj.resample = {${images}};
