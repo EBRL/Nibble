@@ -98,12 +98,7 @@ class SPM(object):
         global configuration dictionary
         must contain a 'SPM' key
     """
-    def __init__(self, config):
-        if not 'SPM' in config:
+    def __init__(self, spec, type):
+        if not 'SPM' in spec:
             raise KeyError('config dictionary has no SPM key')
         
-
-
-
-if '__name__' == '__main__':
-    """BEGIN HERE"""
