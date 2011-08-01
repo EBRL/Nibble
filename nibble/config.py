@@ -15,6 +15,9 @@ except ImportError:
     print "You must install PyYAML."
     raise
 
+class SpecError(Exception):
+    pass
+
 def yaml2data(filename):
     """Main function for load yaml files
     """
