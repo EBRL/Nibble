@@ -5,9 +5,10 @@ project:
     todo:
         SPM:
             pre:    ['slicetime', 'realign-er', 'normalize-er', 'smooth']
-            post:   ['model', 'estimate', 'contrast_manager']
+            #post:   ['model', 'estimate', 'contrast_manager']
     paradigms:
-        Sent:
+        -
+            name:   Sent
             n_runs: 6
             n_volumes: 165
             output_directory: /Users/scottburns/Documents/Analysis/LDRC_KKI/Sent
@@ -24,7 +25,7 @@ project:
         -
             id: LDRC_71009
             Sent:
-                raw_filename:
+                images:
                     - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_3_1/P1_71002_3_1.nii
                     - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_4_1/P1_71002_4_1.nii
                     - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_5_1/P1_71002_5_1.nii
