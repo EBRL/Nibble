@@ -13,7 +13,7 @@ SPM:
         ta:         (float) acquisition time
         so:         (string) slice order
         ref:        (int) reference slice
-        pre:        (str) prefix to apply to slicetimed images
+        prefix:        (str) prefix to apply to slicetimed images
     realign-er:
         batch_n:    (int) batch number
         images:                    

@@ -10,6 +10,8 @@ import os
 from string import Template
 from time import strftime
 from pdb import set_trace
+from warnings import warn
+
 
 from .config import SpecError
 
@@ -21,17 +23,17 @@ class SPM(object):
     text = {
      'slicetime':"""
 matlabbatch{${batch_n}}.spm.temporal.st.scans = {${images}}';
-matlabbatch{${batch_n}}.spm.temporal.st.nslices = '${nslices}';
-matlabbatch{${batch_n}}.spm.temporal.st.tr = '${tr}';
-matlabbatch{${batch_n}}.spm.temporal.st.ta = '${ta}';
-matlabbatch{${batch_n}}.spm.temporal.st.so = '${so}';
-matlabbatch{${batch_n}}.spm.temporal.st.refslice = '${ref}';
-matlabbatch{${batch_n}}.spm.temporal.st.prefix = '${pre}';
+matlabbatch{${batch_n}}.spm.temporal.st.nslices = ${nslices};
+matlabbatch{${batch_n}}.spm.temporal.st.tr = ${tr};
+matlabbatch{${batch_n}}.spm.temporal.st.ta = ${ta};
+matlabbatch{${batch_n}}.spm.temporal.st.so = [${so}];
+matlabbatch{${batch_n}}.spm.temporal.st.refslice = ${ref};
+matlabbatch{${batch_n}}.spm.temporal.st.prefix = '${prefix}';
 """, 'realign-er':"""
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.data ={${images}}';
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.quality = ${quality};
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.sep = ${separation};
-matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.fwhm = ${fwhm};
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.fwhm = ${smoothing};
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.rtm = ${num_passes};
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.interp = ${e_interpolation};
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.wrap = [${e_wrap}];
@@ -40,7 +42,7 @@ matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.which = [${which}]
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.interp = ${r_interpolation};
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.wrap = [${r_wrap}];
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.mask = ${mask};
-matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.prefix = ${prefix};
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.prefix = '${prefix}';
 """, 'normalize-er':"""
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.subj.source = {'${source}'};
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.subj.wtsrc = '${weight_src}';
@@ -58,13 +60,13 @@ matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.bb = [${bounding
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.vox = [${voxel_size}];
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.interp = ${interpolation};
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.wrap = [${wrap}];
-matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.prefix = ${prefix};
+matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.prefix = '${prefix}';
 """, 'smooth':"""
 matlabbatch{${batch_n}}.spm.spatial.smooth.data = {${images}};
 matlabbatch{${batch_n}}.spm.spatial.smooth.fwhm = [${fwhm}];
 matlabbatch{${batch_n}}.spm.spatial.smooth.dtype = ${datatype};
 matlabbatch{${batch_n}}.spm.spatial.smooth.im = ${implicit};
-matlabbatch{${batch_n}}.spm.spatial.smooth.prefix = ${prefix};            
+matlabbatch{${batch_n}}.spm.spatial.smooth.prefix = '${prefix}';            
 """, 'model':"""
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.dir = {'${directory}'};
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.timing.units = '${timing_units}';
@@ -129,7 +131,64 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
         
         self.project = total['project']
         
+    def find_prefix(self, stage):
+        """Find the prefix each previous stage has added"""
+        #first, where are we in the pipeline?
+        current = self.stages.index(stage)
+        # join all previous prefixes
+        reverse_stages = self.stages[0:current]
+        reverse_stages.reverse()
+        pre =  ''.join([self.replace_dict[s]['prefix'] for s in reverse_stages])        
+        return pre
     
+    def find_images(self):
+        """Find the images for this subject"""
+        # are the images from the subject or determined by the paradigm?
+        if ('data_toplevel' in self.paradigm and
+            'run_directory' in self.paradigm and
+            'images' in self.paradigm):
+            dtl = self.paradigm['data_toplevel']
+            rd = self.paradigm['run_directory']
+            im = self.paradigm['images']
+            if len(rd) != len(im):
+                raise SpecError("""run_directory and images must have
+                                the same amount of entries in your
+                                project's paradigm""")
+            zipped = zip(rd, im)
+            raw_images = [pj(dtl, self.id, r, i) for (r, i) in zipped]
+        else:
+            try:
+                raw_images = self.subj[self.par_name]['images']
+            except KeyError:
+                raise SpecError("""No subject-specific images found""")
+        #with the images gathered, we need to xfm them into spm text
+        return raw_images        
+    
+    def generate(self, key, stage):
+        """Handles responsibility for replacing 'gen' with the correct 
+        value"""
+        value = ''
+        if key == 'images':
+            pre = self.find_prefix(stage)
+            xfm = []
+            raw_images = self.find_images()
+            ran = range(1, self.n_volumes+1)
+            for raw in raw_images:
+                (dirname, base) = os.path.split(raw)
+                pre_raw = pj(dirname, pre+base)
+                xfm.append('\n'.join(["'%s,%d'" % (pre_raw, d) for d in ran]))
+            if stage in ['slicetime', 'realign-er']:
+                value = '\n'.join(['{%s}' % x for x in xfm])
+            if stage in ['normalize-er', 'smooth']:
+                value = '%s' % '\n'.join([x for x in xfm])
+            #add more stages here
+        if key == 'source':
+            raw_image = self.find_images()[0]
+            (dirname, base ) = os.path.split(raw_image)
+            pre = self.find_prefix(stage)
+            value = pj(dirname, '%s%s%s' % ('mean', pre[1:], base))
+        return value 
+
         
     def find_dict(self, stage):
         """
@@ -140,38 +199,10 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
         for key in keys:
             if stage in self.spm[key]:
                 good.update(self.spm[key][stage])
-        #Now the fun begins...
         #find all the keys with values == 'gen'
         to_gen = [k for (k,v) in good.iteritems() if v == 'gen']
         for key in to_gen:
-            if key == 'images':
-                # are the images from the subject or determined by the paradigm?
-                if ('data_toplevel' in self.paradigm and
-                    'run_directory' in self.paradigm and
-                    'images' in self.paradigm):
-                    dtl = self.paradigm['data_toplevel']
-                    rd = self.paradigm['run_directory']
-                    im = self.paradigm['images']
-                    if len(rd) != len(im):
-                        raise SpecError("""run_directory and images must have
-                                        the same amount of entries in your
-                                        project's paradigm""")
-                    zipped = zip(rd, im)
-                    raw_images = [pj(dtl, self.id, r, i) for (r, i) in zipped]
-                else:
-                    try:
-                        raw_images = self.subj[self.par_name]['images']
-                    except KeyError:
-                        raise SpecError("""No subject-specific images found""")
-                #with the images gathered, we need to xfm them into spm text
-                xfm = []
-                ran = range(1, self.n_volumes+1)
-                for raw in raw_images:
-                    xfm.append('\n'.join(["'%s,%d'" % (raw, d) for d in ran]))
-                if stage in ['slicetime', 'realign-er']:
-                    good['images'] = '\n'.join(['{%s}' % x for x in xfm])
-                if stage in ['normalize-er', 'smooth']:
-                    good['images'] = '%s' % ''.join([x for x in xfm])
+            good[key] = self.generate(key, stage)
         return good
         
     def resolve(self):
@@ -190,11 +221,15 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
         fmt = (strftime('%Y - %b - %d %H:%M:%S'), self.project['name'], 
                 self.par_name, self.id)
         self.all_text += (header % fmt)
+        self.replace_dict = {}
         for stage in self.stages:
-            replace_dict = self.find_dict(stage)
+            print('Resolving %s' % stage)
+            self.replace_dict[stage] = self.find_dict(stage)
             temp = Template(self.text[stage])
-            self.all_text += temp.safe_substitute(replace_dict)
-        
+            new_stage = temp.safe_substitute(self.replace_dict[stage])
+            if new_stage.count('$') > 0:
+                warn('Some keywords were not replaced')
+            self.all_text += new_stage
     def dump(self):
         """Print to a generated filename
         
