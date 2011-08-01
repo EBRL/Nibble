@@ -1,7 +1,7 @@
 version: 1
 project:
     spec: 1
-    study_name: LDRC_KKI
+    name: LDRC_KKI
     todo:
         SPM:
             pre:    ['slicetime', 'realign-er', 'normalize-er', 'smooth']

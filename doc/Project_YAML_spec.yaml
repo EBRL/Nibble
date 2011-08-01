@@ -1,8 +1,8 @@
 version:  (int) version number of specification
 project:
-    spec: 1
-    study_name: (str) Study name
-    todo:
+    spec:   1
+    name:   (str) Study name (required)
+    todo:   (required)
         SPM:
             pre:    list of batches
             post:   list of batches
@@ -15,7 +15,7 @@ project:
         model:
         estimation:
         contrast_manager:
-    paradigms:
+    paradigms: (required)
         -
             name:       (str) paradigm name (required)
             n_runs:     (int) number of runs (required)
