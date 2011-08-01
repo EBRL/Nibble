@@ -5,14 +5,14 @@ project:
     SPM: # global (to the study) changes here
         slicetime:
         realign-est:
-        normalize-est-write:
+        normalize-er:
         smooth:
         model:
         estimation:
         contrast_manager:
     paradigms:
         Paradigm1:
-            n_run:  (int) number of runs
+            n_runs:  (int) number of runs
             n_volumes:  (int) number of volumes per run
             output_directory: (str) directory under which subjects results are placed
             SPM:
@@ -32,7 +32,7 @@ project:
                 -   (str) third run raw data filename
             #images are generated from $data_toplevel/subj_id/$run_directories[0]/$image[0]
         Paradigm2:
-            n_run:  (int) number of runs
+            n_runs:  (int) number of runs
             n_volumes:  (int) number of volumes per run
             output_directory: (str) directory under which subjects results are placed
     subjects:
@@ -42,7 +42,7 @@ project:
                 # Paradigm1 is well specific above, no subject-specific stuff here
             Paradigm2:
                 #if there's less organization to the study, specify full path
-                n_run: (int) if the subject had less than all runs
+                n_runs: (int) if the subject had less than all runs
                 images:
                     - /path/to/first/run
                     - /path/to/second/run

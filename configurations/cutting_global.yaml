@@ -4,7 +4,7 @@ SPM:
     spm_install:    '/Applications/spm8'
     types:
         pre:
-            stages:         ['slicetime', 'realign-est', 'normalize-est-write', 'smooth']
+            stages:         ['slicetime', 'realign-er', 'normalize-er', 'smooth']
         post:
             stages:         ['model', 'estimate', 'contrast_manager']
     slicetime:
@@ -26,7 +26,7 @@ SPM:
         interpolation:  2
         wrap:       '0 0 0'
         weight:     ''
-    normalize-est-write:
+    normalize-er:
         batch_n:    3
         source:     'gen'
         weight_src: ''
