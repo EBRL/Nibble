@@ -16,10 +16,11 @@ project:
         estimation:
         contrast_manager:
     paradigms:
-        Paradigm1:
-            n_runs:  (int) number of runs
-            n_volumes:  (int) number of volumes per run
-            output_directory: (str) directory under which subjects results are placed
+        -
+            name:       (str) paradigm name (required)
+            n_runs:     (int) number of runs (required)
+            n_volumes:  (int) number of volumes per run (required)
+            output_directory:   (str) directory under which subjects results are placed (required)
             SPM:
                 model:
                     multiple_condition_mat: #apply these to all subjects
@@ -36,13 +37,14 @@ project:
                 -   (str) second run raw data filename
                 -   (str) third run raw data filename
             #images are generated from $data_toplevel/subj_id/$run_directories[0]/$image[0]
-        Paradigm2:
-            n_runs:  (int) number of runs
-            n_volumes:  (int) number of volumes per run
-            output_directory: (str) directory under which subjects results are placed
+        -
+            name:       (str) paradigm name (required)
+            n_runs:     (int) number of runs (required)
+            n_volumes:  (int) number of volumes per run (required)
+            output_directory: (str) directory under which subjects results are placed (required)
     subjects:
         -
-            id: (str) unique subject id
+            id: (str) unique subject id (required)
             Paradigm1:
                 # Paradigm1 is well specific above, no subject-specific stuff here
             Paradigm2:
@@ -59,7 +61,7 @@ project:
                             - /path/to/second/run/subject_specific/multcond.mat
                             - /path/to/third/run/subject_specific/multcond.mat
         -
-            id: (str) unique subject id
+            id: (str) unique subject id (required)
             Paradigm1:
                 # Paradigm1 is well specific above, no subject-specific stuff here
             Paradigm2:
