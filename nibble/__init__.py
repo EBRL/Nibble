@@ -5,8 +5,8 @@ Copyright (c) 2011, Scott Burns
 All rights reserved.
 """
 
-from .nibspm import SPM
-from .nibconfig import Configurator
+from .spm import SPM
+from .config import Configurator
 
 
 __version__ = "0.0"
