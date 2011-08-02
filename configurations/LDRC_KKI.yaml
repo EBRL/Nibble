@@ -5,31 +5,31 @@ project:
     todo:
         SPM:
             pre:    ['slicetime', 'realign-er','normalize-er', 'smooth']
-            #post:   ['model', 'estimate', 'contrast_manager']
+            post:   ['model', 'estimate', 'contrast_manager']
     paradigms:
         -
             name:   Sent
             n_runs: 6
             n_volumes: 165
-            output_directory: /Users/scottburns/Documents/Analysis/LDRC_KKI/Sent
+            output_directory: /Users/scottburns/Analysis/LDRC_KKI/Sent
             SPM:
-                model:
+                session:
                     multiple_condition_mat:
-                        - blah
-                        - bleh
-                        - blue
-                        - blee
-                        - blad
-                        - blag
+                        - /Users/scottburns/Analysis/LDRC_KKI/mult_cond/m1_p1.mat
+                        - /Users/scottburns/Analysis/LDRC_KKI/mult_cond/m2_p1.mat
+                        - /Users/scottburns/Analysis/LDRC_KKI/mult_cond/m3_p1.mat
+                        - /Users/scottburns/Analysis/LDRC_KKI/mult_cond/m4_p1.mat
+                        - /Users/scottburns/Analysis/LDRC_KKI/mult_cond/m5_p1.mat
+                        - /Users/scottburns/Analysis/LDRC_KKI/mult_cond/m6_p1.mat
     subjects:
         -
-            id: LDRC_71009
+            id: LDRC_71002
             Sent:
                 images:
-                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_3_1/P1_71002_3_1.nii
-                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_4_1/P1_71002_4_1.nii
-                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_5_1/P1_71002_5_1.nii
-                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_6_1/P1_71002_6_1.nii
-                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_7_1/P1_71002_7_1.nii
-                    - /Volumes/ACCRE/KKI/MRI/LDRC/LDRC_P1/MRI/fMRI/Data_Groups/Rec_Par07112011/LDRC_71002/P1_71002_8_1/P1_71002_8_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_3_1/P1_71002_3_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_4_1/P1_71002_4_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_5_1/P1_71002_5_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_6_1/P1_71002_6_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_7_1/P1_71002_7_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_8_1/P1_71002_8_1.nii
     

@@ -12,9 +12,9 @@ reload(spm)
 
 
 if __name__ == '__main__':
-    input_config = ['/Users/scottburns/Documents/code/Nibble/configurations/cutting_global.yaml',
-                        '/Users/scottburns/Documents/code/Nibble/configurations/LDRC_KKI.yaml']
-    output_path = '/Users/scottburns/Documents/code/Nibble/configurations/generated/LDRC_KKI_final.yaml'
+    input_config = ['/Users/scottburns/Code/Nibble/configurations/cutting_global.yaml',
+                        '/Users/scottburns/Code/Nibble/configurations/LDRC_KKI.yaml']
+    output_path = '/Users/scottburns/Code/Nibble/configurations/generated/LDRC_KKI_final.yaml'
 
     #starting with config
     cfg = config.Configurator(input_config)
@@ -33,11 +33,10 @@ if __name__ == '__main__':
         paradigms = project['paradigms']
         subjects = project['subjects']
         for stream in tdl: # only spm for now
-            pieces = tdl[stream]
-            for piece in pieces:
-                for paradigm in paradigms:
-                    for subj in subjects:
-                        if stream == 'SPM':
-                            spm_obj = spm.SPM(subj, paradigm, piece, total)
-                            spm_obj.resolve()
-                            spm_obj.dump()
+            for paradigm in paradigms:
+                for subj in subjects:
+                    if stream == 'SPM':
+                        pieces = tdl[stream]
+                        spm_obj = spm.SPM(subj, paradigm, pieces, total)
+                        spm_obj.resolve()
+                        spm_obj.dump()

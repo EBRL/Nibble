@@ -71,7 +71,7 @@ SPM:
         multiple_condition_mat: 'gen'
         multiple_regression_file:   'gen'
         hpf:        128
-    estimation:
+    estimate:
         batch_n:    2
         spm_mat_file:   'gen'
     contrast_manager:
