@@ -87,7 +87,7 @@ matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).multi = {'${multi
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).regress = struct('name', {}, 'val', {});
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).multi_reg = {'${multiple_regression_file}'};
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).hpf = ${hpf};
-""", 'estimation':"""
+""", 'estimate':"""
 matlabbatch{${batch_n}}.spm.stats.fmri_est.spmmat = {'${spm_mat_file}'};
 matlabbatch{${batch_n}}.spm.stats.fmri_est.method.Classical = 1;
 """, 'contrast_manager':"""
@@ -100,7 +100,7 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.convec = [${vector
 matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${replication}';
 """ }
 
-    def __init__(self, subj, paradigm, piece, total):
+    def __init__(self, subj, paradigm, pieces, total):
         """
         Parameters
         ----------
@@ -122,21 +122,28 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
         #unpack the required information
         self.paradigm = paradigm
         self.par_name = paradigm['name']
-        self.n_runs = paradigm['n_runs']
+        if 'n_runs' in self.paradigm:
+            self.n_runs = self.paradigm['n_runs']
+        else:
+            self.n_runs = paradigm['n_runs']
         self.n_volumes = paradigm['n_volumes']
         self.out_dir = paradigm['output_directory']
         
-        self.piece = piece
-        self.stages = total['project']['todo']['SPM'][piece]
+        self.pieces = pieces
+#         self.stages = total['project']['todo']['SPM'][piece]
         
         self.project = total['project']
         
-    def find_prefix(self, stage):
+    def find_prefix(self, stage, piece):
         """Find the prefix each previous stage has added"""
-        #first, where are we in the pipeline?
-        current = self.stages.index(stage)
+        if piece == 'post':
+            pi = 'pre'
+            current = len(self.pieces['pre'])
+        else:
+            pi = piece
+            current = self.pieces[piece].index(stage)
         # join all previous prefixes
-        reverse_stages = self.stages[0:current]
+        reverse_stages = self.pieces[pi][0:current]
         reverse_stages.reverse()
         pre =  ''.join([self.replace_dict[s]['prefix'] for s in reverse_stages])        
         return pre
@@ -164,12 +171,33 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
         #with the images gathered, we need to xfm them into spm text
         return raw_images        
     
-    def generate(self, key, stage):
+    def generate_session(self, run_n):
+        """Handle the intricacies of generating session text"""
+        good_dict = self.cascade('session')
+        all_mult_cond = good_dict['multiple_condition_mat']
+        good_dict['multiple_condition_mat'] = all_mult_cond[run_n - 1]
+        gen_keys = [k for (k,v) in good_dict.iteritems() if v == 'gen']
+        for key in gen_keys:
+            if key == 'images':
+                all_img = self.generate('images', 'session', 'post')
+                good_dict['images'] = all_img[run_n - 1]
+            if key == 'multiple_regression_file':
+                raw_img = self.find_images()[run_n - 1]
+                pre = self.find_prefix('realign-er', 'pre')
+                dirname, base = os.path.split(raw_img)
+                root, _ = os.path.splitext(base)
+                rp_fname = 'rp_%s%s.txt' % (pre, root)
+                good_dict['multiple_regression_file'] = pj(dirname, rp_fname)
+            if key == 'session_n':
+                good_dict['session_n'] = run_n
+        return self.rep_text(self.text['session'], good_dict)
+    
+    def generate(self, key, stage, piece):
         """Handles responsibility for replacing 'gen' with the correct 
         value"""
         value = ''
         if key == 'images':
-            pre = self.find_prefix(stage)
+            pre = self.find_prefix(stage, piece)
             xfm = []
             raw_images = self.find_images()
             ran = range(1, self.n_volumes+1)
@@ -177,59 +205,84 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
                 (dirname, base) = os.path.split(raw)
                 pre_raw = pj(dirname, pre+base)
                 xfm.append('\n'.join(["'%s,%d'" % (pre_raw, d) for d in ran]))
+            
             if stage in ['slicetime', 'realign-er']:
-                value = '\n'.join(['{%s}' % x for x in xfm])
-            if stage in ['normalize-er', 'smooth']:
-                value = '%s' % '\n'.join([x for x in xfm])
-            #add more stages here
+                fmt = '{%s}'
+            if stage in ['normalize-er', 'smooth', 'session']:
+                fmt = '%s'
+            if piece != 'post':
+                value = '\n'.join([fmt % x for x in xfm])
+            else:
+                value = xfm
         if key == 'source':
             raw_image = self.find_images()[0]
             (dirname, base ) = os.path.split(raw_image)
-            pre = self.find_prefix(stage)
+            pre = self.find_prefix(stage, piece)
             value = pj(dirname, '%s%s%s' % ('mean', pre[1:], base))
+        if key == 'session' and piece == 'post':
+            for n_run in range(1,self.n_runs+1):
+                value += self.generate_session(n_run)
         return value 
 
-        
-    def find_dict(self, stage):
+    def cascade(self, stage):
+        """Cascade dictionaries into the "best" dict for the subject"""
+        keys = ['g', 'pr', 'pa', 's']
+        good = {}
+        for k in keys:
+            if stage in self.spm[k]:
+                good.update(self.spm[k][stage])
+        return good
+
+    def find_dict(self, stage, piece):
         """
         Begin with global SPM settings and refine the stage's dictionary up total
         the subject level"""
-        good = {}
-        keys = ['g', 'pr', 'pa', 's']
-        for key in keys:
-            if stage in self.spm[key]:
-                good.update(self.spm[key][stage])
+        good = self.cascade(stage)
         #find all the keys with values == 'gen'
         to_gen = [k for (k,v) in good.iteritems() if v == 'gen']
         for key in to_gen:
-            good[key] = self.generate(key, stage)
+            new_value = self.generate(key, stage, piece)
+            if new_value == '':
+                print('Warning: no value was generated for stage:%s, key:%s' %
+                    (stage, key) )
+            good[key] = new_value
         return good
-        
+    
+    def rep_text(self, text, d):
+        """Simple wrapper for the string.Template method"""
+        return Template(text).safe_substitute(d)
+
+    def header_text(self, piece):
+        """Return header text, to be inserted above a SPM batch"""
+        header = """
+%% Generated by Nibble on %s
+%% Project:      %s
+%% Paradigm:     %s
+%% Subject:      %s
+%% Piece:        %s
+"""
+        fmt = (strftime('%Y - %b - %d %H:%M:%S'), self.project['name'], 
+                self.par_name, self.id, piece)
+        return header % fmt
+
     def resolve(self):
         """The guts of the SPM class
         
-        This method resolves all of the stages into 'runnable' text
-        (from SPM's POV)
+        This method resolves each stage of each piece to SPM text
         """
-        self.all_text = ''
-        header = """
-        %% Generated by Nibble on %s
-        %% Project:      %s
-        %% Paradigm:     %s
-        %% Subject:      %s
-        """
-        fmt = (strftime('%Y - %b - %d %H:%M:%S'), self.project['name'], 
-                self.par_name, self.id)
-        self.all_text += (header % fmt)
+        print('Resolving %s' % self.id)
+        self.output = {}
         self.replace_dict = {}
-        for stage in self.stages:
-            print('Resolving %s' % stage)
-            self.replace_dict[stage] = self.find_dict(stage)
-            temp = Template(self.text[stage])
-            new_stage = temp.safe_substitute(self.replace_dict[stage])
-            if new_stage.count('$') > 0:
-                warn('Some keywords were not replaced')
-            self.all_text += new_stage
+        for piece, stages in self.pieces.iteritems():
+            self.output[piece] = self.header_text(piece)
+            for stage in stages:
+                self.replace_dict[stage] = self.find_dict(stage, piece)
+                new_stage = self.rep_text(self.text[stage],
+                                            self.replace_dict[stage])
+                if new_stage.count('$') > 0:
+                    warn('Some keywords were not replaced')
+                self.output[piece] += new_stage
+
     def dump(self):
         """Print to a generated filename
         
@@ -237,11 +290,12 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
         """
         # for now assume output dir exists
         #os.makedirs(pj(self.out_dir, 'batches'))
-        output_fname = '%s_%s.m' % (self.id, self.piece)
-        output_path = pj(self.out_dir, 'batches', output_fname)
-        with open(output_path, 'w') as f:
-            try:
-                print('Dumping batch to %s' % output_path)
-                f.writelines(self.all_text)
-            except IOError:
-                print("Error when dumping batch text")
+        for piece in self.pieces:
+            output_fname = '%s_%s.m' % (self.id, piece)
+            output_path = pj(self.out_dir, 'batches', output_fname)
+            with open(output_path, 'w') as f:
+                try:
+                    print('Dumping batch to %s' % output_path)
+                    f.writelines(self.output[piece])
+                except IOError:
+                    print("Error when dumping batch text")
