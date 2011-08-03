@@ -70,4 +70,14 @@ project:
                     - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_6_1/P1_71002_6_1.nii
                     - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_7_1/P1_71002_7_1.nii
                     - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_8_1/P1_71002_8_1.nii
+        -
+            id: LDRC_71009
+            Sent:
+                images:
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71009/P1_71009_19_1/P1_71009_19_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71009/P1_71009_21_1/P1_71009_21_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71009/P1_71009_22_1/P1_71009_22_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71009/P1_71009_26_1/P1_71009_26_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71009/P1_71009_27_1/P1_71009_27_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71009/P1_71009_30_1/P1_71009_30_1.nii
     
