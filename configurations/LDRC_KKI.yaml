@@ -80,4 +80,12 @@ project:
                     - /Users/scottburns/Data/LDRC_KKI/LDRC_71009/P1_71009_26_1/P1_71009_26_1.nii
                     - /Users/scottburns/Data/LDRC_KKI/LDRC_71009/P1_71009_27_1/P1_71009_27_1.nii
                     - /Users/scottburns/Data/LDRC_KKI/LDRC_71009/P1_71009_30_1/P1_71009_30_1.nii
+        -
+            id: LDRC_71001
+            Sent:
+                n_runs: 3
+                images:
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71001/P1_71001_16_1/P1_71001_16_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71001/P1_71001_17_1/P1_71001_17_1.nii
+                    - /Users/scottburns/Data/LDRC_KKI/LDRC_71001/P1_71001_18_1/P1_71001_18_1.nii
     
