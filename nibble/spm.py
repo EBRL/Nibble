@@ -331,17 +331,19 @@ cd('%s')
         self.output = {}
         self.replace_dict = {}
         for piece, stages in self.pieces.iteritems():
-            self.output[piece] = self.header_text(piece)
-            for stage in stages:
-                self.replace_dict[stage] = self.find_dict(stage, piece)
-                new_stage = self.rep_text(self.text[stage],
-                                            self.replace_dict[stage])
-                if new_stage.count('$') > 0:
-                    warn('Some keywords were not replaced')
-                self.output[piece] += new_stage
-            exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece)}
-            self.output[piece] += self.rep_text(self.text['exec'], exec_dict)
-
+            if piece in ['pre', 'post']:
+                self.output[piece] = self.header_text(piece)
+                for stage in stages:
+                    self.replace_dict[stage] = self.find_dict(stage, piece)
+                    new_stage = self.rep_text(self.text[stage],
+                                                self.replace_dict[stage])
+                    if new_stage.count('$') > 0:
+                        warn('Some keywords were not replaced')
+                    self.output[piece] += new_stage
+                exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece)}
+                self.output[piece] += self.rep_text(self.text['exec'], exec_dict)
+            #handle other kind of SPM pieces here (art at least)
+            
     def dump(self):
         """Print to a generated filename
         
