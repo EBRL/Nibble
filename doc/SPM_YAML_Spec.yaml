@@ -98,6 +98,7 @@ SPM:
     contrast: # Most likely specified in a project config
         batch_n:    (int) batch number, must be same as 'contrast_manager'
         number: (int) contrast number, must be unique
+        # The rest should be implemented in the paradigm['contrasts'] list
         name:   (str) contrast name
         #only implemented T contrasts
         vector: (1xN 0|1 str) T contrast vector; e.g. '1 0 0'

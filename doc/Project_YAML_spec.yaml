@@ -37,6 +37,16 @@ project:
                 -   (str) second run raw data filename
                 -   (str) third run raw data filename
             #images are generated from $data_toplevel/subj_id/$run_directories[0]/$image[0]
+            contrasts:
+                -
+                    name:   (str) name of contrast (required)
+                    vector: (1xN str) contrast vector (required)
+                    replication:    (none | repl | replsc | sess | both | bothsc) nothing, replicate, replicate and scale, create per session, do both, do both and scale
+                -
+                    name:   (str) name of contrast (required)
+                    vector: (1xN str) contrast vector (required)
+                    replication:    (none | repl | replsc | sess | both | bothsc) nothing, replicate, replicate and scale, create per session, do both, do both and scale
+
         -
             name:       (str) paradigm name (required)
             n_runs:     (int) number of runs (required)
