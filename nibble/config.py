@@ -4,10 +4,14 @@
 Copyright (c) 2011, Scott Burns
 All rights reserved.
 """
-import os 
+import os
+from os.path import join as pj
 from warnings import warn
 import pdb
 from pprint import pprint
+
+from pdb import set_trace
+
 
 try:
     import yaml
@@ -63,7 +67,7 @@ def print_yamlerror(self, exc):
 class Configurator(object):
     """ Main class for combining multiple yaml files to one data structure
     """
-    def __init__(self, yaml_file_list, output_path, verbose=10):
+    def __init__(self, yaml_file_list, verbose=10):
         """ Constructor
     
         Parameters
@@ -79,10 +83,11 @@ class Configurator(object):
         if not all(exist):
             raise IOError('Not all files specified in the constructor exist')
         self.yaml_files = yaml_file_list
+        
+        # add the nibble.yaml2data
+        self.yaml_files.append('/Users/scottburns/Code/Nibble/config/nibble.yaml')
         self.verbose = verbose
-        self.output_path = output_path
         self.load_yaml()
-        self.save_yaml()
         
     def load_yaml(self):
         """ Load all yaml files
@@ -117,7 +122,14 @@ class Configurator(object):
             pprint(all_data)
         self.all_data = all_data
         
-    def save_yaml(self):
+    def save(self):
         """Save the complete data spec as yaml"""
-        data2yaml(self.all_data, self.output_path, self.verbose)
-        
+        if ('config' in self.all_data['nibble'] and
+            'output_path' in self.all_data['nibble']['config']):
+            output_fname = '%s.yaml' % self.all_data['project']['name']
+            output_path = pj(self.all_data['nibble']['config']['output_path'],
+                            output_fname)
+            data2yaml(self.all_data, output_path, self.verbose)
+        else:
+            raise SpecError('config_output_path not set in nibble.yaml')        
+        return output_path

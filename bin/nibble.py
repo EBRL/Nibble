@@ -16,11 +16,11 @@ if __name__ == '__main__':
     input_config = ['/Users/scottburns/Code/Nibble/config/cutting.yaml',
                     '/Users/scottburns/Code/Nibble/config/LDRC_KKI/LDRC_KKI.yaml',
                     '/Users/scottburns/Code/Nibble/config/LDRC_KKI/subjects.yaml']
-    output_path = '/Users/scottburns/Code/Nibble/config/generated/LDRC_KKI_final.yaml'
 
     #starting with config
-    cfg = config.Configurator(input_config, output_path, verbose=1)
-
+    cfg = config.Configurator(input_config, verbose=1)
+    output_path = cfg.save()
+    
     print
     print
 
