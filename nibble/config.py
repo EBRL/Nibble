@@ -18,12 +18,13 @@ except ImportError:
 class SpecError(Exception):
     pass
 
-def yaml2data(filename):
+def yaml2data(filename, verbose=0):
     """Main function for load yaml files
     """
     data = {}
     with open(filename, 'r') as f:
-        print('Parsing yaml from %s' % filename)
+        if verbose > 4:
+            print('Parsing yaml from %s' % filename)
         try:
             data = yaml.load(f)
         except yaml.YAMLError, exc:
@@ -33,7 +34,7 @@ def yaml2data(filename):
         else:
             return data
 
-def data2yaml(data, filename):
+def data2yaml(data, filename, verbose=0):
     """Main function for dumping data to a yaml filename
     
     Parameters
@@ -46,7 +47,8 @@ def data2yaml(data, filename):
     try:
         with open(filename, 'w') as f:
             yaml.dump(data, f)
-            print("Saved data to %s" % filename)
+            if verbose > 0:
+                print("Saved data to %s" % filename)
     except IOError:
         print('Error when dumping data to %s' % filename)
         raise
@@ -61,31 +63,34 @@ def print_yamlerror(self, exc):
 class Configurator(object):
     """ Main class for combining multiple yaml files to one data structure
     """
-    def __init__(self, yaml_file_list):
+    def __init__(self, yaml_file_list, output_path, verbose=10):
         """ Constructor
     
         Parameters
         ----------
         yaml_file_list: seq
             all yaml files that should be coerced into one data structure
+        output_path: str
+            path to final data structure
+        verbose: int
+            verbosity level
         """
         exist = map(os.path.isfile, yaml_file_list)    
         if not all(exist):
             raise IOError('Not all files specified in the constructor exist')
         self.yaml_files = yaml_file_list
-    
-    def load_yaml(self, verbose=False):
-        """ Load all yaml files
+        self.verbose = verbose
+        self.output_path = output_path
+        self.load_yaml()
+        self.save_yaml()
         
-        Parameters
-        ----------
-        verbose: bool
-            print out loaded data structure after all docs are parsed
+    def load_yaml(self):
+        """ Load all yaml files
         """
         all_data = {}
         for yaml_file in self.yaml_files:
             try:
-                doc_data = yaml2data(yaml_file)
+                doc_data = yaml2data(yaml_file, self.verbose)
             except YAMLError:
                 raise
             else:
@@ -107,12 +112,12 @@ class Configurator(object):
                             all_data[key] = doc_data[key]
                 else:
                     warn("No version in %s" % yaml_file)
-        if verbose:
+        if self.verbose > 10:
+            print('Here is the complete data structure...')
             pprint(all_data)
         self.all_data = all_data
         
-    def save_yaml(self, filename):
-        """Save the complete data spec as yaml
-        """
-        data2yaml(self.all_data, filename)
+    def save_yaml(self):
+        """Save the complete data spec as yaml"""
+        data2yaml(self.all_data, self.output_path, self.verbose)
         

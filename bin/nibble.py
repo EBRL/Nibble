@@ -19,14 +19,12 @@ if __name__ == '__main__':
     output_path = '/Users/scottburns/Code/Nibble/config/generated/LDRC_KKI_final.yaml'
 
     #starting with config
-    cfg = config.Configurator(input_config)
-    all_data = cfg.load_yaml(verbose=False)
-    cfg.save_yaml(output_path)
-        
-    print('')
-    print('')
-    
-    # starting with SPM
+    cfg = config.Configurator(input_config, output_path, verbose=1)
+
+    print
+    print
+
+    # starting with spm
     total = config.yaml2data(output_path)
     ver = total['version']
     subjects = total['subjects']
