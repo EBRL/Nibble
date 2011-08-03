@@ -34,7 +34,6 @@ if __name__ == '__main__':
         project = total['project']
         tdl = project['todo']
         paradigms = project['paradigms']
-        subjects = project['subjects']
         for stream in tdl: # only spm for now
             for paradigm in paradigms:
                 for subj in subjects:
