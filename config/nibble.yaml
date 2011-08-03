@@ -1,5 +1,7 @@
 # GLOBAL CONFIGURATION FOR NIBBLE TOOLS
 # DON'T MOVE
+version: 1
 nibble:
-    config_output_path:     '/Users/scottburns/Documents/code/nibble/configurations/final/'
+    config:
+        output_path: '/Users/scottburns/Code/Nibble/config/gen/'
     
