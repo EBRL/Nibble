@@ -272,11 +272,8 @@ exit(ec);"""
         """Return analysis directory
         Guarantees the analysis directory exists on the filesystem"""
         subj_dir = pj(self.out_dir, 'subjects')
-        if not os.path.isdir(subj_dir):
-            os.mkdir(subj_dir)
         analysis_dir = pj(subj_dir, self.id)
-        if not os.path.isdir(analysis_dir):
-            os.mkdir(analysis_dir)
+        map(self.make_dir, [subj_dir, analysis_dir])
         return analysis_dir
 
     def cascade(self, stage):
@@ -343,20 +340,30 @@ cd('%s')
                 exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece)}
                 self.output[piece] += self.rep_text(self.text['exec'], exec_dict)
             #handle other kind of SPM pieces here (art at least)
-            
+    
+    def make_dir(self, path):
+        """Ensure a directory exists"""
+        if not os.path.isdir(path):
+            os.makedirs(path)
+    
+    def piece_path(self, piece):
+        """Return the path to which a piece's batch will be written
+        Generated as self.out_dir/batches/self.id/piece.m"""
+        output_fname = '%s.m' % piece
+        batch_dir = pj(self.out_dir, 'batches')
+        subj_dir = pj(batch_dir, self.id)
+        map(self.make_dir, [batch_dir, subj_dir])
+        return pj(subj_dir, output_fname)
+    
     def dump(self):
-        """Print to a generated filename
-        
-        Output is self.out_dir/batches/self.id_type.m
-        """
+        """Write out each batch to the correct file"""
         # for now assume output dir exists
         #os.makedirs(pj(self.out_dir, 'batches'))
+        print('Dumping %s batches' % self.id)
         for piece in self.pieces:
-            output_fname = '%s_%s.m' % (self.id, piece)
-            output_path = pj(self.out_dir, 'batches', output_fname)
+            output_path = self.piece_path(piece)
             with open(output_path, 'w') as f:
                 try:
-                    print('Dumping batch to %s' % output_path)
                     f.writelines(self.output[piece])
                 except IOError:
                     print("Error when dumping batch text")
