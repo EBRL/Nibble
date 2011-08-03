@@ -1,0 +1,15 @@
+version: 1
+subjects:
+    -
+        id:     (str) subject ID (required)
+        Sent:   (str) paradigm name on which following values will be applied
+            n_runs: (int) if different than n_runs specified in paradigm
+            images: list of full paths to images
+                - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_3_1/P1_71002_3_1.nii
+                - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_4_1/P1_71002_4_1.nii
+                - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_5_1/P1_71002_5_1.nii
+                - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_6_1/P1_71002_6_1.nii
+                - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_7_1/P1_71002_7_1.nii
+                - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_8_1/P1_71002_8_1.nii
+    -
+        id:     (str) subject ID (required)
