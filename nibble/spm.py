@@ -154,8 +154,10 @@ exit(ec);"""
         self.par_name = paradigm['name']
         if 'n_runs' in self.paradigm:
             self.n_runs = self.paradigm['n_runs']
-        else:
-            self.n_runs = paradigm['n_runs']
+        if 'n_runs' in self.subj:
+            self.n_runs = self.subj['n_runs']
+        if not hasattr(self, 'n_runs'):
+            raise SpecError('n_runs was not declared in the subject or paradigm')
         self.n_volumes = paradigm['n_volumes']
         self.out_dir = pj(paradigm['output_directory'], paradigm['name'])
         
