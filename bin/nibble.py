@@ -10,11 +10,13 @@ reload(config)
 from nibble import spm
 reload(spm)
 
+from pdb import set_trace
 
 if __name__ == '__main__':
-    input_config = ['/Users/scottburns/Code/Nibble/configurations/cutting_global.yaml',
-                        '/Users/scottburns/Code/Nibble/configurations/LDRC_KKI.yaml']
-    output_path = '/Users/scottburns/Code/Nibble/configurations/generated/LDRC_KKI_final.yaml'
+    input_config = ['/Users/scottburns/Code/Nibble/config/cutting.yaml',
+                    '/Users/scottburns/Code/Nibble/config/LDRC_KKI/LDRC_KKI.yaml',
+                    '/Users/scottburns/Code/Nibble/config/LDRC_KKI/subjects.yaml']
+    output_path = '/Users/scottburns/Code/Nibble/config/generated/LDRC_KKI_final.yaml'
 
     #starting with config
     cfg = config.Configurator(input_config)
@@ -27,6 +29,7 @@ if __name__ == '__main__':
     # starting with SPM
     total = config.yaml2data(output_path)
     ver = total['version']
+    subjects = total['subjects']
     if ver == 1:
         project = total['project']
         tdl = project['todo']
