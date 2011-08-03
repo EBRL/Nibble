@@ -1,0 +1,61 @@
+version: 1
+project:
+    spec: 1
+    name: LDRC_KKI
+    todo:
+        SPM:
+            pre:    ['slicetime', 'realign-er','normalize-er', 'smooth']
+            post:   ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   Sent
+            n_runs: 6
+            n_volumes: 165
+            output_directory: /Users/scottburns/Analysis/LDRC_KKI/
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m1_p1.mat
+                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m2_p1.mat
+                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m3_p1.mat
+                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m4_p1.mat
+                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m5_p1.mat
+                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m6_p1.mat
+            contrasts:
+                -
+                    name:   TrueSent-3
+                    vector: '1 0 0 0 0 0 0 0 0'
+                    replication: replsc
+                -
+                    name:   NonSent-3
+                    vector: '0 1 0 0 0 0 0 0 0'
+                    replication: replsc
+                -
+                    name:   Words-3
+                    vector: '0 0 1 0 0 0 0 0 0'
+                    replication: replsc
+                -
+                    name:   TrueSent-5
+                    vector: '0 0 1 0 0 0 0 0 0'
+                    replication: replsc
+                -
+                    name:   NonSent-5
+                    vector: '0 0 0 1 0 0 0 0 0'
+                    replication: replsc
+                -
+                    name:   Words-5
+                    vector: '0 0 0 0 1 0 0 0 0'
+                    replication: replsc
+                -
+                    name:   TrueSent-7
+                    vector: '0 0 0 0 0 1 0 0 0'
+                    replication: replsc
+                -
+                    name:   NonSent-7
+                    vector: '0 0 0 0 0 0 0 1 0'
+                    replication: replsc
+                -
+                    name:   Words-7
+                    vector: '0 0 0 0 0 0 0 0 1'
+                    replication: replsc
+    

@@ -162,7 +162,6 @@ exit(ec);"""
         self.out_dir = pj(paradigm['output_directory'], paradigm['name'])
         
         self.pieces = pieces
-#         self.stages = total['project']['todo']['SPM'][piece]
         
         self.project = total['project']
         
