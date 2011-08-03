@@ -112,7 +112,7 @@ matlabbatch{${batch_n}}.spm.stats.results.print = true;""",
 try
 	spm('defaults','fmri');
 	spm_jobman('initcfg');
-	output = spm_jobman('run_nogui',matlabbatch);
+	output = spm_jobman('run',matlabbatch);
 	ec = 0;
 catch
 	ec = 1; % SPM failed
@@ -280,7 +280,7 @@ equal number of runs specified by subject or paradigm""")
     def analysis_dir(self):
         """Return analysis directory
         Guarantees the analysis directory exists on the filesystem"""
-        subj_dir = pj(self.out_dir, 'subjects')
+        subj_dir = pj(self.out_dir, 'results')
         analysis_dir = pj(subj_dir, self.id)
         map(self.make_dir, [subj_dir, analysis_dir])
         return analysis_dir
