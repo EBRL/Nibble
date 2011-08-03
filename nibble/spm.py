@@ -110,21 +110,26 @@ matlabbatch{${batch_n}}.spm.stats.results.units = 1;
 matlabbatch{${batch_n}}.spm.stats.results.print = true;""",
 'exec':"""
 try
-	spm('defaults','fmri');
-	spm_jobman('initcfg');
-	output = spm_jobman('run',matlabbatch);
+    if exist('SPM.mat', 'file') == 2
+        delete('SPM.mat')
+    end
+	spm_jobman('serial',matlabbatch);
 	ec = 0;
 catch
+    disp(['SPM batch failed'])
 	ec = 1; % SPM failed
 end
 d = date;
 ps_file = ['spm_' d(8:end) d(4:6) d(1:2) '.ps'];
 if exist(ps_file, 'file') == 2
-    status = copyfile(ps_file, ${new_ps});
-    if status
+    status = copyfile(ps_file, '${new_ps}');
+    delete(ps_file)
+    if ~status
+        disp(['Couldnt copy postscript'])
         ec = 3; % couldn't copy file
     end
 else
+    disp(['Postscript was not created'])
     ec = 2; % .ps was not created
 end
 exit(ec);"""
@@ -339,6 +344,7 @@ cd('%s')
         for piece, stages in self.pieces.iteritems():
             if piece in ['pre', 'post']:
                 self.output[piece] = self.header_text(piece)
+                self.output[piece] += "spm fmri"
                 for stage in stages:
                     self.replace_dict[stage] = self.find_dict(stage, piece)
                     new_stage = self.rep_text(self.text[stage],
