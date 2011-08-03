@@ -79,4 +79,13 @@ SPM:
         spm_mat_file:   'gen'
         contrast:   'gen'
         delete:     1
+    contrast:
+        batch_n:    3
+    results:
+        batch_n:    4
+        spm_mat_file:   'gen'
+        titlestr:   ''
+        contrasts:  Inf
+        thresh_desc:    'none'
+        threshold:  0.05
         

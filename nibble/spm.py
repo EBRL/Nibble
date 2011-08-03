@@ -21,15 +21,15 @@ __version__ = "0.0"
 class SPM(object):
     """Main class for generating SPM batches"""
     text = {
-     'slicetime':"""
+'slicetime':"""
 matlabbatch{${batch_n}}.spm.temporal.st.scans = {${images}}';
 matlabbatch{${batch_n}}.spm.temporal.st.nslices = ${nslices};
 matlabbatch{${batch_n}}.spm.temporal.st.tr = ${tr};
 matlabbatch{${batch_n}}.spm.temporal.st.ta = ${ta};
 matlabbatch{${batch_n}}.spm.temporal.st.so = [${so}];
 matlabbatch{${batch_n}}.spm.temporal.st.refslice = ${ref};
-matlabbatch{${batch_n}}.spm.temporal.st.prefix = '${prefix}';
-""", 'realign-er':"""
+matlabbatch{${batch_n}}.spm.temporal.st.prefix = '${prefix}';""",
+'realign-er':"""
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.data ={${images}}';
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.quality = ${quality};
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.eoptions.sep = ${separation};
@@ -42,8 +42,8 @@ matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.which = [${which}]
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.interp = ${r_interpolation};
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.wrap = [${r_wrap}];
 matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.mask = ${mask};
-matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.prefix = '${prefix}';
-""", 'normalize-er':"""
+matlabbatch{${batch_n}}.spm.spatial.realign.estwrite.roptions.prefix = '${prefix}';""",
+'normalize-er':"""
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.subj.source = {'${source}'};
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.subj.wtsrc = '${weight_src}';
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.subj.resample = {${images}};
@@ -60,14 +60,14 @@ matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.bb = [${bounding
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.vox = [${voxel_size}];
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.interp = ${interpolation};
 matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.wrap = [${wrap}];
-matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.prefix = '${prefix}';
-""", 'smooth':"""
+matlabbatch{${batch_n}}.spm.spatial.normalise.estwrite.roptions.prefix = '${prefix}';""",
+'smooth':"""
 matlabbatch{${batch_n}}.spm.spatial.smooth.data = {${images}};
 matlabbatch{${batch_n}}.spm.spatial.smooth.fwhm = [${fwhm}];
 matlabbatch{${batch_n}}.spm.spatial.smooth.dtype = ${datatype};
 matlabbatch{${batch_n}}.spm.spatial.smooth.im = ${implicit};
-matlabbatch{${batch_n}}.spm.spatial.smooth.prefix = '${prefix}';            
-""", 'model':"""
+matlabbatch{${batch_n}}.spm.spatial.smooth.prefix = '${prefix}';""",
+'model':"""
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.dir = {'${directory}'};
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.timing.units = '${timing_units}';
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.timing.RT = ${TR};
@@ -79,26 +79,56 @@ matlabbatch{${batch_n}}.spm.stats.fmri_spec.bases.hrf.derivs = [${hrf_derivative
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.volt = ${volterra_interactions};
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.global = '${global_normalization}';
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.mask = {'${explicit_mask}'};
-matlabbatch{${batch_n}}.spm.stats.fmri_spec.cvi = '${serial_correlations}';
-""", 'session':"""
+matlabbatch{${batch_n}}.spm.stats.fmri_spec.cvi = '${serial_correlations}';""",
+'session':"""
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).scans = {${images}};
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).cond = struct('name', {}, 'onset', {}, 'duration', {}, 'tmod', {}, 'pmod', {});
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).multi = {'${multiple_condition_mat}'};
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).regress = struct('name', {}, 'val', {});
 matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).multi_reg = {'${multiple_regression_file}'};
-matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).hpf = ${hpf};
-""", 'estimate':"""
+matlabbatch{${batch_n}}.spm.stats.fmri_spec.sess(${session_n}).hpf = ${hpf};""",
+'estimate':"""
 matlabbatch{${batch_n}}.spm.stats.fmri_est.spmmat = {'${spm_mat_file}'};
-matlabbatch{${batch_n}}.spm.stats.fmri_est.method.Classical = 1;
-""", 'contrast_manager':"""
+matlabbatch{${batch_n}}.spm.stats.fmri_est.method.Classical = 1;""",
+'contrast_manager':"""
 matlabbatch{${batch_n}}.spm.stats.con.spmmat = {'${spm_mat_file}'};
 ${contrast}
-matlabbatch{${batch_n}}.spm.stats.con.delete = ${delete};
-""", 'contrast':"""
+matlabbatch{${batch_n}}.spm.stats.con.delete = ${delete};""",
+'contrast':"""
 matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.name = '${name}';
 matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.convec = [${vector}];
-matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${replication}';
-""" }
+matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${replication}';""",
+'results':"""
+matlabbatch{${batch_n}}.spm.stats.results.spmmat = {'${spm_mat_file}'};
+matlabbatch{${batch_n}}.spm.stats.results.conspec.titlestr = '${titlestr}';
+matlabbatch{${batch_n}}.spm.stats.results.conspec.contrasts = ${contrasts};
+matlabbatch{${batch_n}}.spm.stats.results.conspec.threshdesc = '${thresh_desc}';
+matlabbatch{${batch_n}}.spm.stats.results.conspec.thresh = ${threshold};
+matlabbatch{${batch_n}}.spm.stats.results.conspec.extent = 0;
+matlabbatch{${batch_n}}.spm.stats.results.conspec.mask = struct('contrasts', {}, 'thresh', {}, 'mtype', {});
+matlabbatch{${batch_n}}.spm.stats.results.units = 1;
+matlabbatch{${batch_n}}.spm.stats.results.print = true;""",
+'exec':"""
+try
+	spm('defaults','fmri');
+	spm_jobman('initcfg');
+	output = spm_jobman('run_nogui',matlabbatch);
+	ec = 0;
+catch
+	ec = 1; % SPM failed
+end
+d = date;
+ps_file = ['spm_' d(8:end) d(4:6) d(1:2) '.ps'];
+if exist(ps_file, 'file') == 2
+    status = copyfile(ps_file, ${new_ps});
+    if status
+        ec = 3; % couldn't copy file
+    end
+else
+    ec = 2; % .ps was not created
+end
+exit(ec);"""
+}
 
     def __init__(self, subj, paradigm, pieces, total):
         """
@@ -127,7 +157,7 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
         else:
             self.n_runs = paradigm['n_runs']
         self.n_volumes = paradigm['n_volumes']
-        self.out_dir = paradigm['output_directory']
+        self.out_dir = pj(paradigm['output_directory'], paradigm['name'])
         
         self.pieces = pieces
 #         self.stages = total['project']['todo']['SPM'][piece]
@@ -192,6 +222,13 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
                 good_dict['session_n'] = run_n
         return self.rep_text(self.text['session'], good_dict)
     
+    def generate_contrast(self, n_con, contrast):
+        """Generate contrast text for a given contrast"""
+        rep_dict = self.cascade('contrast')
+        rep_dict.update(contrast)
+        rep_dict['number'] = n_con
+        return self.rep_text(self.text['contrast'], rep_dict)
+                
     def generate(self, key, stage, piece):
         """Handles responsibility for replacing 'gen' with the correct 
         value"""
@@ -219,10 +256,28 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
             (dirname, base ) = os.path.split(raw_image)
             pre = self.find_prefix(stage, piece)
             value = pj(dirname, '%s%s%s' % ('mean', pre[1:], base))
-        if key == 'session' and piece == 'post':
+        if key == 'session':
             for n_run in range(1,self.n_runs+1):
                 value += self.generate_session(n_run)
+        if key == 'directory':
+            value = self.analysis_dir()
+        if key == 'spm_mat_file':
+            value = pj(self.analysis_dir(), 'SPM.mat')
+        if key == 'contrast':
+            for n_con, contrast in enumerate(self.paradigm['contrasts']):
+                value += self.generate_contrast(n_con + 1, contrast)
         return value 
+
+    def analysis_dir(self):
+        """Return analysis directory
+        Guarantees the analysis directory exists on the filesystem"""
+        subj_dir = pj(self.out_dir, 'subjects')
+        if not os.path.isdir(subj_dir):
+            os.mkdir(subj_dir)
+        analysis_dir = pj(subj_dir, self.id)
+        if not os.path.isdir(analysis_dir):
+            os.mkdir(analysis_dir)
+        return analysis_dir
 
     def cascade(self, stage):
         """Cascade dictionaries into the "best" dict for the subject"""
@@ -255,14 +310,16 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
     def header_text(self, piece):
         """Return header text, to be inserted above a SPM batch"""
         header = """
-%% Generated by Nibble on %s
+%% Nibble-generated SPM batch
+%% Date created: %s
 %% Project:      %s
 %% Paradigm:     %s
 %% Subject:      %s
 %% Piece:        %s
+cd('%s')
 """
         fmt = (strftime('%Y - %b - %d %H:%M:%S'), self.project['name'], 
-                self.par_name, self.id, piece)
+                self.par_name, self.id, piece, self.analysis_dir())
         return header % fmt
 
     def resolve(self):
@@ -282,6 +339,8 @@ matlabbatch{${batch_n}}.spm.stats.con.consess{${number}}.tcon.sessrep = '${repli
                 if new_stage.count('$') > 0:
                     warn('Some keywords were not replaced')
                 self.output[piece] += new_stage
+            exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece)}
+            self.output[piece] += self.rep_text(self.text['exec'], exec_dict)
 
     def dump(self):
         """Print to a generated filename

@@ -102,4 +102,11 @@ SPM:
         #only implemented T contrasts
         vector: (1xN 0|1 str) T contrast vector; e.g. '1 0 0'
         replication:    (none | repl | replsc | sess | both | bothsc) nothing, replicate, replicate and scale, create per session, do both, do both and scale
+    results:
+        batch_n:    (int) batch number
+        spm_mat_file:   (str) path to SPM mat file
+        titlestr:   (str)   title to apply to each contrast
+        contrasts:  (Inf | index of contrast of interest) If Inf, all contrasts are reported
+        thresh_desc:    (FWE | none) Type of threshold
+        threshold:  (float) Threshold
 
