@@ -154,8 +154,8 @@ exit(ec);"""
         self.par_name = paradigm['name']
         if 'n_runs' in self.paradigm:
             self.n_runs = self.paradigm['n_runs']
-        if 'n_runs' in self.subj:
-            self.n_runs = self.subj['n_runs']
+        if 'n_runs' in self.subj[self.par_name]:
+            self.n_runs = self.subj[self.par_name]['n_runs']
         if not hasattr(self, 'n_runs'):
             raise SpecError('n_runs was not declared in the subject or paradigm')
         self.n_volumes = paradigm['n_volumes']
@@ -205,6 +205,10 @@ exit(ec);"""
         for i, e in enumerate(exist):
             if not e:
                 warn('Data file %s does not exist!' % raw_images[i])
+        # check that n_runs equals number of images found
+        if self.n_runs != len(raw_images):
+            raise SpecError("""Number of images for this subject does not
+equal number of runs specified by subject or paradigm""")
         return raw_images        
     
     def generate_session(self, run_n):
