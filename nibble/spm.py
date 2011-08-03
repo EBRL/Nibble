@@ -198,7 +198,11 @@ exit(ec);"""
                 raw_images = self.subj[self.par_name]['images']
             except KeyError:
                 raise SpecError("""No subject-specific images found""")
-        #with the images gathered, we need to xfm them into spm text
+        # check that images exist
+        exist = [os.path.isfile(im) for im in raw_images]
+        for i, e in enumerate(exist):
+            if not e:
+                warn('Data file %s does not exist!' % raw_images[i])
         return raw_images        
     
     def generate_session(self, run_n):
@@ -339,7 +343,9 @@ cd('%s')
                     self.output[piece] += new_stage
                 exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece)}
                 self.output[piece] += self.rep_text(self.text['exec'], exec_dict)
-            #handle other kind of SPM pieces here (art at least)
+            else:
+                #handle other kind of SPM pieces here (art at least)
+                pass
     
     def make_dir(self, path):
         """Ensure a directory exists"""
