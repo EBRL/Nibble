@@ -260,8 +260,13 @@ end
         return pj(dirname, rp_fname)
     
     def art_file(self, run_n):
-        """ """
-        pass
+        """ Return the path to the art-created regression and 
+        outliers mat file"""
+        raw_img = self.raw[run_n - 1]
+        dirname, basename = os.path.split(raw_img)
+        im_fname, _ = os.path.splitext(basename)
+        art_fname = 'art_regression_outliers_and_movement_%s.mat' % im_fname
+        return pj(dirname, art_fname)
 
     def generate_session(self, run_n, piece):
         """Handle the intricacies of generating session text"""
