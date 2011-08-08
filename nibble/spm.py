@@ -132,8 +132,17 @@ else
     disp(['Postscript was not created'])
     ec = 2; % .ps was not created
 end
-exit(ec);"""
-}
+exit(ec);""",
+'art':"""
+art('sess_file', '${art_sessfile}');
+exit;
+""",
+'art_sess':"""
+sessions: ${n_runs}
+drop_flag: 0
+motion_file_type: 0
+end
+"""}
 
     def __init__(self, subj, paradigm, pieces, total):
         """
@@ -175,7 +184,7 @@ exit(ec);"""
     def get_stages(self, piece_name):
         """Return a copy the stages for a given piece"""
         stages_list = [p['stages'] for p in self.pieces if p['name'] == piece_name]
-        if len(stages_list) > 0:
+        if len(stages_list) > 1:
             warn("piece name convergence!")
         elif len(stages_list) == 0:
             warn("no pieces with name == %s found" % (piece_name))
@@ -186,8 +195,11 @@ exit(ec);"""
         """ Return full piece dict whose 'name' is piece_name """
         good_piece = [piece for piece in self.pieces if piece['name'] == piece_name]
         if len(good_piece) > 1 or len(good_piece) == 0:
-            warn("Can't find piece with name == %s" % piece_name)
-        return good_piece[0].copy()
+            print("Can't find piece with name == %s" % piece_name)
+            to_return = {}
+        else:
+            to_return = good_piece[0].copy()
+        return to_return
     
     def find_prefix(self, stage, piece):
         """Find the prefix each previous stage has added"""
@@ -234,9 +246,23 @@ exit(ec);"""
         # check that n_runs equals number of images found, correct if doesn't
         if self.n_runs != len(raw_images):
             self.n_runs = len(raw_images)
-            warn("Number of subject images != # of paradigm runs, correcting")
-        return raw_images        
+            print("Number of subject images != # of paradigm runs, correcting")
+        return raw_images
     
+    def mvmt_file(self, run_n):
+        """Return path for the rp_*.txt file for a given run number"""
+        raw_img = self.raw[run_n - 1]
+        piece = self.get_piece('pre')
+        pre = self.find_prefix('realign-er', piece)
+        dirname, base = os.path.split(raw_img)
+        root, _ = os.path.splitext(base)
+        rp_fname = 'rp_%s%s.txt' % (pre, root)
+        return pj(dirname, rp_fname)
+    
+    def art_file(self, run_n):
+        """ """
+        pass
+
     def generate_session(self, run_n, piece):
         """Handle the intricacies of generating session text"""
         good_dict = self.cascade('session')
@@ -248,15 +274,14 @@ exit(ec);"""
         for key in gen_keys:
             if key == 'images':
                 all_img = self.generate('images', 'session', piece)
+                all_img = self.generate_images('session', piece)
                 good_dict['images'] = all_img[run_n - 1]
             if key == 'multiple_regression_file':
-                raw_img = self.raw[run_n - 1]
-                piece = self.get_piece('pre')
-                pre = self.find_prefix('realign-er', piece)
-                dirname, base = os.path.split(raw_img)
-                root, _ = os.path.splitext(base)
-                rp_fname = 'rp_%s%s.txt' % (pre, root)
-                good_dict['multiple_regression_file'] = pj(dirname, rp_fname)
+                # if 'art' is a piece, let's use the art file
+                if self.get_piece('art_rej'):
+                    good_dict['multiple_regression_file'] = self.art_file(run_n)
+                else:
+                    good_dict['multiple_regression_file'] = self.mvmt_file(run_n)
             if key == 'session_n':
                 good_dict['session_n'] = run_n
         return self.rep_text(self.text['session'], good_dict)
@@ -268,27 +293,32 @@ exit(ec);"""
         rep_dict['number'] = n_con
         return self.rep_text(self.text['contrast'], rep_dict)
                 
+    def generate_images(self, stage, piece):
+        """Generate spm text of images"""
+        pre = self.find_prefix(stage, piece)
+        xfm = []
+        ran = range(1, self.n_volumes+1)
+        for raw in self.raw:
+            (dirname, base) = os.path.split(raw)
+            pre_raw = pj(dirname, pre+base)
+            xfm.append('\n'.join(["'%s,%d'" % (pre_raw, d) for d in ran]))
+        
+        if stage in ['slicetime', 'realign-er']:
+            fmt = '{%s}'
+        if stage in ['normalize-er', 'smooth', 'session']:
+            fmt = '%s'
+        if 'post' not in piece['name']:
+            value = '\n'.join([fmt % x for x in xfm])
+        else:
+            value = xfm
+        return value        
+                
     def generate(self, key, stage, piece):
         """Handles responsibility for replacing 'gen' with the correct 
         value"""
         value = ''
         if key == 'images':
-            pre = self.find_prefix(stage, piece)
-            xfm = []
-            ran = range(1, self.n_volumes+1)
-            for raw in self.raw:
-                (dirname, base) = os.path.split(raw)
-                pre_raw = pj(dirname, pre+base)
-                xfm.append('\n'.join(["'%s,%d'" % (pre_raw, d) for d in ran]))
-            
-            if stage in ['slicetime', 'realign-er']:
-                fmt = '{%s}'
-            if stage in ['normalize-er', 'smooth', 'session']:
-                fmt = '%s'
-            if 'post' not in piece['name']:
-                value = '\n'.join([fmt % x for x in xfm])
-            else:
-                value = xfm
+            value = self.generate_images(stage, piece)
         if key == 'source':
             raw_image = self.raw[0]
             (dirname, base ) = os.path.split(raw_image)
@@ -306,6 +336,21 @@ exit(ec);"""
                 value += self.generate_contrast(n_con + 1, contrast)
         return value 
 
+    def make_art_sess(self):
+        """Write out the art.m and art_session.txt file"""
+        sess_txt = self.rep_text(self.text['art_sess'], {'n_runs': self.n_runs})
+        for run_n in range(self.n_runs):
+            per_sess_text = "session %d image %s\nsession %d motion %s\n"
+            im_path = self.raw[run_n]
+            mvmt = self.mvmt_file(run_n + 1)
+            fmt = (run_n + 1, im_path, run_n + 1, mvmt)
+            sess_txt += per_sess_text % fmt
+        sess_txt += 'end\n'
+        sess_fname = pj(self.batch_dir(), 'art_sess.txt')
+        with open(sess_fname, 'w') as f:
+            f.writelines(sess_txt)
+        return sess_fname
+        
     def analysis_dir(self, pname):
         """Return analysis directory for this piece
         Guarantees the analysis directory exists on the filesystem"""
@@ -380,22 +425,26 @@ cd('%s')
                     self.output[pname] += new_stage
                 exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece['name'])}
                 self.output[pname] += self.rep_text(self.text['exec'], exec_dict)
-            else:
-                #handle other kind of SPM pieces here (art at least)
-                pass
+            elif 'art' in pname :
+                sess_fname = self.make_art_sess()
+                self.output[pname] = self.rep_text(self.text['art'],
+                    {'art_sessfile': sess_fname})
     
     def make_dir(self, path):
         """Ensure a directory exists"""
         if not os.path.isdir(path):
             os.makedirs(path)
     
+    def batch_dir(self):
+        """Return dir path in which batches can be dumped"""
+        return pj(self.out_dir, 'batches', self.id)
+    
     def piece_path(self, piece):
         """Return the path to which a piece's batch will be written
         Generated as self.out_dir/batches/self.id/piece.m"""
         output_fname = '%s.m' % piece['name']
-        batch_dir = pj(self.out_dir, 'batches')
-        subj_dir = pj(batch_dir, self.id)
-        map(self.make_dir, [batch_dir, subj_dir])
+        subj_dir = self.batch_dir()
+        map(self.make_dir, [subj_dir])
         return pj(subj_dir, output_fname)
     
     def dump(self):

@@ -57,7 +57,7 @@ def data2yaml(data, filename, verbose=0):
         print('Error when dumping data to %s' % filename)
         raise
 
-def print_yamlerror(self, exc):
+def print_yamlerror( exc):
     """Try to help user spot bug by printing line/column information of 
     parsing error"""
     if hasattr(exc, 'problem_mark'):
@@ -96,7 +96,7 @@ class Configurator(object):
         for yaml_file in self.yaml_files:
             try:
                 doc_data = yaml2data(yaml_file, self.verbose)
-            except YAMLError:
+            except yaml.YAMLError:
                 raise
             else:
                 if 'version' in doc_data:

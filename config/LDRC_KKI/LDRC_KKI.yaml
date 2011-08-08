@@ -10,6 +10,9 @@ project:
                     name: 'pre'
                     stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
                 -
+                    name: 'art_rej'
+                    stages: ['art']
+                -
                     name: 'post-model1'
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
                 -
