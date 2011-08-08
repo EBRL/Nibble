@@ -159,8 +159,8 @@ exit(ec);"""
         self.par_name = paradigm['name']
         if 'n_runs' in self.paradigm:
             self.n_runs = self.paradigm['n_runs']
-        if 'n_runs' in self.subj[self.par_name]:
-            self.n_runs = self.subj[self.par_name]['n_runs']
+        if 'n_runs' in self.subj:
+            self.n_runs = self.subj['n_runs']
         if not hasattr(self, 'n_runs'):
             raise SpecError('n_runs was not declared in the subject or paradigm')
         self.n_volumes = paradigm['n_volumes']
@@ -170,18 +170,39 @@ exit(ec);"""
         
         self.project = total['project']
         
+        self.raw = self.find_images()
+        
+    def get_stages(self, piece_name):
+        """Return a copy the stages for a given piece"""
+        stages_list = [p['stages'] for p in self.pieces if p['name'] == piece_name]
+        if len(stages_list) > 0:
+            warn("piece name convergence!")
+        elif len(stages_list) == 0:
+            warn("no pieces with name == %s found" % (piece_name))
+        else:
+            return stages_list[0][:]
+            
+    def get_piece(self, piece_name):
+        """ Return full piece dict whose 'name' is piece_name """
+        good_piece = [piece for piece in self.pieces if piece['name'] == piece_name]
+        if len(good_piece) > 1 or len(good_piece) == 0:
+            warn("Can't find piece with name == %s" % piece_name)
+        return good_piece[0].copy()
+    
     def find_prefix(self, stage, piece):
         """Find the prefix each previous stage has added"""
-        if piece == 'post':
-            pi = 'pre'
-            current = len(self.pieces['pre'])
+        if piece['name'] == 'pre':
+            stages = piece['stages'][:]
+            if stage in stages:
+                ind = stages.index(stage)
+            else:
+                ind = len(stages)
+            stages[:] = stages[:ind]
         else:
-            pi = piece
-            current = self.pieces[piece].index(stage)
+            stages = self.get_stages('pre')
         # join all previous prefixes
-        reverse_stages = self.pieces[pi][0:current]
-        reverse_stages.reverse()
-        pre =  ''.join([self.replace_dict[s]['prefix'] for s in reverse_stages])        
+        stages.reverse()
+        pre =  ''.join([self.replace_dict[s]['prefix'] for s in stages])
         return pre
     
     def find_images(self):
@@ -205,29 +226,33 @@ exit(ec);"""
             except KeyError:
                 raise SpecError("""No subject-specific images found""")
         # check that images exist
-        exist = [os.path.isfile(im) for im in raw_images]
-        for i, e in enumerate(exist):
-            if not e:
-                warn('Data file %s does not exist!' % raw_images[i])
-        # check that n_runs equals number of images found
+        for i, raw in enumerate(raw_images[:]):
+            if not os.path.isfile(raw):
+                raw_images[i] = ''
+                print('Removing %s from image list!' % raw)
+        raw_images[:] = [raw for raw in raw_images if raw != '']
+        # check that n_runs equals number of images found, correct if doesn't
         if self.n_runs != len(raw_images):
-            raise SpecError("""Number of images for this subject does not
-equal number of runs specified by subject or paradigm""")
+            self.n_runs = len(raw_images)
+            warn("Number of subject images != # of paradigm runs, correcting")
         return raw_images        
     
-    def generate_session(self, run_n):
+    def generate_session(self, run_n, piece):
         """Handle the intricacies of generating session text"""
         good_dict = self.cascade('session')
         all_mult_cond = good_dict['multiple_condition_mat']
+        if piece['name'] in all_mult_cond:
+            all_mult_cond = all_mult_cond[piece['name']]
         good_dict['multiple_condition_mat'] = all_mult_cond[run_n - 1]
         gen_keys = [k for (k,v) in good_dict.iteritems() if v == 'gen']
         for key in gen_keys:
             if key == 'images':
-                all_img = self.generate('images', 'session', 'post')
+                all_img = self.generate('images', 'session', piece)
                 good_dict['images'] = all_img[run_n - 1]
             if key == 'multiple_regression_file':
-                raw_img = self.find_images()[run_n - 1]
-                pre = self.find_prefix('realign-er', 'pre')
+                raw_img = self.raw[run_n - 1]
+                piece = self.get_piece('pre')
+                pre = self.find_prefix('realign-er', piece)
                 dirname, base = os.path.split(raw_img)
                 root, _ = os.path.splitext(base)
                 rp_fname = 'rp_%s%s.txt' % (pre, root)
@@ -250,9 +275,8 @@ equal number of runs specified by subject or paradigm""")
         if key == 'images':
             pre = self.find_prefix(stage, piece)
             xfm = []
-            raw_images = self.find_images()
             ran = range(1, self.n_volumes+1)
-            for raw in raw_images:
+            for raw in self.raw:
                 (dirname, base) = os.path.split(raw)
                 pre_raw = pj(dirname, pre+base)
                 xfm.append('\n'.join(["'%s,%d'" % (pre_raw, d) for d in ran]))
@@ -261,34 +285,35 @@ equal number of runs specified by subject or paradigm""")
                 fmt = '{%s}'
             if stage in ['normalize-er', 'smooth', 'session']:
                 fmt = '%s'
-            if piece != 'post':
+            if 'post' not in piece['name']:
                 value = '\n'.join([fmt % x for x in xfm])
             else:
                 value = xfm
         if key == 'source':
-            raw_image = self.find_images()[0]
+            raw_image = self.raw[0]
             (dirname, base ) = os.path.split(raw_image)
             pre = self.find_prefix(stage, piece)
             value = pj(dirname, '%s%s%s' % ('mean', pre[1:], base))
         if key == 'session':
             for n_run in range(1,self.n_runs+1):
-                value += self.generate_session(n_run)
+                value += self.generate_session(n_run, piece)
         if key == 'directory':
-            value = self.analysis_dir()
+            value = self.analysis_dir(piece['name'])
         if key == 'spm_mat_file':
-            value = pj(self.analysis_dir(), 'SPM.mat')
+            value = pj(self.analysis_dir(piece['name']), 'SPM.mat')
         if key == 'contrast':
             for n_con, contrast in enumerate(self.paradigm['contrasts']):
                 value += self.generate_contrast(n_con + 1, contrast)
         return value 
 
-    def analysis_dir(self):
-        """Return analysis directory
+    def analysis_dir(self, pname):
+        """Return analysis directory for this piece
         Guarantees the analysis directory exists on the filesystem"""
         subj_dir = pj(self.out_dir, 'results')
         analysis_dir = pj(subj_dir, self.id)
-        map(self.make_dir, [subj_dir, analysis_dir])
-        return analysis_dir
+        piece_dir = pj(subj_dir, pname)
+        map(self.make_dir, [subj_dir, analysis_dir, piece_dir])
+        return piece_dir
 
     def cascade(self, stage):
         """Cascade dictionaries into the "best" dict for the subject"""
@@ -330,7 +355,7 @@ equal number of runs specified by subject or paradigm""")
 cd('%s')
 """
         fmt = (strftime('%Y - %b - %d %H:%M:%S'), self.project['name'], 
-                self.par_name, self.id, piece, self.analysis_dir())
+                self.par_name, self.id, piece['name'], self.analysis_dir(piece['name']))
         return header % fmt
 
     def resolve(self):
@@ -341,19 +366,20 @@ cd('%s')
         print('Resolving %s' % self.id)
         self.output = {}
         self.replace_dict = {}
-        for piece, stages in self.pieces.iteritems():
-            if piece in ['pre', 'post']:
-                self.output[piece] = self.header_text(piece)
-                self.output[piece] += "spm fmri"
-                for stage in stages:
+        for piece in self.pieces:
+            pname = piece['name']
+            if pname == 'pre' or 'post' in pname:
+                self.output[pname] = self.header_text(piece)
+                self.output[pname] += "spm fmri"
+                for stage in piece['stages']:
                     self.replace_dict[stage] = self.find_dict(stage, piece)
                     new_stage = self.rep_text(self.text[stage],
                                                 self.replace_dict[stage])
                     if new_stage.count('$') > 0:
                         warn('Some keywords were not replaced')
-                    self.output[piece] += new_stage
-                exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece)}
-                self.output[piece] += self.rep_text(self.text['exec'], exec_dict)
+                    self.output[pname] += new_stage
+                exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece['name'])}
+                self.output[pname] += self.rep_text(self.text['exec'], exec_dict)
             else:
                 #handle other kind of SPM pieces here (art at least)
                 pass
@@ -366,7 +392,7 @@ cd('%s')
     def piece_path(self, piece):
         """Return the path to which a piece's batch will be written
         Generated as self.out_dir/batches/self.id/piece.m"""
-        output_fname = '%s.m' % piece
+        output_fname = '%s.m' % piece['name']
         batch_dir = pj(self.out_dir, 'batches')
         subj_dir = pj(batch_dir, self.id)
         map(self.make_dir, [batch_dir, subj_dir])
@@ -381,6 +407,6 @@ cd('%s')
             output_path = self.piece_path(piece)
             with open(output_path, 'w') as f:
                 try:
-                    f.writelines(self.output[piece])
+                    f.writelines(self.output[piece['name']])
                 except IOError:
                     print("Error when dumping batch text")

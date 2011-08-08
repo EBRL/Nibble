@@ -3,24 +3,56 @@ project:
     spec: 1
     name: LDRC_KKI
     todo:
-        SPM:
-            pre:    ['slicetime', 'realign-er','normalize-er', 'smooth']
-            post:   ['model', 'estimate', 'contrast_manager', 'results']
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name: 'pre'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name: 'post-model1'
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                -
+                    name: 'post-model2'
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
     paradigms:
         -
             name:   Sent
             n_runs: 6
             n_volumes: 165
             output_directory: /Users/scottburns/Analysis/LDRC_KKI/
+            data_toplevel: /Users/scottburns/Data/LDRC_KKI/
+            run_directory:
+                - Sent_M1
+                - Sent_M2
+                - Sent_M3
+                - Sent_M4
+                - Sent_M5
+                - Sent_M6
+            images:
+                - SentM1.nii
+                - SentM2.nii
+                - SentM3.nii
+                - SentM4.nii
+                - SentM5.nii
+                - SentM6.nii
             SPM:
                 session:
                     multiple_condition_mat:
-                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m1_p1.mat
-                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m2_p1.mat
-                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m3_p1.mat
-                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m4_p1.mat
-                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m5_p1.mat
-                        - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m6_p1.mat
+                        post-model1:
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m1_p1.mat
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m2_p1.mat
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m3_p1.mat
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m4_p1.mat
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m5_p1.mat
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m6_p1.mat
+                        post-model2:
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m1_p1.mat
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m2_p1.mat
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m3_p1.mat
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m4_p1.mat
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m5_p1.mat
+                            - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/m6_p1.mat                        
             contrasts:
                 -
                     name:   TrueSent-3
