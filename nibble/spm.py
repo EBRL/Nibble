@@ -516,8 +516,15 @@ cd('%s')
                     email_text += "Finished, no .ps file was created\n"
                 if return_val == 3:
                     email_text += "Finished, couldn't copy .ps file"
-                    #rescue ps file later
+                    #TODO rescue ps
                 if return_val in [0, 2, 3]:
                     self.touch(finish_file)
+                if os.path.isfile(piece_log):
+                    with open(piece_log, 'r') as f:                        
+                        email_text += f.read()
+                else:
+                    email_text += "Couldn't open log file.\n"
+                util.email('scott.s.burns@vanderbilt.edu', 
+                    'Nibble: %s' % self.id, email_text, pdf_file)
             else:
                 print("Finish file for %s found, skipping..." % piece['name'])
