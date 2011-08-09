@@ -140,6 +140,8 @@ exit;
 'art_sess':"""
 sessions: ${n_runs}
 drop_flag: 0
+save_art_image: 1
+image_fname: ${art_image_path}
 motion_file_type: 0
 end
 """}
@@ -337,13 +339,19 @@ end
         if key == 'spm_mat_file':
             value = pj(self.analysis_dir(piece['name']), 'SPM.mat')
         if key == 'contrast':
-            for n_con, contrast in enumerate(self.paradigm['contrasts']):
-                value += self.generate_contrast(n_con + 1, contrast)
+            contrasts = self.paradigm['contrasts']
+            # for multiple model paradigms, contrasts will be a dictionary
+            if piece['name'] in contrasts:
+                contrasts = contrasts[piece['name']]
+            for n_con, contrast in enumerate(contrasts):
+                value += self.generate_contrast( n_con + 1, contrast)
         return value 
 
-    def make_art_sess(self):
+    def make_art_sess(self, piece):
         """Write out the art.m and art_session.txt file"""
-        sess_txt = self.rep_text(self.text['art_sess'], {'n_runs': self.n_runs})
+        art_im = pj(self.analysis_dir(piece['name']), '%s_%s.pdf' % (self.id, piece['name']))
+        rep = {'n_runs':self.n_runs, 'art_image_path':art_im}
+        sess_txt = self.rep_text(self.text['art_sess'], rep)
         for run_n in range(self.n_runs):
             per_sess_text = "session %d image %s\nsession %d motion %s\n"
             im_path = self.raw[run_n]
@@ -361,7 +369,7 @@ end
         Guarantees the analysis directory exists on the filesystem"""
         subj_dir = pj(self.out_dir, 'results')
         analysis_dir = pj(subj_dir, self.id)
-        piece_dir = pj(subj_dir, pname)
+        piece_dir = pj(analysis_dir, pname)
         map(self.make_dir, [subj_dir, analysis_dir, piece_dir])
         return piece_dir
 
@@ -431,7 +439,7 @@ cd('%s')
                 exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece['name'])}
                 self.output[pname] += self.rep_text(self.text['exec'], exec_dict)
             elif 'art' in pname :
-                sess_fname = self.make_art_sess()
+                sess_fname = self.make_art_sess(piece)
                 self.output[pname] = self.rep_text(self.text['art'],
                     {'art_sessfile': sess_fname})
     
@@ -456,7 +464,7 @@ cd('%s')
         """Write out each batch to the correct file"""
         # for now assume output dir exists
         #os.makedirs(pj(self.out_dir, 'batches'))
-        print('Dumping %s batches' % self.id)
+        print('Dumping %s batches...' % self.id)
         for piece in self.pieces:
             output_path = self.piece_path(piece)
             with open(output_path, 'w') as f:
@@ -464,3 +472,4 @@ cd('%s')
                     f.writelines(self.output[piece['name']])
                 except IOError:
                     print("Error when dumping batch text")
+            print('Wrote %s' % output_path)
