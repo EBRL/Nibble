@@ -5,6 +5,7 @@ Copyright (c) 2011, Scott Burns
 All rights reserved.
 """
 from os.path import join as pj
+import time
 import os
 
 from string import Template
@@ -14,6 +15,7 @@ from warnings import warn
 
 
 from .config import SpecError
+import util
 
 __version__ = "0.0"
 
@@ -134,8 +136,13 @@ else
 end
 exit(ec);""",
 'art':"""
-art('sess_file', '${art_sessfile}');
-exit;
+try
+    art('sess_file', '${art_sessfile}');
+    ec = 0;
+catch ME
+    ec = 1;
+end
+exit(ec);
 """,
 'art_sess':"""
 sessions: ${n_runs}
@@ -359,7 +366,7 @@ end
             fmt = (run_n + 1, im_path, run_n + 1, mvmt)
             sess_txt += per_sess_text % fmt
         sess_txt += 'end\n'
-        sess_fname = pj(self.batch_dir(), 'art_sess.txt')
+        sess_fname = self.batch_path('art_sess', 'txt')
         with open(sess_fname, 'w') as f:
             f.writelines(sess_txt)
         return sess_fname
@@ -447,18 +454,11 @@ cd('%s')
         """Ensure a directory exists"""
         if not os.path.isdir(path):
             os.makedirs(path)
-    
-    def batch_dir(self):
-        """Return dir path in which batches can be dumped"""
-        return pj(self.out_dir, 'batches', self.id)
-    
+        
     def piece_path(self, piece):
         """Return the path to which a piece's batch will be written
         Generated as self.out_dir/batches/self.id/piece.m"""
-        output_fname = '%s.m' % piece['name']
-        subj_dir = self.batch_dir()
-        map(self.make_dir, [subj_dir])
-        return pj(subj_dir, output_fname)
+        return self.batch_path(piece['name'], 'm')
     
     def dump(self):
         """Write out each batch to the correct file"""
@@ -473,3 +473,51 @@ cd('%s')
                 except IOError:
                     print("Error when dumping batch text")
             print('Wrote %s' % output_path)
+
+    def log_path(self, piece):
+        """Return path to a logfile for each piece"""
+        return self.batch_path(piece['name'], 'log')
+
+    def batch_path(self, fname, ext):
+        batch_dir = pj(self.out_dir, 'batches', self.id)
+        return pj(batch_dir, '%s.%s' % (fname, ext))
+
+    def touch(self, fname):
+        """Create an empty file at fname"""
+        open(fname, 'w').close()
+
+    def ps2pdf(self, ps_name, pdf_name):
+        """Full paths for each filename given, does what it says"""
+        return util.run_cmdline('pstopdf %s %s' % (ps_name, pdf_name))
+
+    def run(self):
+        """Execute each piece"""
+        for piece in self.pieces:
+            finish_file = self.batch_path(piece['name'], 'finish')
+            if not os.path.isfile(finish_file):
+                cmdline = 'matlab -nosplash < %s > %s'
+                piece_mfile = self.piece_path(piece)
+                piece_log = self.log_path(piece)
+                strf = '%Y%m%d %H:%M:%S'
+                beg_time = time.strftime(strf)
+                return_val = util.run_cmdline(cmdline % (piece_mfile, piece_log))
+                end_time = time.strftime(strf)
+                email_text = 'Began: %s\nEnded: %s\n' % (beg_time, end_time)
+                ps_file = pj(self.analysis_dir(piece['name']), 
+                    '%s_%s.ps' % (self.id, piece['name']))
+                pdf_file = pj(self.analysis_dir(piece['name']),
+                    '%s_%s.pdf' % (self.id, piece['name']))
+                if return_val == 0:
+                    email_text += "Finished with no errors\n"
+                    self.ps2pdf(ps_file, pdf_file)
+                if return_val == 1:
+                    email_text += "Finished with error(s)\n"
+                if return_val == 2:
+                    email_text += "Finished, no .ps file was created\n"
+                if return_val == 3:
+                    email_text += "Finished, couldn't copy .ps file"
+                    #rescue ps file later
+                if return_val in [0, 2, 3]:
+                    self.touch(finish_file)
+            else:
+                print("Finish file for %s found, skipping..." % piece['name'])
