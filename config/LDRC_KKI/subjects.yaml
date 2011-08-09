@@ -2,9 +2,9 @@ version: 1
 subjects:
     -
         id: LDRC_71001
-    -
-        id: LDRC_71002
-    -
-        id: LDRC_71004
-    -
-        id: LDRC_71005
+#    -
+#        id: LDRC_71002
+#    -
+#        id: LDRC_71004
+#    -
+#        id: LDRC_71005
