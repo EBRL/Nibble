@@ -44,7 +44,7 @@ def email(to, subject, body=None, attachment_pdf=None):
 
     #start, connect, and authorize smtp.gmail.com
     gmail = smtplib.SMTP('smtp.gmail.com', 587)
-    gmail.startttls()
+    gmail.starttls()
     gmail.login('ebrl.nibble', 'HEC004!!')
     
     #sendmail
