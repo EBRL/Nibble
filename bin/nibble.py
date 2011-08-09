@@ -21,29 +21,33 @@ test_config = ['/Users/scottburns/Code/Nibble/config/cutting.yaml',
                 '/Users/scottburns/Code/Nibble/config/LDRC_KKI/LDRC_KKI.yaml',
                 '/Users/scottburns/Code/Nibble/config/LDRC_KKI/subjects.yaml']
 
-
-    
-if __name__ == '__main__':
+def parse_args():
 
     ap = ArgumentParser(description='nibble [options]')
     
     #add arguments
-    ap.add_argument('-c', '--cfg', nargs='+')
-
-    if DEBUG:
-        args = "--config %s" % ' '.join(test_config)
-        set_trace()
-        ap.parse_args(args.split())
-    args = ap.parse_args()
-    #starting with config
-    cfg = config.Configurator(args.cfg, verbose=1)
-    output_path = cfg.save()
+    ap.add_argument('--cfg', nargs='+', default=[])
+    ap.add_argument('--study', nargs=1, default='')
+    return ap.parse_args()
     
-    print
-    print
 
+    
+if __name__ == '__main__':
+
+    arg = parse_args()
+
+    #starting with config
+    if len(arg.cfg) > 0:
+        cfg = config.Configurator(args.cfg, verbose=1)
+        study_path = cfg.save()
+    elif arg.study:
+        study_path = arg.study
+    else:
+        raise Error("You must call nibble with either --cfg or --study")
+       
+    print
     # starting with spm
-    total = config.yaml2data(output_path)
+    total = config.yaml2data(study_path)
     ver = total['version']
     subjects = total['subjects']
     if ver == 1:
