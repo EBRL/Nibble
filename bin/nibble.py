@@ -7,19 +7,21 @@ All rights reserved.
 
 from argparse import ArgumentParser
 
+from multiprocessing import cpu_count
+from pdb import set_trace
 
 from nibble import config
 reload(config)
 from nibble import spm
 reload(spm)
+from nibble import util
+reload(util)
 
-from pdb import set_trace
-
-DEBUG = False
-
-test_config = ['/Users/scottburns/Code/Nibble/config/cutting.yaml',
-                '/Users/scottburns/Code/Nibble/config/LDRC_KKI/LDRC_KKI.yaml',
-                '/Users/scottburns/Code/Nibble/config/LDRC_KKI/subjects.yaml']
+try:
+    from joblib import Parallel, delayed
+    use_joblib = True
+except ImportError:
+    use_joblib = False
 
 def parse_args():
 
@@ -28,9 +30,14 @@ def parse_args():
     #add arguments
     ap.add_argument('--cfg', nargs='+', default=[])
     ap.add_argument('--study', nargs=1, default='')
+    ap.add_argument('--run', default=False, action='store_true')
+    ncpu_choice = [-1]
+    ncpu_choice.extend(range(1, cpu_count() + 1))
+    ap.add_argument('--ncpu', default=-1, type=int, choices=ncpu_choice)
     return ap.parse_args()
     
-
+def run_subject(subj):
+    subj.run()
     
 if __name__ == '__main__':
 
@@ -38,14 +45,18 @@ if __name__ == '__main__':
 
     #starting with config
     if len(arg.cfg) > 0:
-        cfg = config.Configurator(args.cfg, verbose=1)
+        cfg = config.Configurator(arg.cfg, verbose=1)
         study_path = cfg.save()
     elif arg.study:
-        study_path = arg.study
+        study_path = arg.study[0]
     else:
-        raise Error("You must call nibble with either --cfg or --study")
+        raise Exception("You must call nibble with either --cfg or --study")
        
     print
+    
+    if arg.run:
+        subjs_to_run = []
+    
     # starting with spm
     total = config.yaml2data(study_path)
     ver = total['version']
@@ -64,10 +75,16 @@ if __name__ == '__main__':
                                 spm_obj = spm.SPM(subj, paradigm, pieces, total)
                                 spm_obj.resolve()
                                 spm_obj.dump()
+                                if arg.run:
+                                    subjs_to_run.append(spm_obj)
                                 print
                             except KeyError:
                                 raise config.SpecError("""Each stream must have a pieces key""")
                     except KeyError:
                         raise config.SpecError("""Each stream in the project's todo
                                         field needs a name key""")
-                                        
+    if arg.run:
+        if use_joblib:
+            Parallel(n_jobs=arg.ncpu)(delayed(run_subject)(subj) for subj in subjs_to_run)
+        else:
+            [subj.run() for subj in subjs_to_run] 
