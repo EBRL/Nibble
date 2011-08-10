@@ -34,7 +34,7 @@ def parse_args():
     ap.add_argument('--nogen', default=True, dest='gen', action='store_false')
     ncpu_choice = [-1]
     ncpu_choice.extend(range(1, cpu_count() + 1))
-    ap.add_argument('--ncpu', default=cpu_count() / 4, type=int, choices=ncpu_choice)
+    ap.add_argument('--ncpu', default=2, type=int, choices=ncpu_choice)
     return ap.parse_args()
     
 def run_subject(subj):
