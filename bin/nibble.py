@@ -31,9 +31,10 @@ def parse_args():
     ap.add_argument('--cfg', nargs='+', default=[])
     ap.add_argument('--study', nargs=1, default='')
     ap.add_argument('--run', default=False, action='store_true')
+    ap.add_argument('--nogen', default=True, dest='gen', action='store_false')
     ncpu_choice = [-1]
     ncpu_choice.extend(range(1, cpu_count() + 1))
-    ap.add_argument('--ncpu', default=-1, type=int, choices=ncpu_choice)
+    ap.add_argument('--ncpu', default=cpu_count() / 4, type=int, choices=ncpu_choice)
     return ap.parse_args()
     
 def run_subject(subj):
@@ -73,11 +74,11 @@ if __name__ == '__main__':
                             try:
                                 pieces = stream['pieces']
                                 spm_obj = spm.SPM(subj, paradigm, pieces, total)
-                                spm_obj.resolve()
-                                spm_obj.dump()
                                 if arg.run:
                                     subjs_to_run.append(spm_obj)
-                                print
+                                if arg.gen:
+                                    spm_obj.resolve()
+                                    spm_obj.dump()
                             except KeyError:
                                 raise config.SpecError("""Each stream must have a pieces key""")
                     except KeyError:
