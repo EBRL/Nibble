@@ -136,9 +136,9 @@ else
 end
 exit(ec);""",
 'art':"""
+ec = 0;
 try
     art('sess_file', '${art_sessfile}');
-    ec = 0;
 catch ME
     ec = 1;
 end
@@ -250,12 +250,10 @@ end
         for i, raw in enumerate(raw_images[:]):
             if not os.path.isfile(raw):
                 raw_images[i] = ''
-                print('Removing %s from image list!' % raw)
         raw_images[:] = [raw for raw in raw_images if raw != '']
         # check that n_runs equals number of images found, correct if doesn't
         if self.n_runs != len(raw_images):
             self.n_runs = len(raw_images)
-            print("Number of subject images != # of paradigm runs, correcting")
         return raw_images
     
     def mvmt_file(self, run_n):
@@ -480,6 +478,7 @@ cd('%s')
 
     def batch_path(self, fname, ext):
         batch_dir = pj(self.out_dir, 'batches', self.id)
+        self.make_dir(batch_dir)
         return pj(batch_dir, '%s.%s' % (fname, ext))
 
     def touch(self, fname):
@@ -500,9 +499,12 @@ cd('%s')
                 piece_log = self.log_path(piece)
                 strf = '%Y%m%d %H:%M:%S'
                 beg_time = time.strftime(strf)
+                print('%s(%s): began %s' % (self.id, piece['name'], beg_time))
                 return_val = util.run_cmdline(cmdline % (piece_mfile, piece_log))
                 end_time = time.strftime(strf)
-                email_text = 'Began: %s\nEnded: %s\n' % (beg_time, end_time)
+                print('%s(%s): end %s' % (self.id, piece['name'], end_time))
+                v = 'Piece:%s\nBegan: %s\nEnded: %s\n' 
+                email_text = v % (piece['name'], beg_time, end_time)
                 ps_file = pj(self.analysis_dir(piece['name']), 
                     '%s_%s.ps' % (self.id, piece['name']))
                 pdf_file = pj(self.analysis_dir(piece['name']),
@@ -527,4 +529,4 @@ cd('%s')
                 util.email('scott.s.burns@vanderbilt.edu', 
                     'Nibble: %s' % self.id, email_text, pdf_file)
             else:
-                print("Finish file for %s found, skipping..." % piece['name'])
+                print("%s(%s): skipping" % (self.id, piece['name'])
