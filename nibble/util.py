@@ -15,12 +15,12 @@ import os
 
 def run_cmdline(cmdline):
     """ Start a process"""
-    print("Starting %s" % cmdline)
-    p = Popen(cmdline.split())
-    return p.wait()
+    return Popen(cmdline.split()).wait()
 
 def email(to, subject, body=None, attachment_pdf=None):
-    """Send an email through the gmail account"""
+    """Send an email through the gmail account
+    http://stackoverflow.com/questions/778202/smtplib-and-gmail-python-script-problems
+    """
     #create a message
     msg = MIMEMultipart()
     msg['From'] = "ebrl.nibble@gmail.com"
@@ -33,7 +33,7 @@ def email(to, subject, body=None, attachment_pdf=None):
         part = MIMEText(body)
         msg.attach(part)
 
-    if attachment_pdf:
+    if attachment_pdf and os.path.isfile(attachment_pdf):
         #open and attach the pdf
         part = MIMEApplication(open(attachment_pdf, 'rb').read())
         bname = os.path.basename(attachment_pdf)
