@@ -494,7 +494,7 @@ cd('%s')
         for piece in self.pieces:
             finish_file = self.batch_path(piece['name'], 'finish')
             if not os.path.isfile(finish_file):
-                cmdline = 'matlab -nosplash < %s > %s'
+                cmdline = 'matlab -nosplash < %s >& %s'
                 piece_mfile = self.piece_path(piece)
                 piece_log = self.log_path(piece)
                 strf = '%Y%m%d %H:%M:%S'
