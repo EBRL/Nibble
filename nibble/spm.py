@@ -427,7 +427,6 @@ cd('%s')
         
         This method resolves each stage of each piece to SPM text
         """
-        print('Resolving %s' % self.id)
         self.output = {}
         self.replace_dict = {}
         for piece in self.pieces:
