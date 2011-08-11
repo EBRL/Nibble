@@ -189,6 +189,7 @@ end
         self.project = total['project']
         
         self.raw = self.find_images()
+        self.resolve()
         
     def get_stages(self, piece_name):
         """Return a copy the stages for a given piece"""
@@ -529,4 +530,4 @@ cd('%s')
                 util.email('scott.s.burns@vanderbilt.edu', 
                     'Nibble: %s' % self.id, email_text, pdf_file)
             else:
-                print("%s(%s): skipping" % (self.id, piece['name'])
+                print("%s(%s): skipping" % (self.id, piece['name']))

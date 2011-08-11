@@ -77,7 +77,6 @@ if __name__ == '__main__':
                                 if arg.run:
                                     subjs_to_run.append(spm_obj)
                                 if arg.gen:
-                                    spm_obj.resolve()
                                     spm_obj.dump()
                             except KeyError:
                                 raise config.SpecError("""Each stream must have a pieces key""")
