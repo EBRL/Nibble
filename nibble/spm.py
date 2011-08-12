@@ -119,7 +119,7 @@ try
 	ec = 0;
 catch
     disp(['SPM batch failed'])
-	ec = 1; % SPM failed
+	ec = 3; % SPM failed
 end
 d = date;
 ps_file = ['spm_' d(8:end) d(4:6) d(1:2) '.ps'];
@@ -128,11 +128,11 @@ if exist(ps_file, 'file') == 2
     delete(ps_file)
     if ~status
         disp(['Couldnt copy postscript'])
-        ec = 3; % couldn't copy file
+        ec = 2; % couldn't copy file
     end
 else
     disp(['Postscript was not created'])
-    ec = 2; % .ps was not created
+    ec = 1; % .ps was not created
 end
 exit(ec);""",
 'art':"""
@@ -140,7 +140,7 @@ ec = 0;
 try
     art('sess_file', '${art_sessfile}');
 catch ME
-    ec = 1;
+    ec = 3;
 end
 exit(ec);
 """,
@@ -510,16 +510,17 @@ cd('%s')
                 pdf_file = pj(self.analysis_dir(piece['name']),
                     '%s_%s.pdf' % (self.id, piece['name']))
                 if return_val == 0:
-                    email_text += "Finished with no errors\n"
-                    self.ps2pdf(ps_file, pdf_file)
+                    email_text += "Success\n"
+                    if piece['name'] == 'pre' or 'post' in piece['name']:
+                        self.ps2pdf(ps_file, pdf_file)
                 if return_val == 1:
-                    email_text += "Finished with error(s)\n"
+                    email_text += "Success, no .ps file was created\n"
                 if return_val == 2:
-                    email_text += "Finished, no .ps file was created\n"
+                    email_text += "Success, couldn't copy .ps file"
                 if return_val == 3:
-                    email_text += "Finished, couldn't copy .ps file"
+                    email_text += "Success with error(s)\n"
                     #TODO rescue ps
-                if return_val in [0, 2, 3]:
+                if return_val in [0, 1, 2]:
                     self.touch(finish_file)
                 if os.path.isfile(piece_log):
                     with open(piece_log, 'r') as f:                        
