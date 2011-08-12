@@ -511,7 +511,7 @@ cd('%s')
                     '%s_%s.pdf' % (self.id, piece['name']))
                 if return_val == 0:
                     email_text += "Success\n"
-                    if piece['name'] == 'pre' or 'post' in piece['name']:
+                    if os.path.isfile(ps_file):
                         self.ps2pdf(ps_file, pdf_file)
                 if return_val == 1:
                     email_text += "Success, no .ps file was created\n"
