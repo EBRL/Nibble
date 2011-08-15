@@ -355,7 +355,7 @@ end
 
     def make_art_sess(self, piece):
         """Write out the art.m and art_session.txt file"""
-        art_im = pj(self.analysis_dir(piece['name']), '%s_%s.pdf' % (self.id, piece['name']))
+        art_im = self.piece_orig_path(piece)
         rep = {'n_runs':self.n_runs, 'art_image_path':art_im}
         sess_txt = self.rep_text(self.text['art_sess'], rep)
         for run_n in range(self.n_runs):
@@ -489,6 +489,31 @@ cd('%s')
         """Full paths for each filename given, does what it says"""
         return util.run_cmdline('pstopdf %s %s' % (ps_name, pdf_name))
 
+    def piece_orig_path(self, piece):
+        """Return the path to the image file produced by the piece"""
+        if 'art' in piece['name'] :
+            ext = 'jpg'
+        else:
+            ext = 'ps'
+        return self._piece_image_path(piece['name'], ext)
+
+    def piece_pdf_path(self, piece):
+        """ The final pdf for the piece"""
+        return self._piece_image_path(piece['name'], 'pdf')
+        
+    def _piece_image_path(self, pname, ext):
+        """ Private """
+        return pj(self.analysis_dir(pname), '%s_%s.%s' % (self.id, pname, ext))
+
+    def jpg2pdf(self, orig_file, pdf_file):
+        """Convert jpg file to pdf file"""
+        from PIL import Image
+        try:
+            jpg_im = Image.open(orig_file)
+            jpg_im.save(pdf_file, 'PDF')
+        except IOError:
+            print("Cannot convert %s to %s" % (orig_file, pdf_file))
+            
     def run(self):
         """Execute each piece"""
         for piece in self.pieces:
@@ -505,20 +530,22 @@ cd('%s')
                 print('%s(%s): end %s' % (self.id, piece['name'], end_time))
                 v = 'Piece:%s\nBegan: %s\nEnded: %s\n' 
                 email_text = v % (piece['name'], beg_time, end_time)
-                ps_file = pj(self.analysis_dir(piece['name']), 
-                    '%s_%s.ps' % (self.id, piece['name']))
-                pdf_file = pj(self.analysis_dir(piece['name']),
-                    '%s_%s.pdf' % (self.id, piece['name']))
+                orig_file = self.piece_orig_path(piece)
+                pdf_file = self.piece_pdf_path(piece)
                 if return_val == 0:
                     email_text += "Success\n"
-                    if os.path.isfile(ps_file):
-                        self.ps2pdf(ps_file, pdf_file)
+                    if os.path.isfile(orig_file):
+                        _, ext = os.path.splitext(orig_file)
+                        if ext == '.jpg':
+                            self.jpg2pdf(orig_file, pdf_file)
+                        if ext == '.ps':
+                            self.ps2pdf(orig_file, pdf_file)
                 if return_val == 1:
                     email_text += "Success, no .ps file was created\n"
                 if return_val == 2:
                     email_text += "Success, couldn't copy .ps file"
                 if return_val == 3:
-                    email_text += "Success with error(s)\n"
+                    email_text += "Error(s)\n"
                     #TODO rescue ps
                 if return_val in [0, 1, 2]:
                     self.touch(finish_file)
