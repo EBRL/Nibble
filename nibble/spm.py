@@ -117,7 +117,8 @@ try
     end
 	spm_jobman('serial',matlabbatch);
 	ec = 0;
-catch
+catch ME
+    disp(ME.message)
     disp(['SPM batch failed'])
 	ec = 3; % SPM failed
 end
@@ -135,15 +136,19 @@ if ec == 0
         disp(['Postscript was not created'])
         ec = 1; % .ps was not created
     end
-    exit(ec);""",
-    'art':"""
-    ec = 0;
-    try
-        art('sess_file', '${art_sessfile}');
-    catch ME
-        ec = 3;
-    end
 end
+spm('quit')
+disp(['Exiting with code ' num2str(ec)])
+exit(ec);""",
+'art':"""
+ec = 0;
+try
+    art('sess_file', '${art_sessfile}');
+catch ME
+    disp(ME.message)
+    ec = 3;
+end
+disp(['Exiting with code ' num2str(ec)])
 exit(ec);
 """,
 'art_sess':"""
