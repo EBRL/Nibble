@@ -188,6 +188,9 @@ end
         
         self.project = total['project']
         
+        if 'nibble' in total and 'email' in total['nibble']:
+            self.email = total['nibble']['email']
+        
         self.raw = self.find_images()
         self.resolve()
         
@@ -554,7 +557,12 @@ cd('%s')
                         email_text += f.read()
                 else:
                     email_text += "Couldn't open log file.\n"
-                util.email('scott.s.burns@vanderbilt.edu', 
-                    'Nibble: %s' % self.id, email_text, pdf_file)
+                if self.email:
+                    util.email(self.email['address'], 
+                                self.email['to'], 
+                                'Nibble: %s' % self.id, 
+                                self.email['server'], 
+                                self.email['pw'], 
+                                email_text, pdf_file)
             else:
                 print("%s(%s): skipping" % (self.id, piece['name']))
