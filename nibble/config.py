@@ -85,7 +85,9 @@ class Configurator(object):
         self.yaml_files = yaml_file_list
         
         # add the nibble.yaml2data
-        self.yaml_files.append('/Users/scottburns/Code/Nibble/config/nibble.yaml')
+        user_nibble = os.path.expanduser('~/.nibble.yaml')
+        if os.path.isfile(user_nibble):
+            self.yaml_files.append(user_nibble)
         self.verbose = verbose
         self.load_yaml()
         
