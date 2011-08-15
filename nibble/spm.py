@@ -121,26 +121,28 @@ catch
     disp(['SPM batch failed'])
 	ec = 3; % SPM failed
 end
-d = date;
-ps_file = ['spm_' d(8:end) d(4:6) d(1:2) '.ps'];
-if exist(ps_file, 'file') == 2
-    status = copyfile(ps_file, '${new_ps}');
-    delete(ps_file)
-    if ~status
-        disp(['Couldnt copy postscript'])
-        ec = 2; % couldn't copy file
+if ec == 0:
+    d = date;
+    ps_file = ['spm_' d(8:end) d(4:6) d(1:2) '.ps'];
+    if exist(ps_file, 'file') == 2
+        status = copyfile(ps_file, '${new_ps}');
+        delete(ps_file)
+        if ~status
+            disp(['Couldnt copy postscript'])
+            ec = 2; % couldn't copy file
+        end
+    else
+        disp(['Postscript was not created'])
+        ec = 1; % .ps was not created
     end
-else
-    disp(['Postscript was not created'])
-    ec = 1; % .ps was not created
-end
-exit(ec);""",
-'art':"""
-ec = 0;
-try
-    art('sess_file', '${art_sessfile}');
-catch ME
-    ec = 3;
+    exit(ec);""",
+    'art':"""
+    ec = 0;
+    try
+        art('sess_file', '${art_sessfile}');
+    catch ME
+        ec = 3;
+    end
 end
 exit(ec);
 """,

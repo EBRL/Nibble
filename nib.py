@@ -62,6 +62,7 @@ if __name__ == '__main__':
     total = config.yaml2data(study_path)
     ver = total['version']
     subjects = total['subjects']
+    print('Generating')
     if ver == 1:
         project = total['project']
         tdl = project['todo']
@@ -83,8 +84,13 @@ if __name__ == '__main__':
                     except KeyError:
                         raise config.SpecError("""Each stream in the project's todo
                                         field needs a name key""")
+    print('Finished generating batches.')
+    
+    
     if arg.run:
+        print('Beginning processing')
         if use_joblib:
             Parallel(n_jobs=arg.ncpu)(delayed(run_subject)(subj) for subj in subjs_to_run)
         else:
             [subj.run() for subj in subjs_to_run] 
+        print('Finished processing')
