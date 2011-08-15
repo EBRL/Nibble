@@ -121,7 +121,7 @@ catch
     disp(['SPM batch failed'])
 	ec = 3; % SPM failed
 end
-if ec == 0:
+if ec == 0
     d = date;
     ps_file = ['spm_' d(8:end) d(4:6) d(1:2) '.ps'];
     if exist(ps_file, 'file') == 2
