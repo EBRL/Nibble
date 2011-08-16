@@ -3,3 +3,4 @@ config/gen/
 *.hdr
 *.img
 *.mat
+.DS_Store
