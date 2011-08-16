@@ -144,6 +144,7 @@ exit(ec);""",
 ec = 0;
 try
     art('sess_file', '${art_sessfile}');
+    saveas(gcf, '${art_jpg}');
 catch ME
     disp(ME.message)
     ec = 3;
@@ -154,8 +155,6 @@ exit(ec);
 'art_sess':"""
 sessions: ${n_runs}
 drop_flag: 0
-save_art_image: 1
-image_fname: ${art_image_path}
 motion_file_type: 0
 end
 """}
@@ -365,8 +364,7 @@ end
 
     def make_art_sess(self, piece):
         """Write out the art.m and art_session.txt file"""
-        art_im = self.piece_orig_path(piece)
-        rep = {'n_runs':self.n_runs, 'art_image_path':art_im}
+        rep = {'n_runs':self.n_runs}
         sess_txt = self.rep_text(self.text['art_sess'], rep)
         for run_n in range(self.n_runs):
             per_sess_text = "session %d image %s\nsession %d motion %s\n"
@@ -456,7 +454,8 @@ cd('%s')
             elif 'art' in pname :
                 sess_fname = self.make_art_sess(piece)
                 self.output[pname] = self.rep_text(self.text['art'],
-                    {'art_sessfile': sess_fname})
+                    {'art_sessfile': sess_fname, 
+                    'art_jpg':self.piece_orig_path(piece)})
     
     def make_dir(self, path):
         """Ensure a directory exists"""
@@ -480,7 +479,6 @@ cd('%s')
                     f.writelines(self.output[piece['name']])
                 except IOError:
                     print("Error when dumping batch text")
-            print('Wrote %s' % output_path)
 
     def log_path(self, piece):
         """Return path to a logfile for each piece"""
@@ -573,3 +571,15 @@ cd('%s')
                                 email_text, pdf_file)
             else:
                 print("%s(%s): skipping" % (self.id, piece['name']))
+
+    def output_images(self, piece_names=['all']):
+        """Return a list of output images (probably pdfs) in piece order
+        
+        The returned images are checked for existence."""
+        output = []
+        for piece in self.pieces:
+            if piece['name'] in piece_names or piece_names[0] == 'all':
+                piece_pdf = self.piece_pdf_path(piece)
+                if os.path.isfile(piece_pdf):
+                    output.append(piece_pdf)
+        return output
