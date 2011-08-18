@@ -1,0 +1,73 @@
+version: 1
+project:
+    spec: 1
+    name: NFRO1
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name: 'pre'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name: 'art_rej'
+                    stages: ['art']
+                -
+                    name: 'post-AC'
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                -
+                    name: 'post-RI'
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                -
+                    name: 'post-WNW'
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+
+    paradigms:
+        -
+            name:   Pre
+            n_runs: 2
+            n_volumes: 94
+            output_directory: /Users/scottburns/Analysis/NFRO1/Pre/
+            data_toplevel: /Volumes/Data/NFRO1/Pre/
+            run_directory:
+                - M1
+                - M2
+            images:
+                - SWR1.nii
+                - SWR2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post-AC:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-AC/AC-M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-AC/AC-M2.mat
+                        post-RI:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-RI/RI-M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-RI/RI-M2.mat
+                        post-WNW:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-WNW/WNW-M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-WNW/WNW-M2.mat                        
+        -
+            name:   Post
+            n_runs: 2
+            n_volumes: 94
+            output_directory: /Users/scottburns/Analysis/NFRO1/Post/
+            data_toplevel: /Volumes/Data/NFRO1/Post/
+            run_directory:
+                - M1
+                - M2
+            images:
+                - SWR1.nii
+                - SWR2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post-AC:
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-AC/AC-M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-AC/AC-M2.mat
+                        post-RI:
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-RI/RI-M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-RI/RI-M2.mat
+                        post-WNW:
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-WNW/WNW-M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-WNW/WNW-M2.mat                        
