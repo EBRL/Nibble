@@ -563,9 +563,11 @@ cd('%s')
                 else:
                     email_text += "Couldn't open log file.\n"
                 if self.email:
+                    subject_line = '%s:%s %s' % (self.project['name'], 
+                                    self.par_name, self.id)
                     util.email(self.email['address'], 
                                 self.email['to'], 
-                                'Nibble: %s' % self.id, 
+                                subject_line, 
                                 self.email['server'], 
                                 self.email['pw'], 
                                 email_text, pdf_file)
