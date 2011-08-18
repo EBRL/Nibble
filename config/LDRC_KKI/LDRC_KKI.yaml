@@ -21,6 +21,7 @@ project:
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
                 -
                     name:   'post-model2'
+                    art:    true
                     type:   'stats'
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
     paradigms:

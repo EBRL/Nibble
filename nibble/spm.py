@@ -299,8 +299,13 @@ end
                 all_img = self.generate_images('session', piece)
                 good_dict['images'] = all_img[run_n - 1]
             if key == 'multiple_regression_file':
-                # if 'art' is a piece, let's use the art file
-                if self.get_piece('art_rej'):
+                # if 'art' is a piece and the piece wants to use art, use it
+                if 'art' in piece:
+                    use_art = piece['art']
+                else:
+                    raise SpecError('art should be a key in the %s piece' 
+                                    % piece['name'])
+                if self.get_piece('art_rej') and use_art:
                     good_dict['multiple_regression_file'] = self.art_file(run_n)
                 else:
                     good_dict['multiple_regression_file'] = self.mvmt_file(run_n)
