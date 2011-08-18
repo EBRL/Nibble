@@ -2,6 +2,7 @@ version: 1
 subjects:
     -
         id:     (str) subject ID (required)
+        grp:    (str) group name (optional)
         Sent:   (str) paradigm name on which following values will be applied
             n_runs: (int) if different than n_runs specified in paradigm
             images: list of full paths to images

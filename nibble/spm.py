@@ -439,7 +439,8 @@ cd('%s')
         self.replace_dict = {}
         for piece in self.pieces:
             pname = piece['name']
-            if pname == 'pre' or 'post' in pname:
+            ptype = piece['type']
+            if ptype in ('preprocess', 'stats'):
                 self.output[pname] = self.header_text(piece)
                 self.output[pname] += "spm fmri"
                 for stage in piece['stages']:
@@ -451,12 +452,14 @@ cd('%s')
                     self.output[pname] += new_stage
                 exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece['name'])}
                 self.output[pname] += self.rep_text(self.text['exec'], exec_dict)
-            elif 'art' in pname :
+            elif ptype == 'art' :
                 sess_fname = self.make_art_sess(piece)
                 self.output[pname] = self.rep_text(self.text['art'],
                     {'art_sessfile': sess_fname, 
                     'art_jpg':self.piece_orig_path(piece)})
-    
+        # add other ptypes here
+        pass
+            
     def make_dir(self, path):
         """Ensure a directory exists"""
         if not os.path.isdir(path):

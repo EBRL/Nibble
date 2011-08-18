@@ -7,19 +7,27 @@ project:
             name: 'SPM'
             pieces:
                 -
-                    name: 'pre'
+                    name:   'pre'
+                    type:   'preprocess'
                     stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
                 -
-                    name: 'art_rej'
+                    name:   'art_rej'
+                    type:   'art'
                     stages: ['art']
                 -
-                    name: 'post-AC'
+                    name:   'post-AC'
+                    type:   'stats'
+                    art:    true
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
                 -
-                    name: 'post-RI'
+                    name:   'post-RI'
+                    type:   'stats'
+                    art:    true
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
                 -
-                    name: 'post-WNW'
+                    name:   'post-WNW'
+                    type:   'stats'
+                    art:    true
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
 
     paradigms:
@@ -47,6 +55,67 @@ project:
                         post-WNW:
                             - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-WNW/WNW-M1.mat
                             - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-WNW/WNW-M2.mat                        
+            contrasts:
+                post-AC:
+                    -
+                        name:   Meaningful_Sent
+                        vector: '1 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Syntactic_Sent
+                        vector: '0 1 0 0'
+                        replication: replsc
+                    -
+                        name:   Semantic_Sent
+                        vector: '0 0 1 0'
+                        replication: replsc
+                    -
+                        name:   Words
+                        vector: '0 0 0 1'
+                        replication: replsc                    
+                post-RI:
+                    -
+                        name:   TrueSent-3
+                        vector: '1 0 0 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   NonSent-3
+                        vector: '0 1 0 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Words-3
+                        vector: '0 0 1 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   TrueSent-5
+                        vector: '0 0 1 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   NonSent-5
+                        vector: '0 0 0 1 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Words-5
+                        vector: '0 0 0 0 1 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   TrueSent-7
+                        vector: '0 0 0 0 0 1 0 0 0'
+                        replication: replsc
+                    -
+                        name:   NonSent-7
+                        vector: '0 0 0 0 0 0 0 1 0'
+                        replication: replsc
+                    -
+                        name:   Words-7
+                        vector: '0 0 0 0 0 0 0 0 1'
+                        replication: replsc
+                post-WNW:
+                    -
+                        name:
+                        vector:
+                        replication:
+
         -
             name:   Post
             n_runs: 2

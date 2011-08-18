@@ -7,16 +7,21 @@ project:
             name: 'SPM'
             pieces:
                 -
-                    name: 'pre'
+                    name:   'pre'
+                    type:   'preprocess'
                     stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
                 -
-                    name: 'art_rej'
+                    name:   'art_rej'
+                    type:   'art'
                     stages: ['art']
                 -
-                    name: 'post-model1'
+                    name:   'post-model1'
+                    type:   'stats'
+                    art:    true
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
                 -
-                    name: 'post-model2'
+                    name:   'post-model2'
+                    type:   'stats'
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
     paradigms:
         -

@@ -4,8 +4,12 @@ project:
     name:   (str) Study name (required)
     todo:   (required)
         SPM:
-            pre:    list of batches
-            post:   list of batches
+            -
+                name: name of piece
+                type: 'preprocess' | 'art' | 'stats'
+                (optional) art: true | false
+                stages: [ list of stages]
+            -   # other pieces go here
         #other processing streams go here
     SPM: # global (to the study) changes here
         slicetime:
@@ -52,39 +56,3 @@ project:
             n_runs:     (int) number of runs (required)
             n_volumes:  (int) number of volumes per run (required)
             output_directory: (str) directory under which subjects results are placed (required)
-    subjects:
-        -
-            id: (str) unique subject id (required)
-            Paradigm1:
-                # Paradigm1 is well specific above, no subject-specific stuff here
-            Paradigm2:
-                #if there's less organization to the study, specify full path
-                n_runs: (int) if the subject had less than all runs
-                images:
-                    - /path/to/first/run
-                    - /path/to/second/run
-                    - /path/to/third/run
-                SPM:
-                    model:
-                        multiple_condition_mat:
-                            - /path/to/first/run/subject_specific/multcond.mat
-                            - /path/to/second/run/subject_specific/multcond.mat
-                            - /path/to/third/run/subject_specific/multcond.mat
-        -
-            id: (str) unique subject id (required)
-            Paradigm1:
-                # Paradigm1 is well specific above, no subject-specific stuff here
-            Paradigm2:
-                #if there's less organization to the study, specify full path
-                images:
-                    - /path/to/first/run
-                    - /path/to/second/run
-                    - /path/to/third/run
-                SPM:
-                    model:
-                        multiple_condition_mat:
-                            - /path/to/first/run/subject_specific/multcond.mat
-                            - /path/to/second/run/subject_specific/multcond.mat
-                            - /path/to/third/run/subject_specific/multcond.mat
-                        
-    
