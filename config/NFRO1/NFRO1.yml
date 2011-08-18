@@ -29,7 +29,6 @@ project:
                     type:   'stats'
                     art:    true
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
-
     paradigms:
         -
             name:   Pre

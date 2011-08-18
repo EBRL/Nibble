@@ -115,12 +115,16 @@ if __name__ == '__main__':
                 for subj in subjects:
                     try:
                         if stream['name'] == 'SPM':
+                            set_trace()
                             try:
                                 pieces = stream['pieces']
-                                spm_obj = spm.SPM(subj, paradigm, pieces, total)
-                                gen_subjects.append(spm_obj)
-                                if arg.gen:
-                                    spm_obj.dump()
+                                try:
+                                    spm_obj = spm.SPM(subj, paradigm, pieces, total)
+                                    gen_subjects.append(spm_obj)
+                                    if arg.gen:
+                                        spm_obj.dump()
+                                except:
+                                    raise ValueError("Error in SPM creation/dump")
                             except KeyError:
                                 raise config.SpecError("""Each stream must have a pieces key""")
                     except KeyError:
