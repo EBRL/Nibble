@@ -128,7 +128,7 @@ class Configurator(object):
         """Save the complete data spec as yaml"""
         if ('config' in self.all_data['nibble'] and
             'output_path' in self.all_data['nibble']['config']):
-            output_fname = '%s.yaml' % self.all_data['project']['name']
+            output_fname = '%s.yml' % self.all_data['project']['name']
             output_path = pj(self.all_data['nibble']['config']['output_path'],
                             output_fname)
             data2yaml(self.all_data, output_path, self.verbose)
