@@ -3,8 +3,7 @@ subjects:
     -
         id:     (str) subject ID (required)
         grp:    (str) group name (optional)
-        Sent:   (str) paradigm name on which following values will be applied
-            n_runs: (int) if different than n_runs specified in paradigm
+        par_name:   (str) paradigm name on which following values will be applied
             images: list of full paths to images
                 - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_3_1/P1_71002_3_1.nii
                 - /Users/scottburns/Data/LDRC_KKI/LDRC_71002/P1_71002_4_1/P1_71002_4_1.nii

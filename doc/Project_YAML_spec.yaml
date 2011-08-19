@@ -49,8 +49,13 @@ project:
                 -
                     name:   (str) name of contrast (required)
                     vector: (1xN str) contrast vector (required)
-                    replication:    (none | repl | replsc | sess | both | bothsc) nothing, replicate, replicate and scale, create per session, do both, do both and scale
-
+                    replication:    (repl | replsc | sess | both | bothsc) nothing, replicate, replicate and scale, create per session, do both, do both and scale
+                -   name:   (str) name of contrast (required)
+                    vectors:    Iff the replication is none, you can contrast different sessions
+                        - '1 0 0'   first run
+                        - '0 0 0'   second run
+                        - '-1 0 0'  second run
+                    replication: none
         -
             name:       (str) paradigm name (required)
             n_runs:     (int) number of runs (required)
