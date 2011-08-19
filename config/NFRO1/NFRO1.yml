@@ -34,7 +34,7 @@ project:
             name:   Pre
             n_runs: 2
             n_volumes: 94
-            output_directory: /Users/scottburns/Analysis/NFRO1/Pre/
+            output_directory: /Users/scottburns/Analysis/NFRO1/
             data_toplevel: /Volumes/Data/NFRO1/Pre/
             run_directory:
                 - M1
@@ -57,70 +57,101 @@ project:
             contrasts:
                 post-AC:
                     -
-                        name:   Meaningful_Sent
-                        vector: '1 0 0 0'
+                        name:   Abstract
+                        vector: '1 0 0'
                         replication: replsc
                     -
-                        name:   Syntactic_Sent
-                        vector: '0 1 0 0'
+                        name:   Concrete
+                        vector: '0 1 0'
                         replication: replsc
                     -
-                        name:   Semantic_Sent
-                        vector: '0 0 1 0'
+                        name:   Nonwords
+                        vector: '0 0 1'
                         replication: replsc
                     -
-                        name:   Words
-                        vector: '0 0 0 1'
+                        name:   Abstract-Concrete
+                        vector: '1 -1 0'
+                        replication: replsc                    
+                    -
+                        name:   Concrete-Abstract
+                        vector: '-1 1 0'
+                        replication: replsc                    
+                    -
+                        name:   Concrete-Nonwords
+                        vector: '0 1 -1'
+                        replication: replsc                    
+                    -
+                        name:   Nonwords-Concrete
+                        vector: '0 -1 1'
+                        replication: replsc                    
+                    -
+                        name:   Abstract-Nonwords
+                        vector: '1 0 -1'
+                        replication: replsc                    
+                    -
+                        name:   Nonwords-Abstract
+                        vector: '-1 0 1'
                         replication: replsc                    
                 post-RI:
                     -
-                        name:   TrueSent-3
-                        vector: '1 0 0 0 0 0 0 0 0'
+                        name:   Regular
+                        vector: '1 0 0'
                         replication: replsc
                     -
-                        name:   NonSent-3
-                        vector: '0 1 0 0 0 0 0 0 0'
+                        name:   Irregular
+                        vector: '0 1 0'
                         replication: replsc
                     -
-                        name:   Words-3
-                        vector: '0 0 1 0 0 0 0 0 0'
+                        name:   Nonwords
+                        vector: '0 0 1'
                         replication: replsc
                     -
-                        name:   TrueSent-5
-                        vector: '0 0 1 0 0 0 0 0 0'
-                        replication: replsc
+                        name:   Regular-Irregular
+                        vector: '1 -1 0'
+                        replication: replsc                    
                     -
-                        name:   NonSent-5
-                        vector: '0 0 0 1 0 0 0 0 0'
-                        replication: replsc
+                        name:   Irregular-Regular
+                        vector: '-1 1 0'
+                        replication: replsc                    
                     -
-                        name:   Words-5
-                        vector: '0 0 0 0 1 0 0 0 0'
-                        replication: replsc
+                        name:   Irregular-Nonwords
+                        vector: '0 1 -1'
+                        replication: replsc                    
                     -
-                        name:   TrueSent-7
-                        vector: '0 0 0 0 0 1 0 0 0'
-                        replication: replsc
+                        name:   Nonwords-Irregular
+                        vector: '0 -1 1'
+                        replication: replsc                    
                     -
-                        name:   NonSent-7
-                        vector: '0 0 0 0 0 0 0 1 0'
-                        replication: replsc
+                        name:   Regular-Nonwords
+                        vector: '1 0 -1'
+                        replication: replsc                    
                     -
-                        name:   Words-7
-                        vector: '0 0 0 0 0 0 0 0 1'
-                        replication: replsc
+                        name:   Nonwords-Regular
+                        vector: '-1 0 1'
+                        replication: replsc                    
                 post-WNW:
                     -
-                        name:
-                        vector:
-                        replication:
-
+                        name:   Words
+                        vector: '1 0'
+                        replication: replsc
+                    -
+                        name:   Nonwords
+                        vector: '0 1'
+                        replication: replsc
+                    -
+                        name:   Words-Nonwords
+                        vector: '1 -1'
+                        replication: replsc
+                    -
+                        name:   Nonwords-Words
+                        vector: '-1 1'
+                        replication: replsc
         -
             name:   Post
             n_runs: 2
             n_volumes: 94
-            output_directory: /Users/scottburns/Analysis/NFRO1/Post/
-            data_toplevel: /Volumes/Data/NFRO1/Post/
+            output_directory: /Users/scottburns/Analysis/NFRO1/
+            data_toplevel: /Volumes/Data/NFRO1/Post
             run_directory:
                 - M1
                 - M2
@@ -139,3 +170,96 @@ project:
                         post-WNW:
                             - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-WNW/WNW-M1.mat
                             - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-WNW/WNW-M2.mat                        
+            contrasts:
+                post-AC:
+                    -
+                        name:   Abstract
+                        vector: '1 0 0'
+                        replication: replsc
+                    -
+                        name:   Concrete
+                        vector: '0 1 0'
+                        replication: replsc
+                    -
+                        name:   Nonwords
+                        vector: '0 0 1'
+                        replication: replsc
+                    -
+                        name:   Abstract-Concrete
+                        vector: '1 -1 0'
+                        replication: replsc                    
+                    -
+                        name:   Concrete-Abstract
+                        vector: '-1 1 0'
+                        replication: replsc                    
+                    -
+                        name:   Concrete-Nonwords
+                        vector: '0 1 -1'
+                        replication: replsc                    
+                    -
+                        name:   Nonwords-Concrete
+                        vector: '0 -1 1'
+                        replication: replsc                    
+                    -
+                        name:   Abstract-Nonwords
+                        vector: '1 0 -1'
+                        replication: replsc                    
+                    -
+                        name:   Nonwords-Abstract
+                        vector: '-1 0 1'
+                        replication: replsc                    
+                post-RI:
+                    -
+                        name:   Regular
+                        vector: '1 0 0'
+                        replication: replsc
+                    -
+                        name:   Irregular
+                        vector: '0 1 0'
+                        replication: replsc
+                    -
+                        name:   Nonwords
+                        vector: '0 0 1'
+                        replication: replsc
+                    -
+                        name:   Regular-Irregular
+                        vector: '1 -1 0'
+                        replication: replsc                    
+                    -
+                        name:   Irregular-Regular
+                        vector: '-1 1 0'
+                        replication: replsc                    
+                    -
+                        name:   Irregular-Nonwords
+                        vector: '0 1 -1'
+                        replication: replsc                    
+                    -
+                        name:   Nonwords-Irregular
+                        vector: '0 -1 1'
+                        replication: replsc                    
+                    -
+                        name:   Regular-Nonwords
+                        vector: '1 0 -1'
+                        replication: replsc                    
+                    -
+                        name:   Nonwords-Regular
+                        vector: '-1 0 1'
+                        replication: replsc                    
+                post-WNW:
+                    -
+                        name:   Words
+                        vector: '1 0'
+                        replication: replsc
+                    -
+                        name:   Nonwords
+                        vector: '0 1'
+                        replication: replsc
+                    -
+                        name:   Words-Nonwords
+                        vector: '1 -1'
+                        replication: replsc
+                    -
+                        name:   Nonwords-Words
+                        vector: '-1 1'
+                        replication: replsc
+            
