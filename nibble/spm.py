@@ -145,6 +145,7 @@ ec = 0;
 try
     art('sess_file', '${art_sessfile}');
     saveas(gcf, '${art_jpg}');
+${reg_width_text}
 catch ME
     disp(ME.message)
     ec = 3;
@@ -459,9 +460,15 @@ cd('%s')
                 self.output[pname] += self.rep_text(self.text['exec'], exec_dict)
             elif ptype == 'art' :
                 sess_fname = self.make_art_sess(piece)
+                reg_width_list = []
+                for n_run in range(1, self.n_runs+1):
+                    art_mat_file = self.art_file(n_run)
+                    reg_width_list.append("\tregression_width('%s');" 
+                                            % art_mat_file)
                 self.output[pname] = self.rep_text(self.text['art'],
                     {'art_sessfile': sess_fname, 
-                    'art_jpg':self.piece_orig_path(piece)})
+                    'art_jpg':self.piece_orig_path(piece),
+                    'reg_width_text':'\n'.join(reg_width_list)})
         # add other ptypes here
         pass
             
