@@ -46,14 +46,14 @@ project:
                 session:
                     multiple_condition_mat:
                         post-AC:
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-AC/AC-M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-AC/AC-M2.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-AC/AC_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-AC/AC_M2.mat
                         post-RI:
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-RI/RI-M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-RI/RI-M2.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-RI/RI_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-RI/RI_M2.mat
                         post-WNW:
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-WNW/WNW-M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-WNW/WNW-M2.mat                        
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-WNW/WNW_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/post-WNW/WNW_M2.mat                        
             contrasts:
                 post-AC:
                     -
@@ -162,14 +162,14 @@ project:
                 session:
                     multiple_condition_mat:
                         post-AC:
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-AC/AC-M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-AC/AC-M2.mat
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-AC/AC_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-AC/AC_M2.mat
                         post-RI:
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-RI/RI-M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-RI/RI-M2.mat
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-RI/RI_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-RI/RI_M2.mat
                         post-WNW:
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-WNW/WNW-M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-WNW/WNW-M2.mat                        
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-WNW/WNW_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-WNW/WNW_M2.mat                        
             contrasts:
                 post-AC:
                     -
