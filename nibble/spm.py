@@ -276,14 +276,46 @@ end
         root, _ = os.path.splitext(base)
         rp_fname = 'rp_%s%s.txt' % (pre, root)
         return pj(dirname, rp_fname)
-    
-    def art_file(self, run_n):
+        
+    def long_vector(self, contrast, piece):
+        """When we want to compare sessions, we can't just replicate/scale 
+        vectors
+        
+        To do this, the contrast must have a field called vectors (note the s!)
+        which looks like this:
+            vectors:
+                - '1 0 0'
+                - '0 0 0'
+                - '0 0 0'
+                - '-1 0 0'
+        with as many items as there are runs. And...your subjects better have
+        the same amount of runs!
+        
+        The returned vector looks like...
+        "vectors[0] zeros(1,# of regressors found by art run 1) vectors[1] etc."
+        """
+        if len(contrast['vectors']) != self.n_runs:
+            raise ValueError("""Cannot create such a fancy contrast when # of 
+                                runs != number of vectors in contrast.""")
+        vector_string = ''
+        for v, run_n in zip(contrast['vectors'], range(1, self.n_runs + 1)):
+            # load the art file (.txt) and grab the number of regressors
+            try:
+                with open(self.art_file(run_n, 'txt')) as f:
+                    n_reg = int(f.read())
+            except IOError:
+                raise IOError("The art.txt file hasn't been made for run # %d" 
+                                % run_n)
+            vector_string += '%s %s' % (v, '0 ' * n_reg)
+        return vector_string
+        
+    def art_file(self, run_n, ext='mat'):
         """ Return the path to the art-created regression and 
         outliers mat file"""
         raw_img = self.raw[run_n - 1]
         dirname, basename = os.path.split(raw_img)
         im_fname, _ = os.path.splitext(basename)
-        art_fname = 'art_regression_outliers_and_movement_%s.mat' % im_fname
+        art_fname = 'art_regression_outliers_and_movement_%s.%s' % (im_fname, ext)
         return pj(dirname, art_fname)
 
     def generate_session(self, run_n, piece):
@@ -314,11 +346,13 @@ end
                 good_dict['session_n'] = run_n
         return self.rep_text(self.text['session'], good_dict)
     
-    def generate_contrast(self, n_con, contrast):
+    def generate_contrast(self, n_con, contrast, piece):
         """Generate contrast text for a given contrast"""
         rep_dict = self.cascade('contrast')
         rep_dict.update(contrast)
         rep_dict['number'] = n_con
+        if rep_dict['replication'] == 'none':
+           rep_dict['vector'] = self.long_vector(contrast, piece)
         return self.rep_text(self.text['contrast'], rep_dict)
                 
     def generate_images(self, stage, piece):
@@ -365,7 +399,7 @@ end
             if piece['name'] in contrasts:
                 contrasts = contrasts[piece['name']]
             for n_con, contrast in enumerate(contrasts):
-                value += self.generate_contrast( n_con + 1, contrast)
+                value += self.generate_contrast( n_con + 1, contrast, piece)
         return value 
 
     def make_art_sess(self, piece):
