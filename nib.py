@@ -50,6 +50,9 @@ def combine_pdf(subjects, output_file='all_pages.pdf'):
     if use_pypdf:
         print
         print
+        #because we open many files during this
+        import resource
+        resource.setrlimit(resource.RLIMIT_NOFILE, (1000, -1))
         output_pdf = PfW()
         all_pdf_f = []
         print("Gathering pdf files...")
