@@ -52,6 +52,7 @@ def combine_pdf(subjects, output_file='all_pages.pdf'):
         print
         #because we open many files during this
         import resource
+        old_limit = resource.getrlimit(resource.RLIMIT_NOFILE)
         resource.setrlimit(resource.RLIMIT_NOFILE, (1000, -1))
         output_pdf = PfW()
         all_pdf_f = []
@@ -83,6 +84,7 @@ def combine_pdf(subjects, output_file='all_pages.pdf'):
         for pdf_f in all_pdf_f:
             pdf_f.close()
         print("Finished pdf generation")
+        resource.setrlimit(resource.RLIMIT_NOFILE, old_limit)
     
 def run_subject(subj):
     subj.run()
