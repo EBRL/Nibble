@@ -22,7 +22,8 @@ try:
     use_joblib = True
 except ImportError:
     use_joblib = False
-    print("joblib is not installed on this computer.  --ncpu will be ignored.")
+    print("""joblib is not installed on this computer.  --ncpu will be ignored.
+            Try $ easy_install joblib""")
 
 try:
     from pyPdf import PdfFileReader as PfR, PdfFileWriter as PfW
