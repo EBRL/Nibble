@@ -39,7 +39,7 @@ def parse_args():
     ap.add_argument('--cfg', nargs='+', default=[])
     ap.add_argument('--study', nargs=1, default='')
     ap.add_argument('--run', default=False, action='store_true')
-    ap.add_argument('--nogen', default=True, dest='gen', action='store_false')
+    ap.add_argument('--no_dump', default=True, dest='dump', action='store_false')
     ap.add_argument('--pdf', default='', dest='pdf')
     ncpu_choice = [-1]
     ncpu_choice.extend(range(1, cpu_count() + 1))
@@ -126,7 +126,7 @@ if __name__ == '__main__':
                                 raise config.SpecError("""Each stream must have a pieces key""")
                             spm_obj = spm.SPM(subj, paradigm, pieces, total)
                             gen_subjects.append(spm_obj)
-                            if arg.gen:
+                            if arg.dump:
                                 spm_obj.dump()
                     except KeyError:
                         raise config.SpecError("""Each stream in the project's todo
