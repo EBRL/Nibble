@@ -199,8 +199,11 @@ end
             self.email = total['nibble']['email']
         
         self.raw = self.find_images()
-        self.resolve()
-        
+        try:
+            self.resolve()
+        except KeyError, e:
+            print e, self.id
+                    
     def get_stages(self, piece_name):
         """Return a copy the stages for a given piece"""
         stages_list = [p['stages'] for p in self.pieces if p['name'] == piece_name]
@@ -319,8 +322,22 @@ end
         return pj(dirname, art_fname)
 
     def generate_session(self, run_n, piece):
-        """Handle the intricacies of generating session text"""
+        """Handle the intricacies of generating session text
+        
+        We might place subject specific session text in the self.subj, 
+        so look for that too."""
         good_dict = self.cascade('session')
+        if self.par_name in self.subj:
+            subj_par = self.subj[self.par_name]
+            if 'SPM' in subj_par:
+                subj_spm = subj_par['SPM']
+                if 'session' in subj_spm:
+                    subj_sess = subj_spm['session']
+                    if 'multiple_condition_mat' in subj_sess:
+                        if isinstance(subj_sess['multiple_condition_mat'], dict):
+                            subj_multcond = subj_sess['multiple_condition_mat']
+                            if piece['name'] in subj_multcond:
+                                good_dict['multiple_condition_mat'] = subj_sess['multiple_condition_mat'][piece['name']]
         all_mult_cond = good_dict['multiple_condition_mat']
         if piece['name'] in all_mult_cond:
             all_mult_cond = all_mult_cond[piece['name']]
@@ -369,7 +386,7 @@ end
             fmt = '{%s}'
         if stage in ['normalize-er', 'smooth', 'session']:
             fmt = '%s'
-        if 'post' not in piece['name']:
+        if 'stats' not in piece['type']:
             value = '\n'.join([fmt % x for x in xfm])
         else:
             value = xfm
