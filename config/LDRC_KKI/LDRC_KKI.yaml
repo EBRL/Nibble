@@ -79,7 +79,55 @@ project:
                     -
                         name:   Words
                         vector: '0 0 0 1'
-                        replication: replsc                    
+                        replication: replsc
+                    -
+                        name:   Meaningful-Syntactic
+                        vector: '1 -1 0 0'
+                        replication: replsc                                 
+                    -
+                        name:   Syntactic-Meaningful
+                        vector: '-1 1 0 0'
+                        replication: replsc
+                    -
+                        name:   Meaningful-Semantic
+                        vector: '1 0 -1 0'
+                        replication: replsc
+                    -
+                        name:   Semantic-Meaningful
+                        vector: '-1 0 1 0'
+                        replication: replsc
+                    -
+                        name:   Meaningful-Words
+                        vector: '1 0 0 -1'
+                        replication: replsc
+                    -
+                        name:   Words-Meaningful
+                        vector: '-1 0 0 1'
+                        replication: replsc
+                    -
+                        name:   Semantic-Words
+                        vector: '0 0 1 -1'
+                        replication: replsc
+                    -
+                        name:   Words-Semantic
+                        vector: '0 0 -1 1'
+                        replication: replsc
+                    -
+                        name:   Syntactic-Words
+                        vector: '0 1 0 -1'
+                        replication: replsc
+                    -
+                        name:   Words-Syntactic
+                        vector: '0 -1 0 1'
+                        replication: replsc
+                    -
+                        name:   Syntactic-Semantic
+                        vector: '0 1 -1 0'
+                        replication: replsc
+                    -
+                        name:   Semantic-Syntactic
+                        vector: '0 -1 1 0'
+                        replication: replsc
                 post-model2:
                     -
                         name:   TrueSent-3
@@ -94,6 +142,30 @@ project:
                         vector: '0 0 1 0 0 0 0 0 0'
                         replication: replsc
                     -
+                        name:   True3-Non3
+                        vector: '1 -1 0 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Non3-True3
+                        vector: '-1 1 0 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   True3-Words3
+                        vector: '1 0 -1 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Words3-True3
+                        vector: '-1 0 1 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Non3-Words3
+                        vector: '0 1 -1 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Words3-Non3
+                        vector: '0 -1 1 0 0 0 0 0 0'
+                        replication: replsc
+                    -
                         name:   TrueSent-5
                         vector: '0 0 1 0 0 0 0 0 0'
                         replication: replsc
@@ -106,6 +178,30 @@ project:
                         vector: '0 0 0 0 1 0 0 0 0'
                         replication: replsc
                     -
+                        name:   True5-Non5
+                        vector: '0 0 0 1 -1 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Non5-True5
+                        vector: '0 0 0 -1 1 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   True5-Words5
+                        vector: '0 0 0 1 0 -1 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Words5-True5
+                        vector: '0 0 0 -1 0 1 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Non5-Words5
+                        vector: '0 0 0 0 1 -1 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Words5-Non5
+                        vector: '0 0 0 0 -1 1 0 0 0'
+                        replication: replsc
+                    -
                         name:   TrueSent-7
                         vector: '0 0 0 0 0 1 0 0 0'
                         replication: replsc
@@ -116,5 +212,29 @@ project:
                     -
                         name:   Words-7
                         vector: '0 0 0 0 0 0 0 0 1'
+                        replication: replsc
+                    -
+                        name:   True7-Non7
+                        vector: '0 0 0 0 0 0 1 -1 0'
+                        replication: replsc
+                    -
+                        name:   Non7-True7
+                        vector: ' 0 0 0 0 0 0 -1 1 0'
+                        replication: replsc
+                    -
+                        name:   True7-Words7
+                        vector: '0 0 0 0 0 0 1 0 -1'
+                        replication: replsc
+                    -
+                        name:   Words7-True7
+                        vector: '0 0 0 0 0 0 -1 0 1'
+                        replication: replsc
+                    -
+                        name:   Non7-Words7
+                        vector: '0 0 0 0 0 0 0 1 -1'
+                        replication: replsc
+                    -
+                        name:   Words7-Non7
+                        vector: '0 0 0 0 0 0 0 -1 1'
                         replication: replsc
         
