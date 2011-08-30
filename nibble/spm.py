@@ -601,7 +601,7 @@ cd('%s')
                 print('%s(%s): began %s' % (self.id, piece['name'], beg_time))
                 return_val = util.run_cmdline(cmdline % (piece_mfile, piece_log))
                 end_time = time.strftime(strf)
-                print('%s(%s): end %s' % (self.id, piece['name'], end_time))
+                print('%s:%s:%s: end %s' % (self.par_name, self.id, piece['name'], end_time))
                 v = 'Piece:%s\nBegan: %s\nEnded: %s\n' 
                 email_text = v % (piece['name'], beg_time, end_time)
                 orig_file = self.piece_orig_path(piece)
