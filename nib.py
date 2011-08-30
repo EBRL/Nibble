@@ -89,7 +89,19 @@ def combine_pdf(subjects, output_file='all_pages.pdf'):
     
 def run_subject(subj):
     subj.run()
-    
+
+def group_subjects(subjects):
+    d_groups = {}
+    for subj in subjects:
+        try:
+            grp = subj['grp']
+            if not grp in d_groups:
+                d_groups[grp] = []
+            d_groups[grp].append(subj['id'])
+        except KeyError:
+            pass
+    return d_groups
+
 if __name__ == '__main__':
 
     arg = parse_args()
@@ -111,6 +123,7 @@ if __name__ == '__main__':
     total = config.yaml2data(study_path)
     ver = total['version']
     subjects = total['subjects']
+    groups = group_subjects(subjects)
     print('Generating subjects...')
     if ver == 1:
         project = total['project']
