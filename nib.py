@@ -17,6 +17,7 @@ reload(spm)
 from nibble import util
 reload(util)
 
+
 try:
     from joblib import Parallel, delayed
     use_joblib = True
@@ -40,7 +41,7 @@ def parse_args():
     ap.add_argument('--cfg', nargs='+', default=[])
     ap.add_argument('--study', nargs=1, default='')
     ap.add_argument('--run', default=False, action='store_true')
-    ap.add_argument('--no_dump', default=True, dest='dump', action='store_false')
+    ap.add_argument('--no-dump', default=True, dest='dump', action='store_false')
     ap.add_argument('--pdf', default='', dest='pdf')
     ncpu_choice = [-1]
     ncpu_choice.extend(range(1, cpu_count() + 1))
