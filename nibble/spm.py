@@ -199,10 +199,16 @@ end
             self.email = total['nibble']['email']
         
         self.raw = self.find_images()
-        try:
-            self.resolve()
-        except KeyError, e:
-            print e, self.id
+        
+        self.skip = False
+        if len(self.raw) == 0:
+            self.skip = True
+        
+        if not self.skip:
+            try:
+                self.resolve()
+            except KeyError, e:
+                print e, self.id
                     
     def get_stages(self, piece_name):
         """Return a copy the stages for a given piece"""
@@ -590,55 +596,56 @@ cd('%s')
             
     def run(self):
         """Execute each piece"""
-        for piece in self.pieces:
-            finish_file = self.batch_path(piece['name'], 'finish')
-            if not os.path.isfile(finish_file):
-                cmdline = 'matlab -nosplash < %s >& %s'
-                piece_mfile = self.piece_path(piece)
-                piece_log = self.log_path(piece)
-                strf = '%Y%m%d %H:%M:%S'
-                beg_time = time.strftime(strf)
-                print('%s(%s): began %s' % (self.id, piece['name'], beg_time))
-                return_val = util.run_cmdline(cmdline % (piece_mfile, piece_log))
-                end_time = time.strftime(strf)
-                print('%s:%s:%s: end %s' % (self.par_name, self.id, piece['name'], end_time))
-                v = 'Piece:%s\nBegan: %s\nEnded: %s\n' 
-                email_text = v % (piece['name'], beg_time, end_time)
-                orig_file = self.piece_orig_path(piece)
-                pdf_file = self.piece_pdf_path(piece)
-                if return_val == 0:
-                    email_text += "Success\n"
-                    if os.path.isfile(orig_file):
-                        _, ext = os.path.splitext(orig_file)
-                        if ext == '.jpg':
-                            self.jpg2pdf(orig_file, pdf_file)
-                        if ext == '.ps':
-                            self.ps2pdf(orig_file, pdf_file)
-                if return_val == 1:
-                    email_text += "Success, no .ps file was created\n"
-                if return_val == 2:
-                    email_text += "Success, couldn't copy .ps file"
-                if return_val == 3:
-                    email_text += "Error(s)\n"
-                    #TODO rescue ps
-                if return_val in [0, 1, 2]:
-                    self.touch(finish_file)
-                if os.path.isfile(piece_log):
-                    with open(piece_log, 'r') as f:                        
-                        email_text += f.read()
+        if not self.skip:
+            for piece in self.pieces:
+                finish_file = self.batch_path(piece['name'], 'finish')
+                if not os.path.isfile(finish_file):
+                    cmdline = 'matlab -nosplash < %s >& %s'
+                    piece_mfile = self.piece_path(piece)
+                    piece_log = self.log_path(piece)
+                    strf = '%Y%m%d %H:%M:%S'
+                    beg_time = time.strftime(strf)
+                    print('%s(%s): began %s' % (self.id, piece['name'], beg_time))
+                    return_val = util.run_cmdline(cmdline % (piece_mfile, piece_log))
+                    end_time = time.strftime(strf)
+                    print('%s:%s:%s: end %s' % (self.par_name, self.id, piece['name'], end_time))
+                    v = 'Piece:%s\nBegan: %s\nEnded: %s\n' 
+                    email_text = v % (piece['name'], beg_time, end_time)
+                    orig_file = self.piece_orig_path(piece)
+                    pdf_file = self.piece_pdf_path(piece)
+                    if return_val == 0:
+                        email_text += "Success\n"
+                        if os.path.isfile(orig_file):
+                            _, ext = os.path.splitext(orig_file)
+                            if ext == '.jpg':
+                                self.jpg2pdf(orig_file, pdf_file)
+                            if ext == '.ps':
+                                self.ps2pdf(orig_file, pdf_file)
+                    if return_val == 1:
+                        email_text += "Success, no .ps file was created\n"
+                    if return_val == 2:
+                        email_text += "Success, couldn't copy .ps file"
+                    if return_val == 3:
+                        email_text += "Error(s)\n"
+                        #TODO rescue ps
+                    if return_val in [0, 1, 2]:
+                        self.touch(finish_file)
+                    if os.path.isfile(piece_log):
+                        with open(piece_log, 'r') as f:                        
+                            email_text += f.read()
+                    else:
+                        email_text += "Couldn't open log file.\n"
+                    if self.email:
+                        subject_line = '%s:%s %s' % (self.project['name'], 
+                                        self.par_name, self.id)
+                        util.email(self.email['address'], 
+                                    self.email['to'], 
+                                    subject_line, 
+                                    self.email['server'], 
+                                    self.email['pw'], 
+                                    email_text, pdf_file)
                 else:
-                    email_text += "Couldn't open log file.\n"
-                if self.email:
-                    subject_line = '%s:%s %s' % (self.project['name'], 
-                                    self.par_name, self.id)
-                    util.email(self.email['address'], 
-                                self.email['to'], 
-                                subject_line, 
-                                self.email['server'], 
-                                self.email['pw'], 
-                                email_text, pdf_file)
-            else:
-                print("%s(%s): skipping" % (self.id, piece['name']))
+                    print("%s(%s): skipping" % (self.id, piece['name']))
 
     def output_images(self, piece_names=['all']):
         """Return a list of output images (probably pdfs) in piece order
