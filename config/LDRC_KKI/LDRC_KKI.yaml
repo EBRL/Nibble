@@ -237,4 +237,29 @@ project:
                         name:   Words7-Non7
                         vector: '0 0 0 0 0 0 0 -1 1'
                         replication: replsc
+
+                    -
+                        name:   True3-True5
+                        vector: '0 0 0 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   True3-True5
+                        vector: '0 0 0 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   True3-True5
+                        vector: '0 0 0 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   True3-True5
+                        vector: '0 0 0 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   True3-True5
+                        vector: '0 0 0 0 0 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   True3-True5
+                        vector: '0 0 0 0 0 0 0 0 0'
+                        replication: replsc
         
