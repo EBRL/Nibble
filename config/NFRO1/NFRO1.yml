@@ -252,7 +252,14 @@ project:
                         name:   Nonwords-Words
                         vector: '-1 1'
                         replication: replsc
-
+                    -
+                        name: All-Baseline
+                        vector: '1 1'
+                        replication: replsc
+                    -
+                        name: Baseline-All
+                        vector: '-1 -1'
+                        replication: replsc
         -
             name:   Post
             n_runs: 2
@@ -459,5 +466,13 @@ project:
                     -
                         name:   Nonwords-Words
                         vector: '-1 1'
+                        replication: replsc
+                    -
+                        name: All-Baseline
+                        vector: '1 1'
+                        replication: replsc
+                    -
+                        name: Baseline-All
+                        vector: '-1 -1'
                         replication: replsc
                         
