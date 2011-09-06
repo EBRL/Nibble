@@ -1,4 +1,5 @@
 version: 1
+matlab_path: /Users/scottburns/Applications/MATLAB_R2011b.app/bin/matlab
 SPM:
     spec:   1
     slicetime:

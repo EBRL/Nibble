@@ -209,6 +209,12 @@ end
                 self.resolve()
             except KeyError, e:
                 print e, self.id
+                
+        # save mlab path
+        if 'matlab_path' in total:
+            self.mlab_path = total['matlab_path']
+        else:
+            self.mlab_path = 'matlab'        
                     
     def get_stages(self, piece_name):
         """Return a copy the stages for a given piece"""
@@ -600,13 +606,13 @@ cd('%s')
             for piece in self.pieces:
                 finish_file = self.batch_path(piece['name'], 'finish')
                 if not os.path.isfile(finish_file):
-                    cmdline = 'matlab -nosplash < %s >& %s'
+                    cmdline = '%s -nosplash < %s >& %s'
                     piece_mfile = self.piece_path(piece)
                     piece_log = self.log_path(piece)
                     strf = '%Y%m%d %H:%M:%S'
                     beg_time = time.strftime(strf)
-                    print('%s(%s): began %s' % (self.id, piece['name'], beg_time))
-                    return_val = util.run_cmdline(cmdline % (piece_mfile, piece_log))
+                    print('%s:%s:%s: begin %s' % (self.par_name, self.id, piece['name'], beg_time))
+                    return_val = util.run_cmdline(cmdline % (self.mlab_path, piece_mfile, piece_log))
                     end_time = time.strftime(strf)
                     print('%s:%s:%s: end %s' % (self.par_name, self.id, piece['name'], end_time))
                     v = 'Piece:%s\nBegan: %s\nEnded: %s\n' 
