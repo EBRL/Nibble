@@ -651,7 +651,7 @@ cd('%s')
                                     self.email['pw'], 
                                     email_text, pdf_file)
                 else:
-                    print("%s(%s): skipping" % (self.id, piece['name']))
+                    print("%s:%s:%s: skipping" % (self.par_name, self.id, piece['name']))
 
     def output_images(self, piece_names=['all']):
         """Return a list of output images (probably pdfs) in piece order
