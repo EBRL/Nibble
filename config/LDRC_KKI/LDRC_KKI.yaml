@@ -24,12 +24,13 @@ project:
                     art:    true
                     type:   'stats'
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
+
     paradigms:
         -
             name:   Sent
             n_runs: 6
             n_volumes: 165
-            output_directory: /Users/scottburns/Analysis/LDRC_KKI/
+            output_directory: /Volumes/Data/Analysis/LDRC_KKI/
             data_toplevel: /Volumes/Data/LDRC_KKI/
             run_directory:
                 - Sent_M1
@@ -239,26 +240,26 @@ project:
                         replication: replsc
                     -
                         name:   True3-True5
-                        vector: '0 0 0 0 0 0 0 0 0'
+                        vector: '1 0 0 -1 0 0 0 0 0'
                         replication: replsc
                     -
-                        name:   True3-True5
-                        vector: '0 0 0 0 0 0 0 0 0'
+                        name:   True5-True3
+                        vector: '-1 0 0 1 0 0 0 0 0'
                         replication: replsc
                     -
-                        name:   True3-True5
-                        vector: '0 0 0 0 0 0 0 0 0'
+                        name:   True3-True7
+                        vector: '1 0 0 0 0 0 -1 0 0'
                         replication: replsc
                     -
-                        name:   True3-True5
-                        vector: '0 0 0 0 0 0 0 0 0'
+                        name:   True7-True3
+                        vector: '-1 0 0 0 0 0 1 0 0'
                         replication: replsc
                     -
-                        name:   True3-True5
-                        vector: '0 0 0 0 0 0 0 0 0'
+                        name:   True5-True7
+                        vector: '0 0 0 1 0 0 -1 0 0'
                         replication: replsc
                     -
-                        name:   True3-True5
-                        vector: '0 0 0 0 0 0 0 0 0'
+                        name:   True7-True5
+                        vector: '0 0 0 -1 0 0 1 0 0'
                         replication: replsc
         
