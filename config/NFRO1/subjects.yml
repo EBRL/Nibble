@@ -1148,34 +1148,34 @@ subjects:
                         new-WNW:
                             - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListB/WNW_M1.mat
                             - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListB/WNW_M2.mat        
-    -   id: '1013'
-        grp: NF-RD
-        Pre: #Pre LIST B
-            SPM:
-                session:
-                    multiple_condition_mat:
-                        new-AC:
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListB/AC_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListB/AC_M2.mat
-                        new-RI:
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListB/RI_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListB/RI_M2.mat
-                        new-WNW:
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M2.mat
-        Post: #Post LIST A
-            SPM:
-                session:
-                    multiple_condition_mat:
-                        new-AC:
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-AC/ListA/AC_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-AC/ListA/AC_M2.mat
-                        new-RI:
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-RI/ListA/RI_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-RI/ListA/RI_M2.mat
-                        new-WNW:
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListA/WNW_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListA/WNW_M2.mat        
+#    -   id: '1013'
+#        grp: NF-RD
+#        Pre: #Pre LIST B
+#            SPM:
+#                session:
+#                    multiple_condition_mat:
+#                        new-AC:
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListB/AC_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListB/AC_M2.mat
+#                        new-RI:
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListB/RI_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListB/RI_M2.mat
+#                        new-WNW:
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M2.mat
+#        Post: #Post LIST A
+#            SPM:
+#                session:
+#                    multiple_condition_mat:
+#                        new-AC:
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-AC/ListA/AC_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-AC/ListA/AC_M2.mat
+#                        new-RI:
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-RI/ListA/RI_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-RI/ListA/RI_M2.mat
+#                        new-WNW:
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListA/WNW_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListA/WNW_M2.mat        
     -   id: '1014'
         grp: NF-RD
         Pre: #Pre LIST A
@@ -1288,34 +1288,34 @@ subjects:
                         new-WNW:
                             - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListA/WNW_M1.mat
                             - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListA/WNW_M2.mat        
-    -   id: '1500'
-        grp: NF-RD
-        Pre: #Pre LIST A
-            SPM:
-                session:
-                    multiple_condition_mat:
-                        new-AC:
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M2.mat
-                        new-RI:
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M2.mat
-                        new-WNW:
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M2.mat
-        Post: #Post LIST B
-            SPM:
-                session:
-                    multiple_condition_mat:
-                        new-AC:
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-AC/ListB/AC_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-AC/ListB/AC_M2.mat
-                        new-RI:
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-RI/ListB/RI_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-RI/ListB/RI_M2.mat
-                        new-WNW:
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListB/WNW_M1.mat
-                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListB/WNW_M2.mat        
+#    -   id: '1500'
+#        grp: NF-RD
+#        Pre: #Pre LIST A
+#            SPM:
+#                session:
+#                    multiple_condition_mat:
+#                        new-AC:
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M2.mat
+#                        new-RI:
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M2.mat
+#                        new-WNW:
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M2.mat
+#        Post: #Post LIST B
+#            SPM:
+#                session:
+#                    multiple_condition_mat:
+#                        new-AC:
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-AC/ListB/AC_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-AC/ListB/AC_M2.mat
+#                        new-RI:
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-RI/ListB/RI_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-RI/ListB/RI_M2.mat
+#                        new-WNW:
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListB/WNW_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListB/WNW_M2.mat        
     -   id: '1501'
         grp: NF-RD
         Pre: #Pre LIST B
