@@ -1,0 +1,478 @@
+version: 1
+project:
+    spec: 1
+    name: NFRO1_FIR
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+#                -
+#                    name:   'post-AC'
+#                    type:   'stats'
+#                    art:    true
+#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+#                -
+#                    name:   'post-RI'
+#                    type:   'stats'
+#                    art:    true
+#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+#                -
+#                    name:   'post-WNW'
+#                    type:   'stats'
+#                    art:    true
+#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+#                -
+#                    name:   'new-AC'
+#                    type:   'stats'
+#                    art:    true
+#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+#                -
+#                    name:   'new-RI'
+#                    type:   'stats'
+#                    art:    true
+#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                -
+                    name:   'new-WNW'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   Pre
+            n_runs: 2
+            n_volumes: 94
+            output_directory: /Volumes/Data/Analysis/NFRO1_FIR/
+            data_toplevel: /Volumes/Data/NFRO1/Pre/
+            run_directory:
+                - M1
+                - M2
+            images:
+                - SWR1.nii
+                - SWR2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post-AC:
+                            - /Users/scottburns/Analysis/NFRO1_FIR/Pre/mult_cond/post-AC/AC_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1_FIR/Pre/mult_cond/post-AC/AC_M2.mat
+                        post-RI:
+                            - /Users/scottburns/Analysis/NFRO1_FIR/Pre/mult_cond/post-RI/RI_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1_FIR/Pre/mult_cond/post-RI/RI_M2.mat
+                        post-WNW:
+                            - /Users/scottburns/Analysis/NFRO1_FIR/Pre/mult_cond/post-WNW/WNW_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1_FIR/Pre/mult_cond/post-WNW/WNW_M2.mat                        
+            contrasts:
+#                post-AC:
+#                    -
+#                        name:   Abstract
+#                        vector: '1 0 0'
+#                        replication: replsc
+#                    -
+#                        name:   Concrete
+#                        vector: '0 1 0'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords
+#                        vector: '0 0 1'
+#                        replication: replsc
+#                    -
+#                        name:   Abstract-Concrete
+#                        vector: '1 -1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Concrete-Abstract
+#                        vector: '-1 1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Concrete-Nonwords
+#                        vector: '0 1 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Concrete
+#                        vector: '0 -1 1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Abstract-Nonwords
+#                        vector: '1 0 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Abstract
+#                        vector: '-1 0 1'
+#                        replication: replsc                    
+#                post-RI:
+#                    -
+#                        name:   Regular
+#                        vector: '1 0 0'
+#                        replication: replsc
+#                    -
+#                        name:   Irregular
+#                        vector: '0 1 0'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords
+#                        vector: '0 0 1'
+#                        replication: replsc
+#                    -
+#                        name:   Regular-Irregular
+#                        vector: '1 -1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Irregular-Regular
+#                        vector: '-1 1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Irregular-Nonwords
+#                        vector: '0 1 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Irregular
+#                        vector: '0 -1 1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Regular-Nonwords
+#                        vector: '1 0 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Regular
+#                        vector: '-1 0 1'
+#                        replication: replsc                    
+#                post-WNW:
+#                    -
+#                        name:   Words
+#                        vector: '1 0'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords
+#                        vector: '0 1'
+#                        replication: replsc
+#                    -
+#                        name:   Words-Nonwords
+#                        vector: '1 -1'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords-Words
+#                        vector: '-1 1'
+#                        replication: replsc
+#                new-AC:
+#                    -
+#                        name:   Abstract
+#                        vector: '1 0 0'
+#                        replication: replsc
+#                    -
+#                        name:   Concrete
+#                        vector: '0 1 0'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords
+#                        vector: '0 0 1'
+#                        replication: replsc
+#                    -
+#                        name:   Abstract-Concrete
+#                        vector: '1 -1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Concrete-Abstract
+#                        vector: '-1 1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Concrete-Nonwords
+#                        vector: '0 1 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Concrete
+#                        vector: '0 -1 1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Abstract-Nonwords
+#                        vector: '1 0 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Abstract
+#                        vector: '-1 0 1'
+#                        replication: replsc                    
+#                new-RI:
+#                    -
+#                        name:   Regular
+#                        vector: '1 0 0'
+#                        replication: replsc
+#                    -
+#                        name:   Irregular
+#                        vector: '0 1 0'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords
+#                        vector: '0 0 1'
+#                        replication: replsc
+#                    -
+#                        name:   Regular-Irregular
+#                        vector: '1 -1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Irregular-Regular
+#                        vector: '-1 1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Irregular-Nonwords
+#                        vector: '0 1 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Irregular
+#                        vector: '0 -1 1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Regular-Nonwords
+#                        vector: '1 0 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Regular
+#                        vector: '-1 0 1'
+#                        replication: replsc                    
+                new-WNW:
+                    -
+                        name:   Words0to4
+                        vector: '0 0 0 0 1 1 1 1 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Words4to8
+                        vector: '0 0 0 0 0 0 0 0 1 1 1 1'
+                        replication: replsc
+                    -
+                        name:   Words4to8-Words0to4
+                        vector: '0 0 0 0 -1 -1 -1 -1 1 1 1 1'
+                        replication: replsc
+                    -
+                        name:   Nonwords0to4
+                        vector: '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1'
+                        replication: replsc
+                    -
+                        name:   Nonwords4to8
+                        vector: '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1'
+                        replication: replsc
+                    -
+                        name:   Nonwords4to8-Nonwords0to4
+                        vector: '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1 -1 -1 -1 1 1 1 1'
+                        replication: replsc
+#        -
+#            name:   Post
+#            n_runs: 2
+#            n_volumes: 94
+#            output_directory: /Volumes/Data/Analysis/NFRO1/
+#            data_toplevel: /Volumes/Data/NFRO1/Post
+#            run_directory:
+#                - M1
+#                - M2
+#            images:
+#                - SWR1.nii
+#                - SWR2.nii
+#            SPM:
+#                session:
+#                    multiple_condition_mat:
+#                        post-AC:
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-AC/AC_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-AC/AC_M2.mat
+#                        post-RI:
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-RI/RI_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-RI/RI_M2.mat
+#                        post-WNW:
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-WNW/WNW_M1.mat
+#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/post-WNW/WNW_M2.mat                        
+#            contrasts:
+#               post-AC:
+#                    -
+#                        name:   Abstract
+#                        vector: '1 0 0'
+#                        replication: replsc
+#                    -
+#                        name:   Concrete
+#                        vector: '0 1 0'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords
+#                        vector: '0 0 1'
+#                        replication: replsc
+#                    -
+#                        name:   Abstract-Concrete
+#                        vector: '1 -1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Concrete-Abstract
+#                        vector: '-1 1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Concrete-Nonwords
+#                        vector: '0 1 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Concrete
+#                        vector: '0 -1 1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Abstract-Nonwords
+#                        vector: '1 0 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Abstract
+#                        vector: '-1 0 1'
+#                        replication: replsc                    
+#                post-RI:
+#                    -
+#                        name:   Regular
+#                        vector: '1 0 0'
+#                        replication: replsc
+#                    -
+#                        name:   Irregular
+#                        vector: '0 1 0'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords
+#                        vector: '0 0 1'
+#                        replication: replsc
+#                    -
+#                        name:   Regular-Irregular
+#                        vector: '1 -1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Irregular-Regular
+#                        vector: '-1 1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Irregular-Nonwords
+#                        vector: '0 1 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Irregular
+#                        vector: '0 -1 1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Regular-Nonwords
+#                        vector: '1 0 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Regular
+#                        vector: '-1 0 1'
+#                        replication: replsc                    
+#                post-WNW:
+#                    -
+#                        name:   Words
+#                        vector: '1 0'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords
+#                        vector: '0 1'
+#                        replication: replsc
+#                    -
+#                        name:   Words-Nonwords
+#                        vector: '1 -1'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords-Words
+#                        vector: '-1 1'
+#                        replication: replsc
+#                new-AC:
+#                    -
+#                        name:   Abstract
+#                        vector: '1 0 0'
+#                        replication: replsc
+#                    -
+#                        name:   Concrete
+#                        vector: '0 1 0'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords
+#                        vector: '0 0 1'
+#                        replication: replsc
+#                    -
+#                        name:   Abstract-Concrete
+#                        vector: '1 -1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Concrete-Abstract
+#                        vector: '-1 1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Concrete-Nonwords
+#                        vector: '0 1 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Concrete
+#                        vector: '0 -1 1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Abstract-Nonwords
+#                        vector: '1 0 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Abstract
+#                        vector: '-1 0 1'
+#                        replication: replsc                    
+#                new-RI:
+#                    -
+#                        name:   Regular
+#                        vector: '1 0 0'
+#                        replication: replsc
+#                    -
+#                        name:   Irregular
+#                        vector: '0 1 0'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords
+#                        vector: '0 0 1'
+#                        replication: replsc
+#                    -
+#                        name:   Regular-Irregular
+#                        vector: '1 -1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Irregular-Regular
+#                        vector: '-1 1 0'
+#                        replication: replsc                    
+#                    -
+#                        name:   Irregular-Nonwords
+#                        vector: '0 1 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Irregular
+#                        vector: '0 -1 1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Regular-Nonwords
+#                        vector: '1 0 -1'
+#                        replication: replsc                    
+#                    -
+#                        name:   Nonwords-Regular
+#                        vector: '-1 0 1'
+#                        replication: replsc                    
+#                new-WNW:
+#                    -
+#                        name:   Words
+#                        vector: '1 0'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords
+#                        vector: '0 1'
+#                        replication: replsc
+#                    -
+#                        name:   Words-Nonwords
+#                        vector: '1 -1'
+#                        replication: replsc
+#                    -
+#                        name:   Nonwords-Words
+#                        vector: '-1 1'
+#                        replication: replsc
+#                    -
+#                        name: All-Baseline
+#                        vector: '1 1'
+#                        replication: replsc
+#                    -
+#                        name: Baseline-All
+#                        vector: '-1 -1'
+#                        replication: replsc
+                        
