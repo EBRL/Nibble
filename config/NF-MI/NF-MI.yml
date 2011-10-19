@@ -1,0 +1,59 @@
+version: 1
+project:
+    spec: 1
+    name: NF-MI
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'first-level'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   MI-Pre
+            n_runs: 2
+            n_volumes: 135
+            output_directory: /Volumes/Data/Analysis/NF-MI/
+            data_toplevel: /Volumes/Data/NF-MI/MI-Pre/
+            run_directory:
+                - MI_M1
+                - MI_M2
+            images:
+                - MI1.nii
+                - MI2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/Analysis/NF-MI/MI-Pre/mult_cond/M1.mat
+                            - /Volumes/Data/Analysis/NF-MI/MI-Pre/mult_cond/M1.mat
+            contrasts:
+                first-level:
+                    -
+                        name:   Imaginary-Base
+                        vector: '1 0'
+                        replication: replsc
+                    -
+                        name:   Control-Base
+                        vector: '0 1'
+                        replication: replsc
+                    -
+                        name:   Imaginary-Control
+                        vector: '1 -1'
+                        replication: replsc
+                    -
+                        name:   Control-Imaginary
+                        vector: '-1 1'
+                        replication: replsc
+

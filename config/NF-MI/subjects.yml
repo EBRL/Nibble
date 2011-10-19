@@ -1,0 +1,106 @@
+version: 1
+subjects:
+    -   id: 'NF_1014'
+        grp: NF-RD
+        site: KKI
+    -   id: 'NF_1500'
+        grp: NF-RD
+        site: Vanderbilt
+    -   id: 'NF_1503'
+        grp: NF-RD
+        site: Vanderbilt
+    -   id: 'NF_1505'
+        grp: NF-RD
+        site: Vanderbilt
+    -   id: 'NF_1506'
+        grp: NF-RD
+        site: Vanderbilt
+    -   id: 'NF_1508'
+        grp: NF-RD
+    -   id: 'NF_2010'
+        grp: CNT
+        site: KKI
+    -   id: 'NF_2011'
+        grp: CNT
+        site: KKI
+    -   id: 'NF_2014'
+        grp: CNT
+        site: KKI
+    -   id: 'NF_2015'
+        grp: CNT
+        site: KKI
+    -   id: 'NF_2016'
+        grp: CNT
+        site: KKI
+    -   id: 'NF_2017'
+        grp: CNT
+        site: KKI
+    -   id: 'NF_2018'
+        grp: CNT
+        site: KKI
+    -   id: 'NF_2020'
+        grp: CNT
+        site: KKI
+    -   id: 'NF_2021'
+        grp: CNT
+        site: KKI
+    -   id: 'NF_2022'
+        grp: CNT
+        site: KKI
+    -   id: 'NF_2027'
+        grp: CNT
+        site: KKI
+    -   id: 'NF_2500'
+        grp: CNT
+        site: Vanderbilt
+    -   id: 'NF_2501'
+        grp: CNT
+        site: Vanderbilt
+    -   id: 'NF_2503'
+        grp: CNT
+        site: Vanderbilt
+    -   id: 'NF_2505'
+        grp: CNT
+        site: Vanderbilt
+    -   id: 'NF_3010'
+        grp: RD-WL
+        site: KKI
+    -   id: 'NF_3012'
+        grp: RD-WL
+        site: KKI
+    -   id: 'NF_3013'
+        grp: RD-WL
+        site: KKI
+    -   id: 'NF_3015'
+        grp: RD-WL
+        site: KKI
+    -   id: 'NF_3017'
+        grp: RD
+        site: KKI
+    -   id: 'NF_3018'
+        grp: RD-WL
+        site: KKI
+    -   id: 'NF_3500'
+        grp: RD
+        site: Vanderbilt
+    -   id: 'NF_3501'
+        grp: RD
+        site: Vanderbilt
+    -   id: 'NF_3502'
+        grp: RD-WL
+        site: Vanderbilt
+    -   id: 'NF_3503'
+        grp: RD
+        site: Vanderbilt
+    -   id: 'NF_3506'
+        grp: RD
+        site: Vanderbilt
+    -   id: 'NF_3509'
+        grp: RD-WL
+        site: Vanderbilt
+    -   id: 'NF_3510'
+        grp: RD-WL
+        site: Vanderbilt
+    -   id: 'NF_3522'
+        grp: RD
+        site: Vanderbilt
