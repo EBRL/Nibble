@@ -593,12 +593,14 @@ cd('%s')
 
     def jpg2pdf(self, orig_file, pdf_file):
         """Convert jpg file to pdf file"""
-        from PIL import Image
         try:
+            from PIL import Image
             jpg_im = Image.open(orig_file)
             jpg_im.save(pdf_file, 'PDF')
-        except IOError:
-            print("Cannot convert %s to %s" % (orig_file, pdf_file))
+        except ImportError, IOError:
+            print("Falling back to ImageMagick to convert...")
+            return_val = util.rum_cmdline("convert %s %s" % (orig_file, pdf_file))
+            
             
     def run(self):
         """Execute each piece"""
