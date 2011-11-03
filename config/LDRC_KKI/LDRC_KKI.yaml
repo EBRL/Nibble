@@ -14,16 +14,26 @@ project:
                     name:   'art_rej'
                     type:   'art'
                     stages: ['art']
-                -
+#                -
+#                    name:   'post-model1'
+#                    type:   'stats'
+#                    art:    true
+#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                -   
                     name:   'post-model1'
                     type:   'stats'
                     art:    true
-                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                    stages: ['contrast_manager', 'results']
+#                -
+#                    name:   'post-model2'
+#                    art:    true
+#                    type:   'stats'
+#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
                 -
                     name:   'post-model2'
                     art:    true
                     type:   'stats'
-                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                    stages: ['contrast_manager', 'results']
 
     paradigms:
         -
@@ -63,22 +73,29 @@ project:
                             - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/model2/m4_p1.mat
                             - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/model2/m5_p1.mat
                             - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/model2/m6_p1.mat                        
+            SPM:
+                contrast_manager:
+                    batch_n: 1
+                results:
+                    batch_n: 2
+                contrast:
+                    batch_n: 1
             contrasts:
                 post-model1:
                     -
-                        name:   Meaningful_Sent
+                        name:   Meaningful-Baseline
                         vector: '1 0 0 0'
                         replication: replsc
                     -
-                        name:   Syntactic_Sent
+                        name:   Syntactic-Baseline
                         vector: '0 1 0 0'
                         replication: replsc
                     -
-                        name:   Semantic_Sent
+                        name:   Semantic-Baseline
                         vector: '0 0 1 0'
                         replication: replsc
                     -
-                        name:   Words
+                        name:   Words-Baseline
                         vector: '0 0 0 1'
                         replication: replsc
                     -
@@ -128,6 +145,10 @@ project:
                     -
                         name:   Semantic-Syntactic
                         vector: '0 -1 1 0'
+                        replication: replsc
+                    -
+                        name:   NonMeaningful-Baseline
+                        vector: '0 .5 .5 0'
                         replication: replsc
                 post-model2:
                     -
@@ -261,5 +282,13 @@ project:
                     -
                         name:   True7-True5
                         vector: '0 0 0 -1 0 0 1 0 0'
+                        replication: replsc
+                    -   
+                        name: True-Baseline
+                        vector: '.33 0 0 .33 0 0 .33 0 0'
+                        replication: replsc
+                    -
+                        name: Words-Baseline
+                        vector: '0 0 .33 0 0 .33 0 0 .33'
                         replication: replsc
         
