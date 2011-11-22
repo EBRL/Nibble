@@ -205,6 +205,7 @@ end
             self.skip = True
         
         if not self.skip:
+#            self.resolve()
             try:
                 self.resolve()
             except KeyError, e:
@@ -599,7 +600,7 @@ cd('%s')
             jpg_im.save(pdf_file, 'PDF')
         except ImportError, IOError:
             print("Falling back to ImageMagick to convert...")
-            return_val = util.rum_cmdline("convert %s %s" % (orig_file, pdf_file))
+            return_val = util.run_cmdline("convert %s %s" % (orig_file, pdf_file))
             
             
     def run(self):

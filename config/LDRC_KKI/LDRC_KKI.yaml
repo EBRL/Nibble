@@ -14,27 +14,26 @@ project:
                     name:   'art_rej'
                     type:   'art'
                     stages: ['art']
-#                -
-#                    name:   'post-model1'
-#                    type:   'stats'
-#                    art:    true
-#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
-                -   
+                -
                     name:   'post-model1'
                     type:   'stats'
                     art:    true
-                    stages: ['contrast_manager', 'results']
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+#                -   
+#                    name:   'post-model1'
+#                    type:   'stats'
+#                    art:    true
+#                    stages: ['contrast_manager', 'results']
 #                -
 #                    name:   'post-model2'
 #                    art:    true
 #                    type:   'stats'
 #                    stages: ['model', 'estimate', 'contrast_manager', 'results']
-                -
-                    name:   'post-model2'
-                    art:    true
-                    type:   'stats'
-                    stages: ['contrast_manager', 'results']
-
+#                -
+#                    name:   'post-model2'
+#                    art:    true
+#                    type:   'stats'
+#                    stages: ['contrast_manager', 'results']
     paradigms:
         -
             name:   Sent
@@ -73,13 +72,13 @@ project:
                             - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/model2/m4_p1.mat
                             - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/model2/m5_p1.mat
                             - /Users/scottburns/Analysis/LDRC_KKI/Sent/mult_cond/model2/m6_p1.mat                        
-            SPM:
-                contrast_manager:
-                    batch_n: 1
-                results:
-                    batch_n: 2
-                contrast:
-                    batch_n: 1
+#            SPM:
+#                contrast_manager:
+#                    batch_n: 1
+#                results:
+#                    batch_n: 2
+#                contrast:
+#                    batch_n: 1
             contrasts:
                 post-model1:
                     -
@@ -291,4 +290,7 @@ project:
                         name: Words-Baseline
                         vector: '0 0 .33 0 0 .33 0 0 .33'
                         replication: replsc
-        
+                    -
+                        name: True-Words
+                        vector: '.33 0 -.33 .33 0 -.33 .33 0 -.33'
+                        replication: replsc
