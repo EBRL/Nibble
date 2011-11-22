@@ -1,0 +1,155 @@
+version: 1
+project:
+    spec: 1
+    name: NFRO1
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'post'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   Visual
+            n_runs: 4
+            n_volumes: 90
+            output_directory: /Volumes/Data/Analysis/RCV/
+            data_toplevel: /Volumes/Data/RCV/Visual/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+            images:
+                - PassV1.nii
+                - PassV2.nii
+                - PassV3.nii
+                - PassV4.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /Volumes/Data/Analysis/RCV/mult_cond/PassV1_nodur.mat
+                            - /Volumes/Data/Analysis/RCV/mult_cond/PassV2_nodur.mat
+                            - /Volumes/Data/Analysis/RCV/mult_cond/PassV3_nodur.mat
+                            - /Volumes/Data/Analysis/RCV/mult_cond/PassV4_nodur.mat
+            contrasts:
+                -
+                    name: 'Visual All 0 dur'
+                    vector: '1 1 1 1 1 1 1 1 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Early 0 dur'
+                    vector: '1 1 1 1 0 0 0 0 0 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Middle 0 dur'
+                    vector: '0 0 0 0 1 1 1 1 1 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Late 0 dur'
+                    vector: '0 0 0 0 0 0 0 0 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Late - Early 0 dur'
+                    vector: '-.25 -.25 -.25 -.25 0 0 0 0 .2 .2 .2 .2 .2 '
+                    replication: 'replsc'
+        -
+            name:   Words
+            n_runs: 2
+            n_volumes: 90
+            output_directory: /Volumes/Data/Analysis/RCV/
+            data_toplevel: /Volumes/Data/RCV/Words
+            run_directory:
+                - M1
+                - M2
+            images:
+                - PassW1.nii
+                - PassW2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /Volumes/Data/Analysis/RCV/mult_cond/PassW1_nodur.mat
+                            - /Volumes/Data/Analysis/RCV/mult_cond/PassW2_nodur.mat
+            contrasts:
+                -
+                    name: 'Words All 0 dur'
+                    vector: '1 1 1 1 1 1 1 1 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Words Early 0 dur'
+                    vector: '1 1 1 1 0 0 0 0 0 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Words Middle 0 dur'
+                    vector: '0 0 0 0 1 1 1 1 1 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Words Late 0 dur'
+                    vector: '0 0 0 0 0 0 0 0 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Words Late - Early 0 dur'
+                    vector: '-.25 -.25 -.25 -.25 0 0 0 0 0 .25 .25 .25 .25'
+                    replication: 'replsc'
+        -
+            name:   Auditory
+            n_runs: 2
+            n_volumes: 90
+            output_directory: /Volumes/Data/Analysis/RCV/
+            data_toplevel: /Volumes/Data/RCV/Auditory
+            run_directory:
+                - M1
+                - M2
+            images:
+                - PassA1.nii
+                - PassA2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /Volumes/Data/Analysis/RCV/mult_cond/PassA1_nodur.mat
+                            - /Volumes/Data/Analysis/RCV/mult_cond/PassA2_nodur.mat
+            contrasts:
+                -
+                    name: 'Auditory All 0 dur'
+                    vectors: 
+                        -   '1 1 1 1 1 1 1 1 1 1 1 1 1 1'
+                        -   '1 1 1 1 1 1 1 1 1 1 1 1 1'
+                    replication: 'none'
+                -
+                    name: 'Auditory Early 0 dur'
+                    vectors: 
+                        -   '1 1 1 1 0 0 0 0 0 0 0 0 0 0'
+                        -   '1 1 1 1 0 0 0 0 0 0 0 0 0'
+                    replication: 'none'
+                -
+                    name: 'Auditory Middle 0 dur'
+                    vectors:
+                        -   '0 0 0 0 1 1 1 1 1 0 0 0 0 0'
+                        -   '0 0 0 0 1 1 1 1 1 0 0 0 0'
+                    replication: 'none'
+                -
+                    name: 'Auditory Late 0 dur'
+                    vectors: 
+                        -   '0 0 0 0 0 0 0 0 0 1 1 1 1 1'
+                        -   '0 0 0 0 0 0 0 0 0 1 1 1 1'
+                    replication: 'none'
+                -
+                    name: 'Auditory Late - Early 0 dur'
+                    vectors: 
+                        -   '-.25 -.25 -.25 -.25 0 0 0 0 0 0 .25 .25 .25 .25'
+                        -   '-.25 -.25 -.25 -.25 0 0 0 0 0 .25 .25 .25 .25'
+                    replication: 'none'
