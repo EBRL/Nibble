@@ -1,7 +1,7 @@
 version: 1
 project:
     spec: 1
-    name: RCV2
+    name: RCV2_Test
     todo:
         -
             name: 'SPM'
@@ -24,7 +24,7 @@ project:
             name:   PassagesV2
             n_runs: 4
             n_volumes: 192
-            output_directory: /Volumes/Data/Analysis/RCV2/
+            output_directory: /Volumes/Data/RCV2/
             data_toplevel: /Volumes/Data/RCV2/
             run_directory:
                 - M1

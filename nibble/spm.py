@@ -166,8 +166,8 @@ end
         ----------
         subj: map
             at least contains 'id'
-        paradigm: 
-        """            
+        paradigm:
+        """
         # unpack spm settings
         find_dict = lambda d,k: d[k] if k in d else {}
         self.spm = {}
@@ -175,10 +175,10 @@ end
         self.spm['pr'] = find_dict(total['project'], 'SPM')
         self.spm['pa'] = find_dict(paradigm, 'SPM')
         self.spm['s'] = find_dict(subj, 'SPM')
-        
+
         self.subj = subj
         self.id = subj['id']
-        
+
         #unpack the required information
         self.paradigm = paradigm
         self.par_name = paradigm['name']
@@ -189,34 +189,34 @@ end
         if not hasattr(self, 'n_runs'):
             raise SpecError('n_runs was not declared in the subject or paradigm')
         self.n_volumes = paradigm['n_volumes']
-        self.out_dir = pj(paradigm['output_directory'], paradigm['name'])
-        
+        self.out_dir = pj(paradigm['output_directory'], self.id, paradigm['name'])
+
         self.pieces = pieces
-        
+
         self.project = total['project']
-        
+
         if 'nibble' in total and 'email' in total['nibble']:
             self.email = total['nibble']['email']
-        
+
         self.raw = self.find_images()
-        
+
         self.skip = False
         if len(self.raw) == 0:
             self.skip = True
-        
+
         if not self.skip:
 #            self.resolve()
             try:
                 self.resolve()
             except KeyError, e:
                 print e, self.id
-                
+
         # save mlab path
         if 'matlab_path' in total:
             self.mlab_path = total['matlab_path']
         else:
-            self.mlab_path = 'matlab'        
-                    
+            self.mlab_path = 'matlab'
+
     def get_stages(self, piece_name):
         """Return a copy the stages for a given piece"""
         stages_list = [p['stages'] for p in self.pieces if p['name'] == piece_name]
@@ -226,7 +226,7 @@ end
             warn("no pieces with name == %s found" % (piece_name))
         else:
             return stages_list[0][:]
-            
+
     def get_piece(self, piece_name):
         """ Return full piece dict whose 'name' is piece_name """
         good_piece = [piece for piece in self.pieces if piece['name'] == piece_name]
@@ -236,7 +236,7 @@ end
         else:
             to_return = good_piece[0].copy()
         return to_return
-    
+
     def find_prefix(self, stage, piece):
         """Find the prefix each previous stage has added"""
         if piece['name'] == 'pre':
@@ -252,7 +252,7 @@ end
         stages.reverse()
         pre =  ''.join([self.replace_dict[s]['prefix'] for s in stages])
         return pre
-    
+
     def find_images(self):
         """Find the images for this subject"""
         # are the images from the subject or determined by the paradigm?
@@ -267,7 +267,7 @@ end
                                 the same amount of entries in your
                                 project's paradigm""")
             zipped = zip(rd, im)
-            raw_images = [pj(dtl, self.id, r, i) for (r, i) in zipped]
+            raw_images = [pj(dtl, self.id, self.par_name, r, i) for (r, i) in zipped]
         else:
             try:
                 raw_images = self.subj[self.par_name]['images']
@@ -282,7 +282,7 @@ end
         if self.n_runs != len(raw_images):
             self.n_runs = len(raw_images)
         return raw_images
-    
+
     def mvmt_file(self, run_n):
         """Return path for the rp_*.txt file for a given run number"""
         raw_img = self.raw[run_n - 1]
@@ -292,11 +292,11 @@ end
         root, _ = os.path.splitext(base)
         rp_fname = 'rp_%s%s.txt' % (pre, root)
         return pj(dirname, rp_fname)
-        
+
     def long_vector(self, contrast, piece):
-        """When we want to compare sessions, we can't just replicate/scale 
+        """When we want to compare sessions, we can't just replicate/scale
         vectors
-        
+
         To do this, the contrast must have a field called vectors (note the s!)
         which looks like this:
             vectors:
@@ -306,12 +306,12 @@ end
                 - '-1 0 0'
         with as many items as there are runs. And...your subjects better have
         the same amount of runs!
-        
+
         The returned vector looks like...
         "vectors[0] zeros(1,# of regressors found by art run 1) vectors[1] etc."
         """
         if len(contrast['vectors']) != self.n_runs:
-            raise ValueError("""Cannot create such a fancy contrast when # of 
+            raise ValueError("""Cannot create such a fancy contrast when # of
                                 runs != number of vectors in contrast.""")
         vector_string = ''
         for v, run_n in zip(contrast['vectors'], range(1, self.n_runs + 1)):
@@ -320,13 +320,13 @@ end
                 with open(self.art_file(run_n, 'txt')) as f:
                     n_reg = int(f.read())
             except IOError:
-                raise IOError("The art.txt file hasn't been made for run # %d" 
+                raise IOError("The art.txt file hasn't been made for run # %d"
                                 % run_n)
             vector_string += '%s %s' % (v, '0 ' * n_reg)
         return vector_string
-        
+
     def art_file(self, run_n, ext='mat'):
-        """ Return the path to the art-created regression and 
+        """ Return the path to the art-created regression and
         outliers mat file"""
         raw_img = self.raw[run_n - 1]
         dirname, basename = os.path.split(raw_img)
@@ -336,8 +336,8 @@ end
 
     def generate_session(self, run_n, piece):
         """Handle the intricacies of generating session text
-        
-        We might place subject specific session text in the self.subj, 
+
+        We might place subject specific session text in the self.subj,
         so look for that too."""
         good_dict = self.cascade('session')
         if self.par_name in self.subj:
@@ -366,7 +366,7 @@ end
                 if 'art' in piece:
                     use_art = piece['art']
                 else:
-                    raise SpecError('art should be a key in the %s piece' 
+                    raise SpecError('art should be a key in the %s piece'
                                     % piece['name'])
                 if self.get_piece('art_rej') and use_art:
                     good_dict['multiple_regression_file'] = self.art_file(run_n)
@@ -375,7 +375,7 @@ end
             if key == 'session_n':
                 good_dict['session_n'] = run_n
         return self.rep_text(self.text['session'], good_dict)
-    
+
     def generate_contrast(self, n_con, contrast, piece):
         """Generate contrast text for a given contrast"""
         rep_dict = self.cascade('contrast')
@@ -384,7 +384,7 @@ end
         if rep_dict['replication'] == 'none':
            rep_dict['vector'] = self.long_vector(contrast, piece)
         return self.rep_text(self.text['contrast'], rep_dict)
-                
+
     def generate_images(self, stage, piece):
         """Generate spm text of images"""
         pre = self.find_prefix(stage, piece)
@@ -394,7 +394,7 @@ end
             (dirname, base) = os.path.split(raw)
             pre_raw = pj(dirname, pre+base)
             xfm.append('\n'.join(["'%s,%d'" % (pre_raw, d) for d in ran]))
-        
+
         if stage in ['slicetime', 'realign-er']:
             fmt = '{%s}'
         if stage in ['normalize-er', 'smooth', 'session']:
@@ -403,10 +403,10 @@ end
             value = '\n'.join([fmt % x for x in xfm])
         else:
             value = xfm
-        return value        
-                
+        return value
+
     def generate(self, key, stage, piece):
-        """Handles responsibility for replacing 'gen' with the correct 
+        """Handles responsibility for replacing 'gen' with the correct
         value"""
         value = ''
         if key == 'images':
@@ -430,7 +430,7 @@ end
                 contrasts = contrasts[piece['name']]
             for n_con, contrast in enumerate(contrasts):
                 value += self.generate_contrast( n_con + 1, contrast, piece)
-        return value 
+        return value
 
     def make_art_sess(self, piece):
         """Write out the art.m and art_session.txt file"""
@@ -447,14 +447,12 @@ end
         with open(sess_fname, 'w') as f:
             f.writelines(sess_txt)
         return sess_fname
-        
+
     def analysis_dir(self, pname):
         """Return analysis directory for this piece
         Guarantees the analysis directory exists on the filesystem"""
-        subj_dir = pj(self.out_dir, 'results')
-        analysis_dir = pj(subj_dir, self.id)
-        piece_dir = pj(analysis_dir, pname)
-        map(self.make_dir, [subj_dir, analysis_dir, piece_dir])
+        piece_dir = pj(self.out_dir, pname)
+        self.make_dir(piece_dir)
         return piece_dir
 
     def cascade(self, stage):
@@ -480,7 +478,7 @@ end
                     (stage, key) )
             good[key] = new_value
         return good
-    
+
     def rep_text(self, text, d):
         """Simple wrapper for the string.Template method"""
         return Template(text).safe_substitute(d)
@@ -496,13 +494,13 @@ end
 %% Piece:        %s
 cd('%s')
 """
-        fmt = (strftime('%Y - %b - %d %H:%M:%S'), self.project['name'], 
+        fmt = (strftime('%Y - %b - %d %H:%M:%S'), self.project['name'],
                 self.par_name, self.id, piece['name'], self.analysis_dir(piece['name']))
         return header % fmt
 
     def resolve(self):
         """The guts of the SPM class
-        
+
         This method resolves each stage of each piece to SPM text
         """
         self.output = {}
@@ -527,25 +525,25 @@ cd('%s')
                 reg_width_list = []
                 for n_run in range(1, self.n_runs+1):
                     art_mat_file = self.art_file(n_run)
-                    reg_width_list.append("\tregression_width('%s');" 
+                    reg_width_list.append("\tregression_width('%s');"
                                             % art_mat_file)
                 self.output[pname] = self.rep_text(self.text['art'],
-                    {'art_sessfile': sess_fname, 
+                    {'art_sessfile': sess_fname,
                     'art_jpg':self.piece_orig_path(piece),
                     'reg_width_text':'\n'.join(reg_width_list)})
         # add other ptypes here
         pass
-            
+
     def make_dir(self, path):
         """Ensure a directory exists"""
         if not os.path.isdir(path):
             os.makedirs(path)
-        
+
     def piece_path(self, piece):
         """Return the path to which a piece's batch will be written
         Generated as self.out_dir/batches/self.id/piece.m"""
         return self.batch_path(piece['name'], 'm')
-    
+
     def dump(self):
         """Write out each batch to the correct file"""
         # for now assume output dir exists
@@ -564,7 +562,7 @@ cd('%s')
         return self.batch_path(piece['name'], 'log')
 
     def batch_path(self, fname, ext):
-        batch_dir = pj(self.out_dir, 'batches', self.id)
+        batch_dir = pj(self.out_dir, 'batches')
         self.make_dir(batch_dir)
         return pj(batch_dir, '%s.%s' % (fname, ext))
 
@@ -587,7 +585,7 @@ cd('%s')
     def piece_pdf_path(self, piece):
         """ The final pdf for the piece"""
         return self._piece_image_path(piece['name'], 'pdf')
-        
+
     def _piece_image_path(self, pname, ext):
         """ Private """
         return pj(self.analysis_dir(pname), '%s_%s.%s' % (self.id, pname, ext))
@@ -601,8 +599,8 @@ cd('%s')
         except ImportError, IOError:
             print("Falling back to ImageMagick to convert...")
             return_val = util.run_cmdline("convert %s %s" % (orig_file, pdf_file))
-            
-            
+
+
     def run(self):
         """Execute each piece"""
         if not self.skip:
@@ -618,7 +616,7 @@ cd('%s')
                     return_val = util.run_cmdline(cmdline % (self.mlab_path, piece_mfile, piece_log))
                     end_time = time.strftime(strf)
                     print('%s:%s:%s: end %s' % (self.par_name, self.id, piece['name'], end_time))
-                    v = 'Piece:%s\nBegan: %s\nEnded: %s\n' 
+                    v = 'Piece:%s\nBegan: %s\nEnded: %s\n'
                     email_text = v % (piece['name'], beg_time, end_time)
                     orig_file = self.piece_orig_path(piece)
                     pdf_file = self.piece_pdf_path(piece)
@@ -640,25 +638,25 @@ cd('%s')
                     if return_val in [0, 1, 2]:
                         self.touch(finish_file)
                     if os.path.isfile(piece_log):
-                        with open(piece_log, 'r') as f:                        
+                        with open(piece_log, 'r') as f:
                             email_text += f.read()
                     else:
                         email_text += "Couldn't open log file.\n"
                     if self.email:
-                        subject_line = '%s:%s %s' % (self.project['name'], 
+                        subject_line = '%s:%s %s' % (self.project['name'],
                                         self.par_name, self.id)
-                        util.email(self.email['address'], 
-                                    self.email['to'], 
-                                    subject_line, 
-                                    self.email['server'], 
-                                    self.email['pw'], 
+                        util.email(self.email['address'],
+                                    self.email['to'],
+                                    subject_line,
+                                    self.email['server'],
+                                    self.email['pw'],
                                     email_text, pdf_file)
                 else:
                     print("%s:%s:%s: skipping" % (self.par_name, self.id, piece['name']))
 
     def output_images(self, piece_names=['all']):
         """Return a list of output images (probably pdfs) in piece order
-        
+
         The returned images are checked for existence."""
         output = []
         for piece in self.pieces:
