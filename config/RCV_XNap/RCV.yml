@@ -1,0 +1,65 @@
+version: 1
+project:
+    spec: 1
+    name: RCV
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'first-level'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   PassagesV2
+            n_runs: 4
+            n_volumes: 200
+            output_directory: /Volumes/Data/RCV2/
+            data_toplevel: /Volumes/Data/RCV2/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+            images:
+                - Pass1.nii
+                - Pass2.nii
+                - Pass3.nii
+                - Pass4.nii
+            SPM:
+                slicetime:
+                    so: '1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40'
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/Analysis/RCV2/PassagesV2/timing/PassV2_M1.mat
+                            - /Volumes/Data/Analysis/RCV2/PassagesV2/timing/PassV2_M2.mat
+                            - /Volumes/Data/Analysis/RCV2/PassagesV2/timing/PassV2_M3.mat
+                            - /Volumes/Data/Analysis/RCV2/PassagesV2/timing/PassV2_M4.mat
+            contrasts:
+                -
+                    name: 'Passages - Baseline'
+                    vector: '1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Words - Baseline'
+                    vector: '0 1 0'
+                    replication: 'replsc'
+                -
+                    name: 'Passages - Words'
+                    vector: '1 -1 0'
+                    replication: 'replsc'
+                -
+                    name: 'Words - Passages'
+                    vector: '-1 1 0'
+                    replication: 'replsc'
