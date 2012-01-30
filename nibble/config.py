@@ -40,13 +40,13 @@ def yaml2data(filename, verbose=0):
 
 def data2yaml(data, filename, verbose=0):
     """Main function for dumping data to a yaml filename
-    
+
     Parameters
     ----------
     data: object
         python object to save in yaml file
     filename: str
-        path to file in which data will be saved in yaml 
+        path to file in which data will be saved in yaml
     """
     try:
         with open(filename, 'w') as f:
@@ -58,18 +58,18 @@ def data2yaml(data, filename, verbose=0):
         raise
 
 def print_yamlerror( exc):
-    """Try to help user spot bug by printing line/column information of 
+    """Try to help user spot bug by printing line/column information of
     parsing error"""
     if hasattr(exc, 'problem_mark'):
         mark = exc.problem_mark
         print('Error position: (%s:%s)' % (mark.line+1, mark.column+1))
-       
+
 class Configurator(object):
     """ Main class for combining multiple yaml files to one data structure
     """
     def __init__(self, yaml_file_list, verbose=10):
         """ Constructor
-    
+
         Parameters
         ----------
         yaml_file_list: seq
@@ -79,18 +79,18 @@ class Configurator(object):
         verbose: int
             verbosity level
         """
-        exist = map(os.path.isfile, yaml_file_list)    
+        exist = map(os.path.isfile, yaml_file_list)
         if not all(exist):
             raise IOError('Not all files specified in the constructor exist')
         self.yaml_files = yaml_file_list
-        
+
         # add the nibble.yaml2data
         user_nibble = os.path.expanduser('~/.nibble.yaml')
         if os.path.isfile(user_nibble):
             self.yaml_files.append(user_nibble)
         self.verbose = verbose
         self.load_yaml()
-        
+
     def load_yaml(self):
         """ Load all yaml files
         """
@@ -123,15 +123,15 @@ class Configurator(object):
             print('Here is the complete data structure...')
             pprint(all_data)
         self.all_data = all_data
-        
+
     def save(self):
         """Save the complete data spec as yaml"""
         if ('config' in self.all_data['nibble'] and
             'output_path' in self.all_data['nibble']['config']):
             output_fname = '%s.yml' % self.all_data['project']['name']
-            output_path = pj(self.all_data['nibble']['config']['output_path'],
-                            output_fname)
+            output_path = os.path.expanduser(pj(self.all_data['nibble']['config']['output_path'],
+                            output_fname))
             data2yaml(self.all_data, output_path, self.verbose)
         else:
-            raise SpecError('config_output_path not set in nibble.yaml')        
+            raise SpecError('config_output_path not set in nibble.yaml')
         return output_path
