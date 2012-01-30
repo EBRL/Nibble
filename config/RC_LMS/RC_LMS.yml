@@ -1,0 +1,505 @@
+version: 1
+project:
+    spec: 1
+    name: RC_LMS
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'post'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   Visual
+            n_runs: 4
+            n_volumes: 90
+            output_directory: /Volumes/Data/Analysis/RC_LMS/
+            data_toplevel: /Volumes/Data/RC_LMS/Visual/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+            images:
+                - PassV1.nii
+                - PassV2.nii
+                - PassV3.nii
+                - PassV4.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV1.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV2.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV3.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV4.mat
+            contrasts:
+                -
+                    name: 'Visual All'
+                    vector: '1 1 1 1 1 1 1 1 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Early'
+                    vector: '1 1 1 1 0 0 0 0 0 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Middle'
+                    vector: '0 0 0 0 1 1 1 1 1 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Late'
+                    vector: '0 0 0 0 0 0 0 0 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Late - Early'
+                    vector: 'ones(1,4)/-4 0 0 0 0 0 ones(1,4)/4 '
+                    replication: 'replsc'
+                -
+                    name: 'Visual Early - Late'
+                    vector: 'ones(1,4)/4 0 0 0 0 0 ones(1,4)/-4 '
+                    replication: 'replsc'
+                -
+                    name: 'Visual Linear Up'
+                    vector: '[-6:1:6]/13'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Linear Down'
+                    vector: '[6:-1:-6]/13'
+                    replication: 'replsc'
+        -
+            name:   VisualSentParts
+            n_runs: 4
+            n_volumes: 90
+            output_directory: /Volumes/Data/Analysis/RC_LMS/
+            data_toplevel: /Volumes/Data/RC_LMS/Visual/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+            images:
+                - PassV1.nii
+                - PassV2.nii
+                - PassV3.nii
+                - PassV4.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV1_sentpart.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV2_sentpart.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV3_sentpart.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV4_sentpart.mat
+            contrasts:
+                -
+                    name: 'Nouns - Baseline'
+                    vector: '1 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Verbs - Baseline'
+                    vector: '0 1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Prepositions - Baseline'
+                    vector: '0 0 1 0'
+                    replication: 'replsc'
+                -
+                    name: 'Interjections - Baseline'
+                    vector: '0 0 0 1'
+                    replication: 'replsc'
+                -
+                    name: 'Nouns - Verbs'
+                    vector: '1 -1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Verbs - Nouns'
+                    vector: '-1 1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Nouns - Prepositions'
+                    vector: '1 0 -1 0'
+                    replication: 'replsc'
+                -
+                    name: 'Prepositions - Nouns'
+                    vector: '-1 0 1 0'
+                    replication: 'replsc'
+        -
+            name:   VisualWord
+            n_runs: 6
+            n_volumes: 90
+            output_directory: /Volumes/Data/Analysis/RC_LMS/
+            data_toplevel: /Volumes/Data/RC_LMS/VisualWord/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+                - M5
+                - M6
+            images:
+                - PassV1.nii
+                - PassV2.nii
+                - PassV3.nii
+                - PassV4.nii
+                - PassV5.nii
+                - PassV6.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV1.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV2.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV3.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV4.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassW1.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassW2.mat
+
+            contrasts:
+                -
+                    name: '(Passages-Words) All'
+                    vectors: 
+                        -   'ones(1,13)/13'
+                        -   'ones(1,13)/13'
+                        -   'ones(1,13)/13'
+                        -   'ones(1,13)/13'
+                        -   'ones(1,13)/-13'
+                        -   'ones(1,13)/-13'
+                    replication: 'none'
+                -
+                    name: '(Passages-Words) Early'
+                    vectors: 
+                        -   'ones(1,4)/4 zeros(1,9)'
+                        -   'ones(1,4)/4 zeros(1,9)'
+                        -   'ones(1,4)/4 zeros(1,9)'
+                        -   'ones(1,4)/4 zeros(1,9)'
+                        -   'ones(1,4)/-4 zeros(1,9)'
+                        -   'ones(1,4)/-4 zeros(1,9)'
+                    replication: 'none'
+                -
+                    name: '(Passages-Words) Middle'
+                    vectors: 
+                        -   'zeros(1,4) ones(1,5)/5 zeros(1,4)'
+                        -   'zeros(1,4) ones(1,5)/5 zeros(1,4)'
+                        -   'zeros(1,4) ones(1,5)/5 zeros(1,4)'
+                        -   'zeros(1,4) ones(1,5)/5 zeros(1,4)'
+                        -   'zeros(1,4) ones(1,5)/-5 zeros(1,4)'
+                        -   'zeros(1,4) ones(1,5)/-5 zeros(1,4)'
+                    replication: 'none'
+                -
+                    name: '(Passages-Words) Late'
+                    vectors: 
+                        -   'zeros(1,9) ones(1,4)/4'
+                        -   'zeros(1,9) ones(1,4)/4'
+                        -   'zeros(1,9) ones(1,4)/4'
+                        -   'zeros(1,9) ones(1,4)/4'
+                        -   'zeros(1,9) ones(1,4)/-4'
+                        -   'zeros(1,9) ones(1,4)/-4'
+                    replication: 'none'
+                -
+                    name: '(Passages-Words) Late - Early'
+                    vectors: 
+                        -   'ones(1,4)/-4 0 0 0 0 0 ones(1,4)/4'
+                        -   'ones(1,4)/-4 0 0 0 0 0 ones(1,4)/4'
+                        -   'ones(1,4)/-4 0 0 0 0 0 ones(1,4)/4'
+                        -   'ones(1,4)/-4 0 0 0 0 0 ones(1,4)/4'
+                        -   'ones(1,4)/4 0 0 0 0 0 ones(1,4)/-4'
+                        -   'ones(1,4)/4 0 0 0 0 0 ones(1,4)/-4'
+                    replication: 'none'
+                -
+                    name: '(Passages-Words) Early - Late'
+                    vectors: 
+                        -   'ones(1,4)/4 0 0 0 0 0 ones(1,4)/-4'
+                        -   'ones(1,4)/4 0 0 0 0 0 ones(1,4)/-4'
+                        -   'ones(1,4)/4 0 0 0 0 0 ones(1,4)/-4'
+                        -   'ones(1,4)/4 0 0 0 0 0 ones(1,4)/-4'
+                        -   'ones(1,4)/-4 0 0 0 0 0 ones(1,4)/4'
+                        -   'ones(1,4)/-4 0 0 0 0 0 ones(1,4)/4'
+                    replication: 'none'
+                -
+                    name: '(Passages-Words) Linear Up'
+                    vectors: 
+                        -   '[-6:1:6]/13'
+                        -   '[-6:1:6]/13'
+                        -   '[-6:1:6]/13'
+                        -   '[-6:1:6]/13'
+                        -   '[-6:1:6]/-13'
+                        -   '[-6:1:6]/-13'
+                    replication: 'none'
+                -
+                    name: '(Passages-Words) Linear Down'
+                    vectors: 
+                        -   '[6:-1:-6]/13'
+                        -   '[6:-1:-6]/13'
+                        -   '[6:-1:-6]/13'
+                        -   '[6:-1:-6]/13'
+                        -   '[6:-1:-6]/-13'
+                        -   '[6:-1:-6]/-13'
+                    replication: 'none'        
+        -
+            name:   VisualWordBlock
+            n_runs: 6
+            n_volumes: 90
+            output_directory: /Volumes/Data/Analysis/RC_LMS/
+            data_toplevel: /Volumes/Data/RC_LMS/VisualWord/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+                - M5
+                - M6
+            images:
+                - PassV1.nii
+                - PassV2.nii
+                - PassV3.nii
+                - PassV4.nii
+                - PassV5.nii
+                - PassV6.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV1_block.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV2_block.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV3_block.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV4_block.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassW1_block.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassW2_block.mat
+
+            contrasts:
+                -
+                    name: '(Passage Block) (Passages - Words) All'
+                    vectors: 
+                        -   '1'
+                        -   '1'
+                        -   '1'
+                        -   '1'
+                        -   '-1'
+                        -   '-1'
+                    replication: 'none'
+        -
+            name:   VisualWordParBlock
+            n_runs: 6
+            n_volumes: 90
+            output_directory: /Volumes/Data/Analysis/RC_LMS/
+            data_toplevel: /Volumes/Data/RC_LMS/VisualWord/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+                - M5
+                - M6
+            images:
+                - PassV1.nii
+                - PassV2.nii
+                - PassV3.nii
+                - PassV4.nii
+                - PassV5.nii
+                - PassV6.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV1_parblock.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV2_parblock.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV3_parblock.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV4_parblock.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassW1_parblock.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassW2_parblock.mat
+
+            contrasts:
+                -
+                    name: '(Paragraph Block) (Passages - Words) All'
+                    vectors: 
+                        -   'ones(1,2)/2'
+                        -   'ones(1,2)/2'
+                        -   'ones(1,2)/2'
+                        -   'ones(1,2)/2'
+                        -   'ones(1,2)/-2'
+                        -   'ones(1,2)/-2'
+                    replication: 'none'
+                -
+                    name: '(Paragraph Block) (Passages - Words) Early Paragraph - Baseline'
+                    vectors: 
+                        -   '1 0'
+                        -   '1 0'
+                        -   '1 0'
+                        -   '1 0'
+                        -   '-1 0'
+                        -   '-1 0'
+                    replication: 'none'
+                -
+                    name: '(Paragraph Block) (Passages - Words) Late Paragraph - Baseline'
+                    vectors: 
+                        -   '0 1'
+                        -   '0 1'
+                        -   '0 1'
+                        -   '0 1'
+                        -   '0 -1'
+                        -   '0 -1'
+                    replication: 'none'
+                -
+                    name: '(Paragraph Block) (Passages - Words) Late - Early Paragraph'
+                    vectors: 
+                        -   '-1 1'
+                        -   '-1 1'
+                        -   '-1 1'
+                        -   '-1 1'
+                        -   '1 -1'
+                        -   '1 -1'
+                    replication: 'none'
+                -
+                    name: '(Paragraph Block) (Passages - Words) Early - Late'
+                    vectors: 
+                        -   '1 -1'
+                        -   '1 -1'
+                        -   '1 -1'
+                        -   '1 -1'
+                        -   '-1 1'
+                        -   '-1 1'
+                    replication: 'none'
+        -
+            name:   Words
+            n_runs: 2
+            n_volumes: 90
+            output_directory: /Volumes/Data/Analysis/RC_LMS/
+            data_toplevel: /Volumes/Data/RC_LMS/Words
+            run_directory:
+                - M1
+                - M2
+            images:
+                - PassW1.nii
+                - PassW2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassW1.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassW2.mat
+            contrasts:
+                -
+                    name: 'Words All'
+                    vector: '1 1 1 1 1 1 1 1 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Words Early'
+                    vector: '1 1 1 1 0 0 0 0 0 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Words Middle'
+                    vector: '0 0 0 0 1 1 1 1 1 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Words Late'
+                    vector: '0 0 0 0 0 0 0 0 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Words Late - Early'
+                    vector: '-.25 -.25 -.25 -.25 0 0 0 0 0 .25 .25 .25 .25'
+                    replication: 'replsc'
+        -
+            name:   Auditory
+            n_runs: 2
+            n_volumes: 90
+            output_directory: /Volumes/Data/Analysis/RC_LMS/
+            data_toplevel: /Volumes/Data/RC_LMS/Auditory
+            run_directory:
+                - M1
+                - M2
+            images:
+                - PassA1.nii
+                - PassA2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassA1.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassA2.mat
+            contrasts:
+                -
+                    name: 'Auditory All'
+                    vectors: 
+                        -   '1 1 1 1 1 1 1 1 1 1 1 1 1 1'
+                        -   '1 1 1 1 1 1 1 1 1 1 1 1 1'
+                    replication: 'none'
+                -
+                    name: 'Auditory Early'
+                    vectors: 
+                        -   '1 1 1 1 0 0 0 0 0 0 0 0 0 0'
+                        -   '1 1 1 1 0 0 0 0 0 0 0 0 0'
+                    replication: 'none'
+                -
+                    name: 'Auditory Middle'
+                    vectors:
+                        -   '0 0 0 0 1 1 1 1 1 0 0 0 0 0'
+                        -   '0 0 0 0 1 1 1 1 1 0 0 0 0'
+                    replication: 'none'
+                -
+                    name: 'Auditory Late'
+                    vectors: 
+                        -   '0 0 0 0 0 0 0 0 0 1 1 1 1 1'
+                        -   '0 0 0 0 0 0 0 0 0 1 1 1 1'
+                    replication: 'none'
+                -
+                    name: 'Auditory Late - Early'
+                    vectors: 
+                        -   '-.25 -.25 -.25 -.25 0 0 0 0 0 0 .25 .25 .25 .25'
+                        -   '-.25 -.25 -.25 -.25 0 0 0 0 0 .25 .25 .25 .25'
+                    replication: 'none'
+        -
+            name:   VisualPar
+            n_runs: 4
+            n_volumes: 90
+            output_directory: /Volumes/Data/Analysis/RC_LMS/
+            data_toplevel: /Volumes/Data/RC_LMS/VisualPar/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+            images:
+                - PassV1.nii
+                - PassV2.nii
+                - PassV3.nii
+                - PassV4.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV1_par.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV2_par.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV3_par.mat
+                            - /Volumes/Data/Analysis/RC_LMS/mult_cond/PassV4_par.mat
+            contrasts:
+                -
+                    name: 'VisualParagraph First Sentence'
+                    vector: '1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'VisualParagraph Middle Sentences'
+                    vector: '0 1 0'
+                    replication: 'replsc'
+                -
+                    name: 'VisualParagraph Last Sentence'
+                    vector: '0 0 1'
+                    replication: 'replsc'
+                -
+                    name: 'VisualParagraph Last - First Sentence'
+                    vector: '-1 0 1'
+                    replication: 'replsc'
+                -
+                    name: 'VisualParagraph First - Last Sentence'
+                    vector: '1 0 -1'
+                    replication: 'replsc'
