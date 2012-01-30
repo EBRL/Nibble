@@ -24,8 +24,8 @@ project:
             name:   PassagesV2
             n_runs: 4
             n_volumes: 200
-            output_directory: /Volumes/Data/RCV2/
-            data_toplevel: /Volumes/Data/RCV2/
+            output_directory: /fs0/New_Server/RCV/MR_Processed/
+            data_toplevel: /fs0/New_Server/RCV/MR_Processed/
             run_directory:
                 - M1
                 - M2
