@@ -728,6 +728,24 @@ subjects:
                         new-WNW:
                             - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M1.mat
                             - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M2.mat
+    -   id: '3506'
+        grp: RD
+        site: Vanderbilt
+        lwid: 'no'
+        wa: 'no'
+        Pre: #Pre LIST A
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        new-AC:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M2.mat
+                        new-RI:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M2.mat
+                        new-WNW:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M2.mat
     -   id: '3509'
         grp: RD-WL
         site: Vanderbilt
@@ -782,6 +800,24 @@ subjects:
                         new-WNW:
                             - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M1.mat
                             - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M2.mat
+    -   id: '3512'
+        grp: RD
+        site: Vanderbilt
+        lwid: 'no'
+        wa: 'no'
+        Pre: #Pre LIST A
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        new-AC:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M2.mat
+                        new-RI:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M2.mat
+                        new-WNW:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M2.mat
     -   id: '3514'
         grp: RD
         site: Vanderbilt
@@ -800,6 +836,24 @@ subjects:
                         new-WNW:
                             - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M1.mat
                             - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M2.mat        
+    -   id: '3515'
+        grp: RD
+        site: Vanderbilt
+        lwid: 'no'
+        wa: 'no'
+        Pre: #Pre LIST A
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        new-AC:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M2.mat
+                        new-RI:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M2.mat
+                        new-WNW:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M2.mat
     -   id: '3517'
         grp: RD
         site: Vanderbilt
@@ -872,6 +926,24 @@ subjects:
                         new-WNW:
                             - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M1.mat
                             - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M2.mat        
+    -   id: '3524'
+        grp: RD
+        site: Vanderbilt
+        lwid: 'no'
+        wa: 'no'
+        Pre: #PRE LIST B
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        new-AC:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListB/AC_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListB/AC_M2.mat
+                        new-RI:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListB/RI_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListB/RI_M2.mat
+                        new-WNW:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M2.mat        
     -   id: '3522'
         grp: RD
         site: Vanderbilt
@@ -895,6 +967,24 @@ subjects:
         site: Vanderbilt
         lwid: '2'
         wa: '1'
+        Pre: #Pre LIST A
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        new-AC:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListA/AC_M2.mat
+                        new-RI:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListA/RI_M2.mat
+                        new-WNW:
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M1.mat
+                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListA/WNW_M2.mat
+    -   id: '3525'
+        grp: RD
+        site: Vanderbilt
+        lwid: 'no'
+        wa: 'no'
         Pre: #Pre LIST A
             SPM:
                 session:
