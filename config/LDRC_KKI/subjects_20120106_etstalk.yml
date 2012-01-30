@@ -1,0 +1,51 @@
+#  See /Volumes/Data/Analysis/LDRC_KKI/Sent/LDRC_Groups_LaurieETSTalk_20120106.xlsx:used 
+
+subjects:
+- {id: LDRC_71001, grp: CNT}
+- {id: LDRC_71004, grp: CNT}
+- {id: LDRC_71009, grp: RCD}
+- {id: LDRC_71010, grp: CNT}
+- {id: LDRC_71013, grp: WRD}
+- {id: LDRC_71016, grp: RCD}
+- {id: LDRC_71018, grp: GRD}
+- {id: LDRC_71019, grp: GRD}
+- {id: LDRC_71025, grp: CNT}
+- {id: LDRC_71028, grp: AMBIG}
+- {id: LDRC_71035, grp: GRD}
+- {id: LDRC_71036, grp: WRD}
+- {id: LDRC_71038, grp: AMBIG}
+- {id: LDRC_71039, grp: AMBIG}
+#- {id: LDRC_71040, grp: RCD}
+- {id: LDRC_71041, grp: CNT}
+- {id: LDRC_71044, grp: AMBIG}
+- {id: LDRC_71048, grp: RCD}
+- {id: LDRC_71050, grp: CNT}
+- {id: LDRC_71054, grp: AMBIG}
+- {id: LDRC_71062, grp: CNT}
+- {id: LDRC_71063, grp: CNT}
+- {id: LDRC_71082, grp: CNT}
+- {id: LDRC_71083, grp: CNT}
+- {id: LDRC_71084, grp: CNT}
+- {id: LDRC_71092, grp: GRD}
+- {id: LDRC_71098, grp: CNT}
+- {id: LDRC_71118, grp: CNT}
+- {id: LDRC_71129, grp: CNT}
+- {id: LDRC_71046, grp: CNT}
+- {id: LDRC_71064, grp: RCD}
+- {id: LDRC_71002, grp: GRD}
+- {id: LDRC_71087, grp: CNT}
+- {id: LDRC_71094, grp: GRD}
+#  No behavioral data
+- {id: LDRC_71017, grp: RCD}
+- {id: LDRC_71053, grp: RCD}
+- {id: LDRC_71066, grp: RCD}
+- {id: LDRC_71070, grp: RCD}
+- {id: LDRC_71075, grp: RCD}
+- {id: LDRC_71085, grp: RCD}
+- {id: LDRC_71097, grp: RCD}
+- {id: LDRC_71105, grp: RCD}
+- {id: LDRC_71106, grp: RCD}
+- {id: LDRC_71115, grp: RCD}
+- {id: LDRC_71119, grp: RCD}
+
+version: 1
