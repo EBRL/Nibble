@@ -31,7 +31,7 @@ SPM:
         source:     'gen'
         weight_src: ''
         images:     'gen'
-        template:   '/Applications/spm8/templates/EPI.nii,1'
+        template:   '/home/burnsss1/Documents/MATLAB/spm8/templates/EPI.nii,1'
         template_weight:    ''
         source_smooth:  6
         template_smooth:    0
@@ -89,4 +89,4 @@ SPM:
         contrasts:  Inf
         thresh_desc:    'none'
         threshold:  0.001
-        
+
