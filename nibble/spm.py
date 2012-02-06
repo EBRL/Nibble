@@ -548,7 +548,6 @@ cd('%s')
         """Write out each batch to the correct file"""
         # for now assume output dir exists
         #os.makedirs(pj(self.out_dir, 'batches'))
-        print('Dumping %s batches...' % self.id)
         for piece in self.pieces:
             output_path = self.piece_path(piece)
             with open(output_path, 'w') as f:
@@ -671,4 +670,4 @@ cd('%s')
         corresponding log files """
         to_return = []
         for piece in self.pieces:
-            to_return.append(self.piece_path(piece), self.log_path(piece))
+            to_return.append((self.piece_path(piece), self.log_path(piece)))
