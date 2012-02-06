@@ -665,3 +665,10 @@ cd('%s')
                 if os.path.isfile(piece_pdf):
                     output.append(piece_pdf)
         return output
+
+    def mfiles_logs(self):
+        """ Return a list of two-tuples containing mfiles to run and their
+        corresponding log files """
+        to_return = []
+        for piece in self.pieces:
+            to_return.append(self.piece_path(piece), self.log_path(piece))
