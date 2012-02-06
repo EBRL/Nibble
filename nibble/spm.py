@@ -671,3 +671,4 @@ cd('%s')
         to_return = []
         for piece in self.pieces:
             to_return.append((self.piece_path(piece), self.log_path(piece)))
+        return to_return
