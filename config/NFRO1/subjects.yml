@@ -4,6 +4,8 @@ subjects:
     -   id: '2010'
         grp: CNT
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -33,6 +35,8 @@ subjects:
     -   id: '2011'
         grp: CNT
         site: KKI
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -62,6 +66,8 @@ subjects:
     -   id: '2012'
         grp: CNT
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -91,6 +97,8 @@ subjects:
     -   id: '2013'
         grp: CNT
         site: KKI
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -120,6 +128,8 @@ subjects:
     -   id: '2014'
         grp: CNT
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -149,6 +159,8 @@ subjects:
     -   id: '2015'
         grp: CNT
         site: KKI
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -178,6 +190,8 @@ subjects:
     -   id: '2016'
         grp: CNT
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -207,6 +221,8 @@ subjects:
     -   id: '2018'
         grp: CNT
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -236,6 +252,8 @@ subjects:
     -   id: '2019'
         grp: CNT
         site: KKI
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -265,6 +283,8 @@ subjects:
     -   id: '2020'
         grp: CNT
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -294,6 +314,8 @@ subjects:
     -   id: '2021'
         grp: CNT
         site: KKI
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -323,6 +345,8 @@ subjects:
     -   id: '2027'
         grp: CNT
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -352,6 +376,8 @@ subjects:
     -   id: '2031'
         grp: CNT
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -381,6 +407,8 @@ subjects:
     -   id: '2500'
         grp: CNT
         site: Vanderbilt
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -410,6 +438,8 @@ subjects:
     -   id: '2503'
         grp: CNT
         site: Vanderbilt
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -439,6 +469,8 @@ subjects:
     -   id: '2505'
         grp: CNT
         site: Vanderbilt
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -468,6 +500,8 @@ subjects:
     -   id: '2506'
         grp: CNT
         site: Vanderbilt
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -498,6 +532,8 @@ subjects:
     -   id: '3015'
         grp: RD
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -527,6 +563,8 @@ subjects:
     -   id: '3017'
         grp: RD
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -556,6 +594,8 @@ subjects:
     -   id: '3022'
         grp: RD
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -585,6 +625,8 @@ subjects:
     -   id: '3024'
         grp: RD
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -614,6 +656,8 @@ subjects:
     -   id: '3026'
         grp: RD
         site: KKI
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -643,6 +687,8 @@ subjects:
     -   id: '3027'
         grp: RD
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -672,6 +718,8 @@ subjects:
     -   id: '3500'
         grp: RD
         site: Vanderbilt
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -701,6 +749,8 @@ subjects:
     -   id: '3503'
         grp: RD
         site: Vanderbilt
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -730,6 +780,8 @@ subjects:
     -   id: '3514'
         grp: RD
         site: Vanderbilt
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -759,6 +811,8 @@ subjects:
     -   id: '3517'
         grp: RD
         site: Vanderbilt
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -788,6 +842,8 @@ subjects:
     -   id: '3521'
         grp: RD
         site: Vanderbilt
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -817,6 +873,8 @@ subjects:
     -   id: '3522'
         grp: RD
         site: Vanderbilt
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -846,6 +904,8 @@ subjects:
     -   id: '3523'
         grp: RD
         site: Vanderbilt
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -877,6 +937,8 @@ subjects:
     -   id: '3012'
         grp: RD-WL
         site: KKI
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -906,6 +968,8 @@ subjects:
     -   id: '3016'
         grp: RD-WL
         site: KKI
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -935,6 +999,8 @@ subjects:
     -   id: '3020'
         grp: RD-WL
         site: KKI
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -964,6 +1030,8 @@ subjects:
     -   id: '3023'
         grp: RD-WL
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -993,6 +1061,8 @@ subjects:
     -   id: '3025'
         grp: RD-WL
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -1022,6 +1092,8 @@ subjects:
     -   id: '3510'
         grp: RD-WL
         site: Vanderbilt
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -1051,6 +1123,8 @@ subjects:
     -   id: '3511'
         grp: RD-WL
         site: Vanderbilt
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -1080,6 +1154,8 @@ subjects:
     -   id: '3513'
         grp: RD-WL
         site: Vanderbilt
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -1112,6 +1188,8 @@ subjects:
     -   id: '1005'
         grp: NF-RD
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #PRE LIST B
             SPM:
                 session:
@@ -1141,6 +1219,8 @@ subjects:
     -   id: '1012'
         grp: NF-RD
         site: KKI
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -1167,37 +1247,11 @@ subjects:
                         new-WNW:
                             - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListB/WNW_M1.mat
                             - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListB/WNW_M2.mat
-#    -   id: '1013'
-#        grp: NF-RD
-#        Pre: #Pre LIST B
-#            SPM:
-#                session:
-#                    multiple_condition_mat:
-#                        new-AC:
-#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListB/AC_M1.mat
-#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-AC/ListB/AC_M2.mat
-#                        new-RI:
-#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListB/RI_M1.mat
-#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-RI/ListB/RI_M2.mat
-#                        new-WNW:
-#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M1.mat
-#                            - /Users/scottburns/Analysis/NFRO1/Pre/mult_cond/new-WNW/ListB/WNW_M2.mat
-#        Post: #Post LIST A
-#            SPM:
-#                session:
-#                    multiple_condition_mat:
-#                        new-AC:
-#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-AC/ListA/AC_M1.mat
-#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-AC/ListA/AC_M2.mat
-#                        new-RI:
-#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-RI/ListA/RI_M1.mat
-#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-RI/ListA/RI_M2.mat
-#                        new-WNW:
-#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListA/WNW_M1.mat
-#                            - /Users/scottburns/Analysis/NFRO1/Post/mult_cond/new-WNW/ListA/WNW_M2.mat
     -   id: '1014'
         grp: NF-RD
         site: KKI
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -1227,6 +1281,8 @@ subjects:
     -   id: '1015'
         grp: NF-RD
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #Pre LIST B
             SPM:
                 session:
@@ -1256,6 +1312,8 @@ subjects:
     -   id: '1017'
         grp: NF-RD
         site: KKI
+        pre-list: B
+        post-list: A
         Pre: #Pre LIST B
             SPM:
                 session:
@@ -1285,6 +1343,8 @@ subjects:
     -   id: '1501'
         grp: NF-RD
         site: Vanderbilt
+        pre-list: B
+        post-list: A
         Pre: #Pre LIST B
             SPM:
                 session:
@@ -1314,6 +1374,8 @@ subjects:
     -   id: '1503'
         grp: NF-RD
         site: Vanderbilt
+        pre-list: A
+        post-list: B
         Pre: #Pre LIST A
             SPM:
                 session:
@@ -1343,6 +1405,8 @@ subjects:
     -   id: '1506'
         grp: NF-RD
         site: Vanderbilt
+        pre-list: B
+        post-list: A
         Pre: #Pre LIST B
             SPM:
                 session:
@@ -1372,4 +1436,3 @@ subjects:
 
 
 
-# END NF-RD
