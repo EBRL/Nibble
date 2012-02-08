@@ -42,10 +42,10 @@ project:
                 session:
                     multiple_condition_mat:
                         first-level:
-                            - /Volumes/Data/Analysis/RCV2/PassagesV2/timing/PassV2_M1.mat
-                            - /Volumes/Data/Analysis/RCV2/PassagesV2/timing/PassV2_M2.mat
-                            - /Volumes/Data/Analysis/RCV2/PassagesV2/timing/PassV2_M3.mat
-                            - /Volumes/Data/Analysis/RCV2/PassagesV2/timing/PassV2_M4.mat
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesV2/PassagesV2_ListA_M1.mat
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesV2/PassagesV2_ListA_M2.mat
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesV2/PassagesV2_ListA_M3.mat
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesV2/PassagesV2_ListA_M4.mat
             contrasts:
                 -
                     name: 'Passages - Baseline'
