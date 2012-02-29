@@ -1,0 +1,242 @@
+version: 1
+project:
+    spec: 1
+    name: LERD
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'first-level'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   Repetition
+            n_runs: 3
+            n_volumes: 135
+            output_directory: /scratch/burnsss1/New_Server/LERD/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/LERD/MR_Processed/
+            run_directory:
+                - M1
+                - M2
+                - M3
+            images:
+                - Rep1.nii
+                - Rep2.nii
+                - Rep3.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /scratch/burnsss1/New_Server/LERD/timing/Repetition/Repetition_Timing_M1.mat
+                            - /scratch/burnsss1/New_Server/LERD/timing/Repetition/Repetition_Timing_M2.mat
+                            - /scratch/burnsss1/New_Server/LERD/timing/Repetition/Repetition_Timing_M3.mat
+            contrasts:
+                -
+                    name: 'words'
+                    vector: '1 0'
+                    replication: 'replsc'
+                -
+                    name: 'pseudowords'
+                    vector: '0 1'
+                    replication: 'replsc'
+                -
+                    name: 'words-pseudowords'
+                    vector: '1 -1'
+                    replication: 'replsc'
+                -
+                    name: 'pseudowords-words'
+                    vector: '-1 1'
+                    replication: 'replsc'
+                -
+                    name: 'words M3-words M1'
+                    vectors:
+                        - '-1 0'
+                        - '0 0'
+                        - '1 0'
+                    replication: 'none'
+                -
+                    name: 'words M1-words M3'
+                    vectors:
+                        - '1 0'
+                        - '0 0'
+                        - '-1 0'
+                    replication: 'none'
+                -
+                    name: 'pseudowords M3-pseudowords M1'
+                    vectors:
+                        - '0 -1'
+                        - '0 0'
+                        - '0 1'
+                    replication: 'none'
+                -
+                    name: 'pseudowords M1-pseudowords M3'
+                    vectors:
+                        - '0 1'
+                        - '0 0'
+                        - '0 -1'
+                    replication: 'none'
+                -
+                    name: 'words M1-words M2'
+                    vectors:
+                        - '1 0'
+                        - '-1 0'
+                        - '0 0'
+                    replication: 'none'
+                -
+                    name: 'words M2-words M1'
+                    vectors:
+                        - '-1 0'
+                        - '1 0'
+                        - '0 0'
+                    replication: 'none'
+                -
+                    name: 'words M2-words M3'
+                    vectors:
+                        - '0 0'
+                        - '1 0'
+                        - '-1 0'
+                    replication: 'none'
+                -
+                    name: 'words M3-words M2'
+                    vectors:
+                        - '0 0'
+                        - '-1 0'
+                        - '1 0'
+                    replication: 'none'
+                -
+                    name: 'pseudowords M1-pseudowords M2'
+                    vectors:
+                        - '0 1'
+                        - '0 -1'
+                        - '0 0'
+                    replication: 'none'
+                -
+                    name: 'pseudowords M2-pseudowords M1'
+                    vectors:
+                        - '0 -1'
+                        - '0 1'
+                        - '0 0'
+                    replication: 'none'
+                -
+                    name: 'pseudowords M2-pseudowords M3'
+                    vectors:
+                        - '0 0'
+                        - '0 1'
+                        - '0 -1'
+                    replication: 'none'
+                -
+                    name: 'pseudowords M3-pseudowords M2'
+                    vectors:
+                        - '0 0'
+                        - '0 -1'
+                        - '0 1'
+                    replication: 'none'
+                -
+                    name: 'words 3 -2 -1'
+                    vectors:
+                        - '3 0'
+                        - '-2 0'
+                        - '-1 0'
+                    replication: 'none'
+                -
+                    name: 'words -3 2 1'
+                    vectors:
+                        - '-3 0'
+                        - '2 0'
+                        - '1 0'
+                    replication: 'none'
+                -
+                    name: 'words -1 -2 3'
+                    vectors:
+                        - '-1 0'
+                        - '-2 0'
+                        - '3 0'
+                    replication: 'none'
+                -
+                    name: 'words 1 2 -3'
+                    vectors:
+                        - '1 0'
+                        - '2 0'
+                        - '-3 0'
+                    replication: 'none'
+                -
+                    name: 'pseudowords 3 -2 -1'
+                    vectors:
+                        - '0 3'
+                        - '0 -2'
+                        - '0 -1'
+                    replication: 'none'
+                -
+                    name: 'pseudowords -3 2 1'
+                    vectors:
+                        - '0 -3'
+                        - '0 2'
+                        - '0 1'
+                    replication: 'none'
+                -
+                    name: 'pseudowords -1 -2 3'
+                    vectors:
+                        - '0 -1'
+                        - '0 -2'
+                        - '0 3'
+                    replication: 'none'
+                -
+                    name: 'pseudowords 1 2 -3'
+                    vectors:
+                        - '0 1'
+                        - '0 2'
+                        - '0 -3'
+                    replication: 'none'
+                -
+                    name: 'm1-words'
+                    vectors:
+                        - '1 0'
+                        - '0 0'
+                        - '0 0'
+                    replication: 'none'
+                -
+                    name: 'm1-pseudowords'
+                    vectors:
+                        - '0 1'
+                        - '0 0'
+                        - '0 0'
+                    replication: 'none'
+                -
+                    name: 'm2-words'
+                    vectors:
+                        - '0 0'
+                        - '1 0'
+                        - '0 0'
+                    replication: 'none'
+                -
+                    name: 'm2-pseudowords'
+                    vectors:
+                        - '0 0'
+                        - '0 1'
+                        - '0 0'
+                    replication: 'none'
+                -
+                    name: 'm3-words'
+                    vectors:
+                        - '0 0'
+                        - '0 0'
+                        - '1 0'
+                    replication: 'none'
+                -
+                    name: 'm3-pseudowords'
+                    vectors:
+                        - '0 0'
+                        - '0 0'
+                        - '0 1'
+                    replication: 'none'

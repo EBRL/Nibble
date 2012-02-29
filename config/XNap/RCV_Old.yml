@@ -1,0 +1,167 @@
+version: 1
+project:
+    spec: 1
+    name: RCV_Old
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'post'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   PassagesVisual
+            n_runs: 4
+            n_volumes: 90
+            output_directory: /scratch/burnsss1/New_Server/RCV/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/RCV/MR_Processed/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+            images:
+                - OldPassV1.nii
+                - OldPassV2.nii
+                - OldPassV3.nii
+                - OldPassV4.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesVisual/PassV1.mat
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesVisual/PassV2.mat
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesVisual/PassV3.mat
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesVisual/PassV4.mat
+            contrasts:
+                -
+                    name: 'Visual All'
+                    vector: '1 1 1 1 1 1 1 1 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Early'
+                    vector: '1 1 1 1 0 0 0 0 0 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Middle'
+                    vector: '0 0 0 0 1 1 1 1 1 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Late'
+                    vector: '0 0 0 0 0 0 0 0 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Late - Early'
+                    vector: 'ones(1,4)/-4 0 0 0 0 0 ones(1,4)/4 '
+                    replication: 'replsc'
+                -
+                    name: 'Visual Early - Late'
+                    vector: 'ones(1,4)/4 0 0 0 0 0 ones(1,4)/-4 '
+                    replication: 'replsc'
+                -
+                    name: 'Visual Linear Up'
+                    vector: '[-6:1:6]/13'
+                    replication: 'replsc'
+                -
+                    name: 'Visual Linear Down'
+                    vector: '[6:-1:-6]/13'
+                    replication: 'replsc'
+        -
+            name:   PassagesWord
+            n_runs: 2
+            n_volumes: 90
+            output_directory: /scratch/burnsss1/New_Server/RCV/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/RCV/MR_Processed
+            run_directory:
+                - M1
+                - M2
+            images:
+                - OldPassW1.nii
+                - OldPassW2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesWord/PassW1.mat
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesWord/PassW2.mat
+            contrasts:
+                -
+                    name: 'Words All'
+                    vector: '1 1 1 1 1 1 1 1 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Words Early'
+                    vector: '1 1 1 1 0 0 0 0 0 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Words Middle'
+                    vector: '0 0 0 0 1 1 1 1 1 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Words Late'
+                    vector: '0 0 0 0 0 0 0 0 1 1 1 1 1'
+                    replication: 'replsc'
+                -
+                    name: 'Words Late - Early'
+                    vector: '-.25 -.25 -.25 -.25 0 0 0 0 0 .25 .25 .25 .25'
+                    replication: 'replsc'
+        -
+            name:   Auditory
+            n_runs: 2
+            n_volumes: 90
+            output_directory: /scratch/burnsss1/New_Server/RCV/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/RCV/MR_Processed/
+            run_directory:
+                - M1
+                - M2
+            images:
+                - OldPassA1.nii
+                - OldPassA2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        post:
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesAuditory/PassA1.mat
+                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesAuditory/PassA2.mat
+            contrasts:
+                -
+                    name: 'Auditory All'
+                    vectors:
+                        -   '1 1 1 1 1 1 1 1 1 1 1 1 1 1'
+                        -   '1 1 1 1 1 1 1 1 1 1 1 1 1'
+                    replication: 'none'
+                -
+                    name: 'Auditory Early'
+                    vectors:
+                        -   '1 1 1 1 0 0 0 0 0 0 0 0 0 0'
+                        -   '1 1 1 1 0 0 0 0 0 0 0 0 0'
+                    replication: 'none'
+                -
+                    name: 'Auditory Middle'
+                    vectors:
+                        -   '0 0 0 0 1 1 1 1 1 0 0 0 0 0'
+                        -   '0 0 0 0 1 1 1 1 1 0 0 0 0'
+                    replication: 'none'
+                -
+                    name: 'Auditory Late'
+                    vectors:
+                        -   '0 0 0 0 0 0 0 0 0 1 1 1 1 1'
+                        -   '0 0 0 0 0 0 0 0 0 1 1 1 1'
+                    replication: 'none'
+                -
+                    name: 'Auditory Late - Early'
+                    vectors:
+                        -   '-.25 -.25 -.25 -.25 0 0 0 0 0 0 .25 .25 .25 .25'
+                        -   '-.25 -.25 -.25 -.25 0 0 0 0 0 .25 .25 .25 .25'
+                    replication: 'none'

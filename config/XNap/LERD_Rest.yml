@@ -1,0 +1,42 @@
+version: 1
+project:
+    spec: 1
+    name: LERD_Rest
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+#                -
+#                    name:   'first-level'
+#                    type:   'stats'
+#                    art:    true
+#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   RestingState
+            n_runs: 1
+            n_volumes: 160
+            output_directory: /scratch/burnsss1/New_Server/LERD/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/LERD/MR_Processed/
+            run_directory:
+                - M1
+            images:
+                - RestState1.nii
+        -
+            name:   RestingState135
+            n_runs: 1
+            n_volumes: 135
+            output_directory: /scratch/burnsss1/New_Server/LERD/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/LERD/MR_Processed/
+            run_directory:
+                - M1
+            images:
+                - RestState1.nii
