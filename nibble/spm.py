@@ -505,34 +505,38 @@ cd('%s')
         """
         self.output = {}
         self.replace_dict = {}
-        for piece in self.pieces:
-            pname = piece['name']
-            ptype = piece['type']
-            if ptype in ('preprocess', 'stats'):
-                self.output[pname] = self.header_text(piece)
-                self.output[pname] += "spm fmri"
-                for stage in piece['stages']:
-                    self.replace_dict[stage] = self.find_dict(stage, piece)
-                    new_stage = self.rep_text(self.text[stage],
-                                                self.replace_dict[stage])
-                    if new_stage.count('$') > 0:
-                        warn('Some keywords were not replaced')
-                    self.output[pname] += new_stage
-                exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece['name'])}
-                self.output[pname] += self.rep_text(self.text['exec'], exec_dict)
-            elif ptype == 'art' :
-                sess_fname = self.make_art_sess(piece)
-                reg_width_list = []
-                for n_run in range(1, self.n_runs+1):
-                    art_mat_file = self.art_file(n_run)
-                    reg_width_list.append("\tregression_width('%s');"
-                                            % art_mat_file)
-                self.output[pname] = self.rep_text(self.text['art'],
-                    {'art_sessfile': sess_fname,
-                    'art_jpg':self.piece_orig_path(piece),
-                    'reg_width_text':'\n'.join(reg_width_list)})
-        # add other ptypes here
-        pass
+        for piece in self.pieces[:]:
+            try:
+                pname = piece['name']
+                ptype = piece['type']
+                if ptype in ('preprocess', 'stats'):
+                    self.output[pname] = self.header_text(piece)
+                    self.output[pname] += "spm fmri"
+                    for stage in piece['stages']:
+                        self.replace_dict[stage] = self.find_dict(stage, piece)
+                        new_stage = self.rep_text(self.text[stage],
+                                                    self.replace_dict[stage])
+                        if new_stage.count('$') > 0:
+                            warn('Some keywords were not replaced')
+                        self.output[pname] += new_stage
+                    exec_dict = {'new_ps':'%s_%s.ps' % (self.id, piece['name'])}
+                    self.output[pname] += self.rep_text(self.text['exec'], exec_dict)
+                elif ptype == 'art' :
+                    sess_fname = self.make_art_sess(piece)
+                    reg_width_list = []
+                    for n_run in range(1, self.n_runs+1):
+                        art_mat_file = self.art_file(n_run)
+                        reg_width_list.append("\tregression_width('%s');"
+                                                % art_mat_file)
+                    self.output[pname] = self.rep_text(self.text['art'],
+                        {'art_sessfile': sess_fname,
+                        'art_jpg':self.piece_orig_path(piece),
+                        'reg_width_text':'\n'.join(reg_width_list)})
+                # add other ptypes here
+                pass
+            except:
+                # Some error caused the piece to not resolve very well
+                self.pieces.remove(piece)
 
     def make_dir(self, path):
         """Ensure a directory exists"""

@@ -9,4 +9,4 @@ from .spm import SPM
 from .config import Configurator
 import util
 
-__version__ = "0.1.xnap"
+__version__ = "0.2.rosie"

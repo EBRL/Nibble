@@ -117,7 +117,7 @@ project:
                     vector: '-.25 -.25 -.25 -.25 0 0 0 0 0 .25 .25 .25 .25'
                     replication: 'replsc'
         -
-            name:   Auditory
+            name:   PassagesAuditory
             n_runs: 2
             n_volumes: 90
             output_directory: /scratch/burnsss1/New_Server/RCV/MR_Processed/
