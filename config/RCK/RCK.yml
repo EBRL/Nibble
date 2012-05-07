@@ -1,0 +1,87 @@
+version: 1
+project:
+    spec: 1
+    name: RCK
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'first-level'
+                    type:   'stats'
+                    art:    false
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                -
+                    name:   'first-level-art'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   SWR
+            n_runs: 4
+            n_volumes: 94
+            output_directory: /Volumes/Data/RCK/
+            data_toplevel: /Volumes/Data/RCK/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+            images:
+                - SWR1.nii
+                - SWR2.nii
+                - SWR3.nii
+                - SWR4.nii
+            SPM:
+                slicetime:
+                    so: '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40'
+                realign-er:
+                    quality: 0.9
+                    smoothing: 5
+                normalize-er:
+                    template: '/Applications/spm8/templates/EPI.nii,1'
+                    voxel-size: "3 3 3"
+            contrasts:
+                first-level:
+                    -
+                        name: 'Words - Baseline'
+                        vector: '1/4 1/4 1/4 1/4 0'
+                        replication: 'replsc'
+                    -
+                        name: 'All Stimuli'
+                        vector: '1/5 1/5 1/5 1/5 1/5'
+                        replication: 'replsc'
+                    -
+                        name: 'Words - Nonwords'
+                        vector: '1/4 1/4 1/4 1/4 -1'
+                        replication: 'replsc'
+                    -
+                        name: 'Nonwords - Baseline'
+                        vector: '0 0 0 0 1'
+                        replication: 'replsc'
+                first-level-art:
+                    -
+                        name: 'Words - Baseline'
+                        vector: '1/4 1/4 1/4 1/4 0'
+                        replication: 'replsc'
+                    -
+                        name: 'All Stimuli'
+                        vector: '1/5 1/5 1/5 1/5 1/5'
+                        replication: 'replsc'
+                    -
+                        name: 'Words - Nonwords'
+                        vector: '1/4 1/4 1/4 1/4 -1'
+                        replication: 'replsc'
+                    -
+                        name: 'Nonwords - Baseline'
+                        vector: '0 0 0 0 1'
+                        replication: 'replsc'

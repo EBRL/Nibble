@@ -1,0 +1,917 @@
+version: 1
+subjects:
+    -
+        id: '0006'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+    -
+        id: '0007'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0008'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0011'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0014'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0015'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0016'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0017'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0018'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0020'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0021'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0023'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0029'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0031'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0035'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0036'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0037'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0039'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0040'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0041'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0043'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0045'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0046'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0048'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0051'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0053'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0054'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0055'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0056'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0057'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0058'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0059'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0060'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+    -
+        id: '0061'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0062'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0064'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0065'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0066'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0067'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0068'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0070'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0072'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0074'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0076'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0079'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0080'
+        grp: 'RCD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0081'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0082'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+
+    -
+        id: '0083'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0085'
+        grp: 'WRD'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/LHLH_M1.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M2.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M3.mat
+                            - /Volumes/Data/RCK/timing/LHLH_M4.mat
+
+    -
+        id: '0086'
+        grp: 'CNT'
+        SWR:
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat
+                        first-level-art:
+                            - /Volumes/Data/RCK/timing/HLHL_M1.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M2.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M3.mat
+                            - /Volumes/Data/RCK/timing/HLHL_M4.mat

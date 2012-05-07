@@ -1,7 +1,7 @@
 version: 1
 project:
     spec: 1
-    name: RCV_Old
+    name: RC_LMS
     todo:
         -
             name: 'SPM'
@@ -15,7 +15,7 @@ project:
                     type:   'art'
                     stages: ['art']
                 -
-                    name:   'post'
+                    name:   'first-level'
                     type:   'stats'
                     art:    true
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
@@ -24,8 +24,8 @@ project:
             name:   PassagesVisual
             n_runs: 4
             n_volumes: 90
-            output_directory: /scratch/burnsss1/New_Server/RCV/MR_Processed/
-            data_toplevel: /scratch/burnsss1/New_Server/RCV/MR_Processed/
+            output_directory: /scratch/burnsss1/New_Server/RC_LMS/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/RC_LMS/MR_Processed/
             run_directory:
                 - M1
                 - M2
@@ -39,7 +39,7 @@ project:
             SPM:
                 session:
                     multiple_condition_mat:
-                        post:
+                        first-level:
                             - /scratch/burnsss1/New_Server/RCV/timing/PassagesVisual/PassV1.mat
                             - /scratch/burnsss1/New_Server/RCV/timing/PassagesVisual/PassV2.mat
                             - /scratch/burnsss1/New_Server/RCV/timing/PassagesVisual/PassV3.mat
@@ -81,8 +81,8 @@ project:
             name:   PassagesWord
             n_runs: 2
             n_volumes: 90
-            output_directory: /scratch/burnsss1/New_Server/RCV/MR_Processed/
-            data_toplevel: /scratch/burnsss1/New_Server/RCV/MR_Processed
+            output_directory: /scratch/burnsss1/New_Server/RC_LMS/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/RC_LMS/MR_Processed
             run_directory:
                 - M1
                 - M2
@@ -92,9 +92,9 @@ project:
             SPM:
                 session:
                     multiple_condition_mat:
-                        post:
-                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesWord/PassW1.mat
-                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesWord/PassW2.mat
+                        first-level:
+                            - /scratch/burnsss1/New_Server/RC_LMS/timing/PassagesWord/PassW1.mat
+                            - /scratch/burnsss1/New_Server/RC_LMS/timing/PassagesWord/PassW2.mat
             contrasts:
                 -
                     name: 'Words All'
@@ -120,8 +120,8 @@ project:
             name:   PassagesAuditory
             n_runs: 2
             n_volumes: 90
-            output_directory: /scratch/burnsss1/New_Server/RCV/MR_Processed/
-            data_toplevel: /scratch/burnsss1/New_Server/RCV/MR_Processed/
+            output_directory: /scratch/burnsss1/New_Server/RC_LMS/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/RC_LMS/MR_Processed/
             run_directory:
                 - M1
                 - M2
@@ -131,9 +131,9 @@ project:
             SPM:
                 session:
                     multiple_condition_mat:
-                        post:
-                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesAuditory/PassA1.mat
-                            - /scratch/burnsss1/New_Server/RCV/timing/PassagesAuditory/PassA2.mat
+                        first-level:
+                            - /scratch/burnsss1/New_Server/RC_LMS/timing/PassagesAuditory/PassA1.mat
+                            - /scratch/burnsss1/New_Server/RC_LMS/timing/PassagesAuditory/PassA2.mat
             contrasts:
                 -
                     name: 'Auditory All'
@@ -166,105 +166,45 @@ project:
                         -   '-.25 -.25 -.25 -.25 0 0 0 0 0 .25 .25 .25 .25'
                     replication: 'none'
         -
-            name:   PictureTask
-            n_runs: 2
-            n_volumes: 160
-            output_directory: /scratch/burnsss1/New_Server/RCV/MR_Processed/
-            data_toplevel: /scratch/burnsss1/New_Server/RCV/MR_Processed/
+            name:   PassagesV2_190
+            n_runs: 4
+            n_volumes: 190
+            output_directory: /scratch/burnsss1/New_Server/RC_LMS/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/RC_LMS/MR_Processed/
             run_directory:
                 - M1
                 - M2
+                - M3
+                - M4
             images:
-                - Pic1.nii
-                - Pic2.nii
+                - Pass1.nii
+                - Pass2.nii
+                - Pass3.nii
+                - Pass4.nii
             SPM:
+                slicetime:
+                    so: '1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40'
                 session:
                     multiple_condition_mat:
-                        post:
-                            - /scratch/burnsss1/New_Server/RCV/timing/PictureTaskListA/PictureTask_ListA_M1.mat
-                            - /scratch/burnsss1/New_Server/RCV/timing/PictureTaskListA/PictureTask_ListA_M2.mat
+                        first-level:
+                            - /scratch/burnsss1/New_Server/RC_LMS/timing/PassagesV2_190/PassagesV2_190_ListA_M1.mat
+                            - /scratch/burnsss1/New_Server/RC_LMS/timing/PassagesV2_190/PassagesV2_190_ListA_M2.mat
+                            - /scratch/burnsss1/New_Server/RC_LMS/timing/PassagesV2_190/PassagesV2_190_ListA_M3.mat
+                            - /scratch/burnsss1/New_Server/RC_LMS/timing/PassagesV2_190/PassagesV2_190_ListA_M4.mat
             contrasts:
                 -
-                    name: 'All - Baseline'
-                    vector: '1 1 1 1'
+                    name: 'Passages - Baseline'
+                    vector: '1 0'
                     replication: 'replsc'
                 -
-                    name: 'Match - Baseline'
-                    vector: '1 0 0 0'
+                    name: 'Words - Baseline'
+                    vector: '0 1'
                     replication: 'replsc'
                 -
-                    name: 'Baseline - Match'
-                    vector: '-1 0 0 0'
+                    name: 'Passages - Words'
+                    vector: '1 -1'
                     replication: 'replsc'
                 -
-                    name: 'Word - Baseline'
-                    vector: '0 1 0 0'
-                    replication: 'replsc'
-                -
-                    name: 'Baseline - Word'
-                    vector: '0 -1 0 0'
-                    replication: 'replsc'
-                -
-                    name: 'Pseudoword - Baseline'
-                    vector: '0 0 1 0'
-                    replication: 'replsc'
-                -
-                    name: 'Baseline - Pseudoword'
-                    vector: '0 0 -1 0'
-                    replication: 'replsc'
-                -
-                    name: 'Consonants - Baseline'
-                    vector: '0 0 0 1'
-                    replication: 'replsc'
-                -
-                    name: 'Baseline - Consonants'
-                    vector: '0 0 0 -1'
-                    replication: 'replsc'
-                -
-                    name: 'Match - Word'
-                    vector: '1 -1 0 0'
-                    replication: 'replsc'
-                -
-                    name: 'Word - Match'
-                    vector: '-1 1 0 0'
-                    replication: 'replsc'
-                -
-                    name: 'Match - Pseudoword'
-                    vector: '1 0 -1 0'
-                    replication: 'replsc'
-                -
-                    name: 'Pseudoword - Match'
-                    vector: '-1 0 1 0'
-                    replication: 'replsc'
-                -
-                    name: 'Match - Consonant'
-                    vector: '1 0 0 -1'
-                    replication: 'replsc'
-                -
-                    name: 'Consonant - Match'
-                    vector: '-1 0 0 1'
-                    replication: 'replsc'
-                -
-                    name: 'Word - Pseudoword'
-                    vector: '0 1 -1 0'
-                    replication: 'replsc'
-                -
-                    name: 'Pseudoword - Word'
-                    vector: '0 -1 1 0'
-                    replication: 'replsc'
-                -
-                    name: 'Word - Consonant'
-                    vector: '0 1 0 -1'
-                    replication: 'replsc'
-                -
-                    name: 'Consonant - Word'
-                    vector: '0 -1 0 1'
-                    replication: 'replsc'
-                -
-                    name: 'Pseudoword - Consonant'
-                    vector: '0 0 1 -1'
-                    replication: 'replsc'
-                -
-                    name: 'Consonant - Pseudoword'
-                    vector: '0 -1 0 1'
+                    name: 'Words - Passages'
+                    vector: '-1 1'
                     replication: 'replsc'

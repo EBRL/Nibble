@@ -1,0 +1,138 @@
+version: 1
+project:
+    spec: 1
+    name: LMS_MI
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'first-level-event-art'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                -
+                    name:   'first-level-event-artrepair'
+                    type:   'stats'
+                    art:    false
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                -
+                    name:   'first-level-block-art'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                -
+                    name:   'first-level-block-artrepair'
+                    type:   'stats'
+                    art:    false
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   MI
+            n_runs: 2
+            n_volumes: 135
+            output_directory: /Volumes/Data/LMS_MI/
+            data_toplevel: /Volumes/Data/LMS_MI/
+            run_directory:
+                - M1
+                - M2
+            SPM:
+                normalize-er:
+                    template: '/Applications/spm8/templates/EPI.nii,1'
+            images:
+                - MI1.nii
+                - MI2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        first-level-event-art:
+                            - /Volumes/Data/LMS_MI/timing/MI_Event_M1.mat
+                            - /Volumes/Data/LMS_MI/timing/MI_Event_M2.mat
+                        first-level-event-artrepair:
+                            - /Volumes/Data/LMS_MI/timing/MI_Event_M1.mat
+                            - /Volumes/Data/LMS_MI/timing/MI_Event_M2.mat
+                        first-level-block-art:
+                            - /Volumes/Data/LMS_MI/timing/MI_Block_M1.mat
+                            - /Volumes/Data/LMS_MI/timing/MI_Block_M2.mat
+                        first-level-block-artrepair:
+                            - /Volumes/Data/LMS_MI/timing/MI_Block_M1.mat
+                            - /Volumes/Data/LMS_MI/timing/MI_Block_M2.mat
+            contrasts:
+                first-level-event-art:
+                    -
+                        name:   Imaginary-Base
+                        vector: '1 0'
+                        replication: replsc
+                    -
+                        name:   Control-Base
+                        vector: '0 1'
+                        replication: replsc
+                    -
+                        name:   Imaginary-Control
+                        vector: '1 -1'
+                        replication: replsc
+                    -
+                        name:   Control-Imaginary
+                        vector: '-1 1'
+                        replication: replsc
+
+                first-level-event-artrepair:
+                    -
+                        name:   Imaginary-Base
+                        vector: '1 0'
+                        replication: replsc
+                    -
+                        name:   Control-Base
+                        vector: '0 1'
+                        replication: replsc
+                    -
+                        name:   Imaginary-Control
+                        vector: '1 -1'
+                        replication: replsc
+                    -
+                        name:   Control-Imaginary
+                        vector: '-1 1'
+                        replication: replsc
+                first-level-block-art:
+                    -
+                        name:   Imaginary-Base
+                        vector: '1 0'
+                        replication: replsc
+                    -
+                        name:   Control-Base
+                        vector: '0 1'
+                        replication: replsc
+                    -
+                        name:   Imaginary-Control
+                        vector: '1 -1'
+                        replication: replsc
+                    -
+                        name:   Control-Imaginary
+                        vector: '-1 1'
+                        replication: replsc
+                first-level-block-artrepair:
+                    -
+                        name:   Imaginary-Base
+                        vector: '1 0'
+                        replication: replsc
+                    -
+                        name:   Control-Base
+                        vector: '0 1'
+                        replication: replsc
+                    -
+                        name:   Imaginary-Control
+                        vector: '1 -1'
+                        replication: replsc
+                    -
+                        name:   Control-Imaginary
+                        vector: '-1 1'
+                        replication: replsc
+
