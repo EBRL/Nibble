@@ -1,0 +1,42 @@
+version: 1
+project:
+    spec: 1
+    name: LDRC1_SENT
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                # -
+                #     name:   'art_rej'
+                #     type:   'art'
+                #     stages: ['art']
+#                -
+#                    name:   'first-level'
+#                    type:   'stats'
+#                    art:    true
+#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   Sent
+            n_runs: 6
+            n_volumes: 165
+            output_directory: /scratch/burnsss1/New_Server/LDRC1/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/LDRC1/MR_Processed/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+                - M5
+                - M6
+            images:
+                - Sent1.nii
+                - Sent2.nii
+                - Sent3.nii
+                - Sent4.nii
+                - Sent5.nii
+                - Sent6.nii

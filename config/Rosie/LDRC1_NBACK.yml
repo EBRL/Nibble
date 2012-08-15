@@ -1,0 +1,38 @@
+version: 1
+project:
+    spec: 1
+    name: LDRC1_NBACK
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                # -
+                #     name:   'art_rej'
+                #     type:   'art'
+                #     stages: ['art']
+#                -
+#                    name:   'first-level'
+#                    type:   'stats'
+#                    art:    true
+#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   NBack
+            n_runs: 4
+            n_volumes: 95
+            output_directory: /scratch/burnsss1/New_Server/LDRC1/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/LDRC1/MR_Processed/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+            images:
+                - NBack1.nii
+                - NBack2.nii
+                - NBack3.nii
+                - NBack4.nii
