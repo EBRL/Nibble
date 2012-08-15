@@ -29,7 +29,7 @@ if __name__ == '__main__':
         download_url='http://github.com/sburns/Nibble',
         long_description=long_desc,
         packages=['nibble'],
-        requires=[],
+        requires=['yaml'],
         platforms='any',
         classifiers=(
                 'Development Status :: 3 - Alpha',

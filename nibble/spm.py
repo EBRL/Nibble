@@ -246,6 +246,8 @@ end
             else:
                 ind = len(stages)
             stages[:] = stages[:ind]
+        elif piece['type'] == 'stats' and 'prefix' in piece:
+            return piece['prefix']
         else:
             stages = self.get_stages('pre')
         # join all previous prefixes
