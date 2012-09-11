@@ -676,5 +676,9 @@ cd('%s')
         corresponding log files """
         to_return = []
         for piece in self.pieces:
-            to_return.append((self.piece_path(piece), self.log_path(piece)))
+            if hasattr(piece, 'run'):
+                if piece.run:
+                    to_return.append((self.piece_path(piece), self.log_path(piece)))
+            else:
+                to_return.append((self.piece_path(piece), self.log_path(piece)))
         return to_return

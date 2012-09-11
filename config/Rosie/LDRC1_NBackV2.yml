@@ -1,0 +1,94 @@
+version: 1
+project:
+    spec: 1
+    name: LDRC1_NBackV2
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    run: false
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_repair'
+                    type:   'art'
+                    run: false
+                    stages: ['art']
+                -
+                   name:   'first-level'
+                   type:   'stats'
+                   art:    false
+                   run: true
+                   prefix: 'vswra'
+                   stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   NBackV2
+            n_runs: 4
+            n_volumes: 95
+            output_directory: /scratch/burnsss1/New_Server/LDRC1/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/LDRC1/MR_Processed/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+            images:
+                - NBack1.nii
+                - NBack2.nii
+                - NBack3.nii
+                - NBack4.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBackV2_M1.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBackV2_M2.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBackV2_M3.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBackV2_M4.mat
+            contrasts:
+                -
+                    name: 'Trained - Baseline'
+                    vector: '1 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Untrained - Baseline'
+                    vector: '0 1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Real - Baseline'
+                    vector: '0 0 1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Repeat - Baseline'
+                    vector: '0 0 0 1'
+                    replication: 'replsc'
+                -
+                    name: 'Trained - Untrained'
+                    vector: '1 -1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Untrained - Trained'
+                    vector: '-1 1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'All - Baseline'
+                    vector: '.25 .25 .25 .25'
+                    replication: 'replsc'
+                -
+                    name: 'Trained - Real'
+                    vector: '1 0 -1 0'
+                    replication: 'replsc'
+                -
+                    name: 'Real - Trained'
+                    vector: '-1 0 1 0'
+                    replication: 'replsc'
+                -
+                    name: 'Untrained - Real'
+                    vector: '0 1 -1 0'
+                    replication: 'replsc'
+                -
+                    name: 'Real - Untrained'
+                    vector: '0 -1 1 0'
+                    replication: 'replsc'

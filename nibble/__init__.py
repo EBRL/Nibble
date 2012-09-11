@@ -9,4 +9,4 @@ from .spm import SPM
 from .config import Configurator
 import util
 
-__version__ = "0.3.rosie"
+__version__ = "0.4.rosie"
