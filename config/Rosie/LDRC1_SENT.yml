@@ -10,15 +10,16 @@ project:
                     name:   'pre'
                     type:   'preprocess'
                     stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
-                # -
-                #     name:   'art_rej'
-                #     type:   'art'
-                #     stages: ['art']
-#                -
-#                    name:   'first-level'
-#                    type:   'stats'
-#                    art:    true
-#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'first-level'
+                    type:   'stats'
+                    prefix: 'vswra'
+                    art:    false
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
     paradigms:
         -
             name:   Sent
@@ -40,3 +41,37 @@ project:
                 - Sent4.nii
                 - Sent5.nii
                 - Sent6.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/Sent_M1.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/Sent_M2.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/Sent_M3.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/Sent_M4.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/Sent_M5.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/Sent_M6.mat
+            contrasts:
+                -
+                    name: 'True'
+                    vector: '1 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Semantic'
+                    vector: '0 1 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Syntatic'
+                    vector: '0 0 1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Real'
+                    vector: '0 0 0 1 0'
+                    replication: 'replsc'
+                -
+                    name: 'Pseudo'
+                    vector: '0 0 0 0 1'
+                    replication: 'replsc'
+                -
+                    name: 'All - Baseline'
+                    vector: '.2 .2 .2 .2 .2'
+                    replication: 'replsc'

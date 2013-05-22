@@ -1,7 +1,7 @@
 version: 1
 project:
     spec: 1
-    name: LDRC1_NBACK
+    name: LDRC1_NBack-TUH.MLR
     todo:
         -
             name: 'SPM'
@@ -11,7 +11,7 @@ project:
                     type:   'preprocess'
                     stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
                 -
-                    name:   'art_rej'
+                    name:   'art_repair'
                     type:   'art'
                     stages: ['art']
                 -
@@ -22,7 +22,7 @@ project:
                    stages: ['model', 'estimate', 'contrast_manager', 'results']
     paradigms:
         -
-            name:   NBack
+            name:   NBack-TUH.MLR
             n_runs: 4
             n_volumes: 95
             output_directory: /scratch/burnsss1/New_Server/LDRC1/MR_Processed/
@@ -40,53 +40,25 @@ project:
             SPM:
                 session:
                     multiple_condition_mat:
-                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack_M1.mat
-                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack_M2.mat
-                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack_M3.mat
-                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack_M4.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-TUH.MLR_M1.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-TUH.MLR_M2.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-TUH.MLR_M3.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-TUH.MLR_M4.mat
             contrasts:
                 -
-                    name: 'NP > Real'
-                    vector: '0 1 -.5 -.5 0'
-                    replication: 'replsc'
-                -
-                    name: 'NP < Real'
-                    vector: '0 -1 .5 .5 0'
-                    replication: 'replsc'
-                -
-                    name: 'NP > TP'
-                    vector: '-1 1 0 0 0'
-                    replication: 'replsc'
-                -
-                    name: 'NP > TP'
-                    vector: '1 -1 0 0 0'
-                    replication: 'replsc'
-                -
-                    name: 'TP > Real'
-                    vector: '1 0 -.5 -.5 0'
-                    replication: 'replsc'
-                -
-                    name: 'TP < Real'
-                    vector: '-1 0 .5 .5 0'
-                    replication: 'replsc'
-                -
-                    name: 'All - Baseline'
-                    vector: '.2 .2 .2 .2 .2'
-                    replication: 'replsc'
-                -
-                    name: 'TP - Baseline'
+                    name: 'Trained - Baseline'
                     vector: '1 0 0 0 0'
                     replication: 'replsc'
                 -
-                    name: 'NP - Baseline'
+                    name: 'Untrained - Baseline'
                     vector: '0 1 0 0 0'
                     replication: 'replsc'
                 -
-                    name: 'Real High - Baseline'
+                    name: 'High&Medium - Baseline'
                     vector: '0 0 1 0 0'
                     replication: 'replsc'
                 -
-                    name: 'Real Low - Baseline'
+                    name: 'Low - Baseline'
                     vector: '0 0 0 1 0'
                     replication: 'replsc'
                 -

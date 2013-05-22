@@ -1,0 +1,90 @@
+version: 1
+lists:
+    NBack-ICUHMLR:
+        SPM:
+            session:
+                multiple_condition_mat:
+                    '1':
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_List1_M1.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_List1_M2.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_List1_M3.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_List1_M4.mat
+                    '2':
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_List2_M1.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_List2_M2.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_List2_M3.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_List2_M4.mat
+project:
+    spec: 1
+    name: LDRC1_NBack-ICUHMLR
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_repair'
+                    type:   'art'
+                    stages: ['art']
+                -
+                   name:   'first-level'
+                   type:   'stats'
+                   art:    false
+                   prefix: 'vswra'
+                   stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   NBack-ICUHMLR
+            n_runs: 4
+            n_volumes: 95
+            output_directory: /scratch/burnsss1/New_Server/LDRC1/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/LDRC1/MR_Processed/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+            images:
+                - NBack1.nii
+                - NBack2.nii
+                - NBack3.nii
+                - NBack4.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_M1.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_M2.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_M3.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-ICUHMLR_M4.mat
+            contrasts:
+                -
+                    name: 'Isolation - Baseline'
+                    vector: '1 0 0 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Context - Baseline'
+                    vector: '0 1 0 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Untrained - Baseline'
+                    vector: '0 0 1 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'High - Baseline'
+                    vector: '0 0 0 1 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Medium - Baseline'
+                    vector: '0 0 0 0 1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Low - Baseline'
+                    vector: '0 0 0 0 0 1 0'
+                    replication: 'replsc'
+                -
+                    name: 'Repeat - Baseline'
+                    vector: '0 0 0 0 0 0 1'
+                    replication: 'replsc'

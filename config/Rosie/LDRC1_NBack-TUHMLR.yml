@@ -1,0 +1,71 @@
+version: 1
+project:
+    spec: 1
+    name: LDRC1_NBack-TUHMLR
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_repair'
+                    type:   'art'
+                    stages: ['art']
+                -
+                   name:   'first-level'
+                   type:   'stats'
+                   art:    false
+                   prefix: 'vswra'
+                   stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   NBack-TUHMLR
+            n_runs: 4
+            n_volumes: 95
+            output_directory: /scratch/burnsss1/New_Server/LDRC1/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/LDRC1/MR_Processed/
+            run_directory:
+                - M1
+                - M2
+                - M3
+                - M4
+            images:
+                - NBack1.nii
+                - NBack2.nii
+                - NBack3.nii
+                - NBack4.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-TUHMLR_M1.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-TUHMLR_M2.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-TUHMLR_M3.mat
+                        - /scratch/burnsss1/New_Server/LDRC1/other/timing/NBack-TUHMLR_M4.mat
+            contrasts:
+                -
+                    name: 'Trained - Baseline'
+                    vector: '1 0 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Untrained - Baseline'
+                    vector: '0 1 0 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'High - Baseline'
+                    vector: '0 0 1 0 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Medium - Baseline'
+                    vector: '0 0 0 1 0 0'
+                    replication: 'replsc'
+                -
+                    name: 'Low - Baseline'
+                    vector: '0 0 0 0 1 0'
+                    replication: 'replsc'
+                -
+                    name: 'Repeat - Baseline'
+                    vector: '0 0 0 0 0 1'
+                    replication: 'replsc'
