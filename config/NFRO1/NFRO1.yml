@@ -1,7 +1,7 @@
 version: 1
 project:
     spec: 1
-    name: NFRO1
+    name: NF
     todo:
         -
             name: 'SPM'
@@ -14,18 +14,8 @@ project:
                     name:   'art_rej'
                     type:   'art'
                     stages: ['art']
-#                -
-#                    name:   'new-AC'
-#                    type:   'stats'
-#                    art:    true
-#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
-#                -
-#                    name:   'new-RI'
-#                    type:   'stats'
-#                    art:    true
-#                    stages: ['model', 'estimate', 'contrast_manager', 'results']
                 -
-                    name:   'new-WNW'
+                    name:   'first-level'
                     type:   'stats'
                     art:    true
                     stages: ['model', 'estimate', 'contrast_manager', 'results']

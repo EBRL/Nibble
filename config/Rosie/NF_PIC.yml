@@ -1,0 +1,67 @@
+version: 1
+lists:
+    PIC:
+        SPM:
+            session:
+                multiple_condition_mat:
+                    '1':
+                        - /scratch/burnsss1/New_Server/NF/Other/task_timing/PIC/PIC_ListA_M1.mat
+                        - /scratch/burnsss1/New_Server/NF/Other/task_timing/PIC/PIC_ListA_M2.mat
+                    '2':
+                        - /scratch/burnsss1/New_Server/NF/Other/task_timing/PIC/PIC_ListB_M1.mat
+                        - /scratch/burnsss1/New_Server/NF/Other/task_timing/PIC/PIC_ListB_M2.mat
+project:
+    spec: 1
+    name: NF-PIC
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'first-level'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   PIC
+            n_runs: 2
+            n_volumes: 160
+            output_directory: /scratch/burnsss1/New_Server/NF/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/NF/MR_Processed/
+            run_directory:
+                - M1
+                - M2
+            images:
+                - Pic1.nii
+                - Pic2.nii
+            contrasts:
+                first-level:
+                    -
+                        name:   Picture-Baseline
+                        vector: '1 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Consonant-Baseline
+                        vector: '0 1 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Pseudo-Baseline
+                        vector: '0 0 1 0 0'
+                        replication: replsc
+                    -
+                        name:   Word-Baseline
+                        vector: '0 0 0 1 0'
+                        replication: replsc
+                    -
+                        name:   Match-Baseline
+                        vector: '0 0 0 0 1'
+                        replication: replsc

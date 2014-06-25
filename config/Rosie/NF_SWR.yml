@@ -1,0 +1,75 @@
+version: 1
+lists:
+    SWR:
+        SPM:
+            session:
+                multiple_condition_mat:
+                    '1':
+                        - /scratch/burnsss1/New_Server/NF/Other/task_timing/SWR/SWR_ListA_M1.mat
+                        - /scratch/burnsss1/New_Server/NF/Other/task_timing/SWR/SWR_ListA_M2.mat
+                    '2':
+                        - /scratch/burnsss1/New_Server/NF/Other/task_timing/SWR/SWR_ListB_M1.mat
+                        - /scratch/burnsss1/New_Server/NF/Other/task_timing/SWR/SWR_ListB_M2.mat
+project:
+    spec: 1
+    name: NF-SWR
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'first-level'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   SWR
+            n_runs: 2
+            n_volumes: 94
+            output_directory: /scratch/burnsss1/New_Server/NF/MR_Processed
+            data_toplevel: /scratch/burnsss1/New_Server/NF/MR_Processed
+            run_directory:
+                - M1
+                - M2
+            images:
+                - SWR1.nii
+                - SWR2.nii
+            contrasts:
+                first-level:
+                    -
+                        name:   Words-Baseline
+                        vector: '0 .25 .25 .25 .25'
+                        replication: replsc
+                    -
+                        name:   Nonwords-Baseline
+                        vector: '1 0 0 0 0'
+                        replication: replsc
+                    -
+                        name:   Abstract-Baseline
+                        vector: '0 .5 .5 0 0'
+                        replication: replsc
+                    -
+                        name:   Concrete-Baseline
+                        vector: '0 0 0 .5 .5'
+                        replication: replsc
+                    -
+                        name:   Irregular-Baseline
+                        vector: '0 .5 0 .5 0'
+                        replication: replsc
+                    -
+                        name:   Regular-Baseline
+                        vector: '0 0 .5 0 .5'
+                        replication: replsc
+                    -
+                        name:   Words+Nonwords
+                        vector: '.2 .2 .2 .2 .2'
+                        replication: replsc

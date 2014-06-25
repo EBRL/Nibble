@@ -1,0 +1,50 @@
+version: 1
+project:
+    spec: 1
+    name: LERDP2-PassAud
+    todo:
+        -
+            name: 'SPM'
+            pieces:
+                -
+                    name:   'pre'
+                    type:   'preprocess'
+                    stages: ['slicetime', 'realign-er','normalize-er', 'smooth']
+                -
+                    name:   'art_rej'
+                    type:   'art'
+                    stages: ['art']
+                -
+                    name:   'first-level'
+                    type:   'stats'
+                    art:    true
+                    stages: ['model', 'estimate', 'contrast_manager', 'results']
+    paradigms:
+        -
+            name:   PassagesV3
+            n_runs: 2
+            n_volumes: 160
+            output_directory: /scratch/burnsss1/New_Server/LERDP2/MR_Processed/
+            data_toplevel: /scratch/burnsss1/New_Server/LERDP2/MR_Processed/
+            run_directory:
+                - M1
+                - M2
+            images:
+                - Pass1.nii
+                - Pass2.nii
+            SPM:
+                session:
+                    multiple_condition_mat:
+                        - /scratch/burnsss1/New_Server/LERDP2/timing/PassagesV3/PassagesV3_ListA_M1.mat
+                        - /scratch/burnsss1/New_Server/LERDP2/timing/PassagesV3/PassagesV3_ListA_M2.mat
+                slicetime:
+                    so: '1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40'
+            contrasts:
+                -
+                    name: 'Passages - Baseline'
+                    vector: '1 0'
+                    replication: 'replsc'
+                -
+                    name: 'Baseline - Passages'
+                    vector: '-1 0'
+                    replication: 'replsc'
