@@ -1,7 +1,7 @@
 version: 1
 project:
     spec: 1
-    name: LERDLMS_PassagesV3_2x2_EA
+    name: LERDP2_PassagesV3_2x2_EA
     todo:
         -
             name: 'SPM'
@@ -21,7 +21,7 @@ project:
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
     paradigms:
         -
-            name:   PassagesV3EA
+            name:   PassagesV3-EA
             n_runs: 1
             n_volumes: 250
             output_directory: /scratch/cutting/New_Server/LERDLMS/MR_Processed/

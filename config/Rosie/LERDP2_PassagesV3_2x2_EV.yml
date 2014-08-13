@@ -1,7 +1,7 @@
 version: 1
 project:
     spec: 1
-    name: LERDLMS_PassagesV3_EV
+    name: LERDP2_PassagesV3_2x2_EV
     todo:
         -
             name: 'SPM'
@@ -21,11 +21,11 @@ project:
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
     paradigms:
         -
-            name:   PassagesV3_EV
+            name:   PassagesV3-EV
             n_runs: 1
             n_volumes: 250
-            output_directory: /scratch/cutting/New_Server/LERDLMS/MR_Processed/
-            data_toplevel: /scratch/cutting/New_Server/LERDLMS/MR_Processed/
+            output_directory: /scratch/cutting/New_Server/LERDP2/MR_Processed/
+            data_toplevel: /scratch/cutting/New_Server/LERDP2/MR_Processed/
             run_directory:
                 - M1
             images:
@@ -36,7 +36,7 @@ project:
                 session:
                     multiple_condition_mat:
                         first-level:
-                            - /scratch/cutting/New_Server/LERDLMS/timing/PassagesV3/PassagesV3_EV_ListA_M1.mat
+                            - /scratch/cutting/New_Server/LERDP2/timing/PassagesV3/PassagesV3_2x2_EV_ListA.mat
             contrasts:
                 -
                     name: 'Passages - Baseline'

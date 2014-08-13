@@ -1,7 +1,7 @@
 version: 1
 project:
     spec: 1
-    name: LERDLMS_PassagesV3_NA
+    name: LERDP2_PassagesV3_2x2_NA
     todo:
         -
             name: 'SPM'
@@ -24,8 +24,8 @@ project:
             name:   PassagesV3_NA
             n_runs: 1
             n_volumes: 250
-            output_directory: /scratch/cutting/New_Server/LERDLMS/MR_Processed/
-            data_toplevel: /scratch/cutting/New_Server/LERDLMS/MR_Processed/
+            output_directory: /scratch/cutting/New_Server/LERDP2/MR_Processed/
+            data_toplevel: /scratch/cutting/New_Server/LERDP2/MR_Processed/
             run_directory:
                 - M1
             images:
@@ -36,7 +36,7 @@ project:
                 session:
                     multiple_condition_mat:
                         first-level:
-                            - /scratch/cutting/New_Server/LERDLMS/timing/PassagesV3/PassagesV3_NA_ListA_M1.mat
+                            - /scratch/cutting/New_Server/LERDP2/timing/PassagesV3/PassagesV3_2x2_NA_ListA.mat
             contrasts:
                 -
                     name: 'Passages - Baseline'

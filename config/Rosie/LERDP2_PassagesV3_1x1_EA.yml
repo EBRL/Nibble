@@ -21,7 +21,7 @@ project:
                     stages: ['model', 'estimate', 'contrast_manager', 'results']
     paradigms:
         -
-            name:   PassagesV3_1x1_EA
+            name:   PassagesV3-EA
             n_runs: 1
             n_volumes: 250
             output_directory: /scratch/cutting/New_Server/LERDP2/MR_Processed/
@@ -36,7 +36,7 @@ project:
                 session:
                     multiple_condition_mat:
                         first-level:
-                            - /scratch/cutting/New_Server/LERDP2/timing/PassagesV3/PassagesV3_1x1_EA_ListA_M1.mat
+                            - /scratch/cutting/New_Server/LERDP2/timing/PassagesV3/PassagesV3_1x1_EA_ListA.mat
             contrasts:
                 -
                     name: 'Passages - Baseline'
